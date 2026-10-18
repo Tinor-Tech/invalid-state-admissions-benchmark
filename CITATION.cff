@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "If you use these cases or the scorer, please cite them as below."
+type: software
+title: "Invalid State Admissions Benchmark: admission cases and disposition scorer"
+abstract: "Ten synthetic admission cases and a disposition-only scorer published with the Tinor Journal research note 'Toward Zero Invalid State Admissions: A Benchmark Proposal'. A proposal: no results are reported for any system."
+authors:
+  - name: "Tinor"
+url: "https://tinor.io/journal/toward-zero-invalid-state-admissions"
+repository-code: "https://github.com/Tinor-Tech/invalid-state-admissions-benchmark"
+license: MIT
+keywords:
+  - ai agents
+  - verifiable state
+  - benchmark
+  - state admission
+  - evaluation

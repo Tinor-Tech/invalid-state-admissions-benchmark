@@ -1,0 +1,11 @@
+{
+  "title": "Invalid State Admissions Benchmark: admission cases and disposition scorer",
+  "description": "Ten synthetic admission cases and a disposition-only scorer published with the Tinor Journal research note 'Toward Zero Invalid State Admissions: A Benchmark Proposal'. The scorer compares declared outcomes and reasons only and reports CDR and disposition-level ISAR and VSAR, including for the always-reject, always-hold and always-admit baselines. A proposal: no results are reported for any system.",
+  "upload_type": "software",
+  "creators": [{ "name": "Tinor" }],
+  "license": "mit",
+  "keywords": ["ai agents", "verifiable state", "benchmark"],
+  "related_identifiers": [
+    { "identifier": "https://tinor.io/journal/toward-zero-invalid-state-admissions", "relation": "isSupplementTo", "resource_type": "publication" }
+  ]
+}

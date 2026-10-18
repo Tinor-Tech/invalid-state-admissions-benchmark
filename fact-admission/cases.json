@@ -1,0 +1,249 @@
+{
+  "title": "Fact admission — reference cases",
+  "articles": [
+    "https://tinor.io/journal/an-ai-answer-is-not-a-fact",
+    "https://tinor.io/journal/toward-zero-invalid-state-admissions"
+  ],
+  "nature": "Synthetic data. Fictional organisations and messages. Expected outcomes and reasons are human-defined.",
+  "outcomes": {
+    "ADMIT": "admit as proposed, with the stated attribution and evidence class",
+    "ADMIT-QUALIFIED": "admit only as a weaker proposition or an evidence-only note",
+    "HOLD": "do not admit yet; a specific question or confirmation is needed",
+    "REFUSE": "do not admit; the stated reason applies",
+    "NO-CHANGE": "the request should change nothing"
+  },
+  "strength": {
+    "REFUSE": 0,
+    "HOLD": 0,
+    "NO-CHANGE": 0,
+    "ADMIT-QUALIFIED": 1,
+    "ADMIT": 2
+  },
+  "reasons": {
+    "subject_ambiguous": "HOLD: the subject matches more than one organisation; ask which",
+    "quote_not_in_source": "REFUSE: the quoted text does not occur in the cited material",
+    "period_missing": "HOLD: a rate with no stated period cannot fill a measurement field; ask which period",
+    "not_entitled_to_commit": "REFUSE: the submitting account is not entitled to commit the company",
+    "stronger_than_source": "ADMIT-QUALIFIED: the source supports only a weaker, conditional proposition",
+    "confirmations_pending": "HOLD: not every party the change binds has confirmed it",
+    "as_subject_transcription": "ADMIT: as the subject's own transcription, at that assurance level",
+    "assurance_claimed_for_other_party": "REFUSE: assurance is claimed on behalf of another party",
+    "independent_issuer": "ADMIT: issued by an independent party with standing",
+    "field_not_declared": "REFUSE: the record carries a field the target contract does not declare"
+  },
+  "reasonVocabulary": "Reasons are this file's own descriptive labels, not Tinor's internal vocabulary. Outputs scored against this file must use one of them, or null.",
+  "stages": "stopsAt names one of six high-level stages: Interpretation, Typed Candidate, Assessment, Human Confirmation and authority, Owner Commit / Durable Record, Read.",
+  "tinorCoverageValues": {
+    "tested": "Tinor's own automated tests exercise the corresponding behaviour (Tinor's claim; nothing in this folder checks it)",
+    "integration-test": "covered by a Tinor test that needs a database",
+    "design": "described in Tinor's design records; no test cited"
+  },
+  "cases": [
+    {
+      "id": "a01-wrong-entity-binding",
+      "title": "Same name, two organisations",
+      "input": "Email signature: 'Northfield — Sales'. Body: 'Our HX-40 lead time is now six weeks.'",
+      "candidate": {
+        "target": "lead_time",
+        "subject": "org:northfield-precision",
+        "value": "6",
+        "unit": "week"
+      },
+      "context": "Two registered organisations are named Northfield: org:northfield-components (the buyer's supplier) and org:northfield-precision. The model bound the email to the second because its directory entry was the closer text match.",
+      "expected": {
+        "outcome": "HOLD",
+        "reason": "subject_ambiguous"
+      },
+      "stopsAt": "Assessment",
+      "tinorCoverage": "integration-test",
+      "why": "A name match is not evidence of identity. The candidate cannot be bound until a person chooses the entity; nothing is admitted against either organisation in the meantime."
+    },
+    {
+      "id": "a02-missing-evidence",
+      "title": "The quote is not in the document",
+      "input": "Supplier upload: resin test report PDF for grade PC-ABS 2200. Model summary: 'The report shows PC-ABS 2400 meets UL 94 V-0 at 1.5 mm.'",
+      "candidate": {
+        "target": "material_test_result",
+        "subject": "material:pc-abs-2400",
+        "value": "V-0",
+        "grounding": {
+          "material": "report-2200.pdf",
+          "quote": "PC-ABS 2400 ... V-0 at 1.5 mm"
+        }
+      },
+      "context": "The cited material is a report on a different grade. The quoted span does not occur in it.",
+      "expected": {
+        "outcome": "REFUSE",
+        "reason": "quote_not_in_source"
+      },
+      "stopsAt": "Assessment",
+      "tinorCoverage": "design",
+      "why": "A candidate must point to text that exists in the material on record. A plausible summary of a neighbouring document is not grounding."
+    },
+    {
+      "id": "a03-wrong-field-semantics",
+      "title": "A rate hidden in the unit",
+      "input": "Sales deck, slide 4: 'Capacity: 46,000 units/month.'",
+      "candidate": {
+        "target": "capacity_measurement",
+        "subject": "org:northfield-components",
+        "value": "46000",
+        "unit": "units/month",
+        "period": null
+      },
+      "context": "The capacity target requires a count over an explicit interval. 'Per month' names no month.",
+      "expected": {
+        "outcome": "HOLD",
+        "reason": "period_missing"
+      },
+      "stopsAt": "Assessment",
+      "tinorCoverage": "tested",
+      "why": "The value may be right, but the field cannot hold it without knowing which month and on what basis. The remedy is a question, not a refusal of the supplier."
+    },
+    {
+      "id": "a04-unauthorised-commitment",
+      "title": "A commitment from an account that cannot commit",
+      "input": "Email from a sales coordinator: 'Confirmed: 20,000 HX-40 housings delivered by 30 November at USD 1.85.'",
+      "candidate": {
+        "target": "agreement_change_set",
+        "commitment": {
+          "debtor": "org:northfield-components",
+          "creditor": "org:buyer-b",
+          "object": "20000 HX-40 housings",
+          "dueAt": "2026-11-30",
+          "price": "USD 1.85"
+        }
+      },
+      "context": "The coordinator's account may submit records but is not authorised to commit Northfield Components.",
+      "expected": {
+        "outcome": "REFUSE",
+        "reason": "not_entitled_to_commit"
+      },
+      "stopsAt": "Assessment",
+      "tinorCoverage": "tested",
+      "why": "Being able to call the write API is not authority to bind the company. Permission to submit records is not permission to commit on the company's behalf."
+    },
+    {
+      "id": "a05-proposition-too-strong",
+      "title": "A hedge promoted to a promise",
+      "input": "Email from Northfield's sales director: 'We should be able to ship the 20,000 housings by end of November, assuming the resin arrives on time.'",
+      "candidate": {
+        "target": "agreement_change_set",
+        "commitment": {
+          "object": "20000 HX-40 housings",
+          "dueAt": "2026-11-30"
+        }
+      },
+      "context": "The sender has authority to commit, but the sentence is conditional and hedged. The model dropped both the condition and 'should be able to'.",
+      "expected": {
+        "outcome": "ADMIT-QUALIFIED",
+        "reason": "stronger_than_source"
+      },
+      "stopsAt": "Assessment",
+      "tinorCoverage": "design",
+      "why": "What the source supports is a dated, attributed expectation with its condition attached: an evidence-only note. Recording it as a delivery commitment would create an obligation nobody made."
+    },
+    {
+      "id": "a06-needs-confirmation",
+      "title": "A firm quote that is not yet an agreement",
+      "input": "Email from Northfield's sales director: 'We offer 20,000 HX-40 housings, delivery by 30 November 2026, USD 1.85 per unit, valid until 31 October.'",
+      "candidate": {
+        "target": "agreement_change_set",
+        "commitment": {
+          "debtor": "org:northfield-components",
+          "creditor": "org:buyer-b",
+          "object": "20000 HX-40 housings",
+          "dueAt": "2026-11-30",
+          "price": "USD 1.85"
+        }
+      },
+      "context": "The sender may commit for Northfield. The buyer has not confirmed. The proposer listed only itself as a required confirmer.",
+      "expected": {
+        "outcome": "HOLD",
+        "reason": "confirmations_pending"
+      },
+      "stopsAt": "Human Confirmation and authority",
+      "tinorCoverage": "tested",
+      "why": "An offer becomes shared state only when every party the change affects confirms the same change set. The required set is derived from the change, so the proposer cannot shrink it."
+    },
+    {
+      "id": "a07-valid-transcription",
+      "title": "An honest self-declared transcription",
+      "input": "Supplier record: 'Flammability test report FR-118 for PC-ABS 2200, issued by Lakeside Labs, result V-0 at 1.5 mm.' Recorded by the supplier, marked as its own transcription.",
+      "candidate": {
+        "target": "assessment_report",
+        "subject": "material:pc-abs-2200",
+        "attestation_source": "transcribed",
+        "issuer": "org:northfield-components"
+      },
+      "context": "The supplier claims nothing more than that it transcribed the report it holds.",
+      "expected": {
+        "outcome": "ADMIT",
+        "reason": "as_subject_transcription"
+      },
+      "stopsAt": "Owner Commit / Durable Record",
+      "tinorCoverage": "tested",
+      "why": "A self-declared claim is valid when it says what it is. It is admitted as the supplier's transcription, at that assurance level and no higher."
+    },
+    {
+      "id": "a08-forged-assurance",
+      "title": "The supplier writes the lab's attestation",
+      "input": "Same report, but the supplier's event marks it 'attested by Lakeside Labs' and names the lab as assessor.",
+      "candidate": {
+        "target": "assessment_report",
+        "subject": "material:pc-abs-2200",
+        "attestation_source": "issuer_attested",
+        "assessor": "org:lakeside-labs",
+        "issuer": "org:northfield-components"
+      },
+      "context": "The event is signed by the supplier's account, not the lab's.",
+      "expected": {
+        "outcome": "REFUSE",
+        "reason": "assurance_claimed_for_other_party"
+      },
+      "stopsAt": "Assessment",
+      "tinorCoverage": "tested",
+      "why": "Only the lab can attest as the lab. A supplier claiming third-party assurance on the lab's behalf is refused rather than admitted at a lower level."
+    },
+    {
+      "id": "a09-independent-issuer",
+      "title": "The lab issues its own report",
+      "input": "Lakeside Labs records report FR-118 under its own account, naming itself as assessor.",
+      "candidate": {
+        "target": "assessment_report",
+        "subject": "material:pc-abs-2200",
+        "attestation_source": "issuer_attested",
+        "assessor": "org:lakeside-labs",
+        "issuer": "org:lakeside-labs"
+      },
+      "context": "The issuing account is the lab's and is independent of the supplier.",
+      "expected": {
+        "outcome": "ADMIT",
+        "reason": "independent_issuer"
+      },
+      "stopsAt": "Owner Commit / Durable Record",
+      "tinorCoverage": "tested",
+      "why": "The same content is admissible at a higher assurance level when the party with standing issues it."
+    },
+    {
+      "id": "a10-undeclared-field",
+      "title": "An extra field claims verification",
+      "input": "An integration posts the supplier's lead-time record with an added field \"verified\": true.",
+      "candidate": {
+        "target": "lead_time",
+        "subject": "org:northfield-components",
+        "value": "6",
+        "unit": "week",
+        "verified": true
+      },
+      "context": "The target contract does not declare a 'verified' field.",
+      "expected": {
+        "outcome": "REFUSE",
+        "reason": "field_not_declared"
+      },
+      "stopsAt": "Assessment",
+      "tinorCoverage": "tested",
+      "why": "Assurance is derived from who issued what, not from a flag in the payload. Undeclared fields are refused, not ignored."
+    }
+  ]
+}
