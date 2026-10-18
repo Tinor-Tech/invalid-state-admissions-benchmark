@@ -16,6 +16,21 @@ Companion repository for the Tinor Journal research note
 > authors with knowledge of the public cases (see [BASELINES.md](BASELINES.md)). No language-model
 > baseline has been run.
 
+## About these files
+
+1. **Synthetic.** Every party, document and number is fictional. No real supplier, customer or event.
+2. **Independent of any product.** This is an evaluation harness written for the research note. It is not
+   Tinor code and contains no adapter for Tinor or any other product. Its rules, reason names and rule
+   order are the benchmark's own.
+3. **What is checked.** Declared dispositions (Level 1); persisted records, history, served answers per
+   viewer and time, critical failures and system errors (Level 2). See [METRICS.md](METRICS.md).
+4. **What is not checked.** Whether an adapter exports what its system really stored; task completion
+   in real workflows (TCR, reserved); anything outside the declared rules; real-world truth.
+5. **How to verify.** `npm test`, then `node baselines/run-baselines.mjs`; see [REPRODUCE.md](REPRODUCE.md).
+6. **Human-defined expectations.** All expected outcomes, records and answers were written by the
+   benchmark authors against [RULES.md](RULES.md), before any baseline was run, and have not yet been
+   reviewed by independent annotators ([REVIEW.md](REVIEW.md)).
+
 ## What is new in v2
 
 - **Two levels.** Level 1 scores declared dispositions, as v1 did. Level 2 runs a system through an
