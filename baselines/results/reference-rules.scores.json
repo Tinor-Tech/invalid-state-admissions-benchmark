@@ -2,7 +2,8 @@
   "adapter": {
     "name": "reference-rules",
     "kind": "reference",
-    "description": "Schema, evidence, identity, authority and temporal rules with a deterministic resolver. Written with knowledge of the public cases; see the header."
+    "description": "Schema, evidence, identity, authority and temporal rules with a deterministic resolver. Written with knowledge of the public cases; see the header.",
+    "contract": "isa-adapter/2.1"
   },
   "metrics": {
     "units": {
@@ -93,11 +94,15 @@
         ]
       }
     },
+    "coverage": {
+      "casesWithSnapshots": 39
+    },
     "critical": {
       "total": 0,
       "UNAUTHORIZED_WRITE": 0,
       "DISCLOSURE_LEAK": 0,
       "HISTORY_ALTERED": 0,
+      "STATE_CHANGED_BY_READ": 0,
       "casesWithCritical": 0,
       "list": []
     },

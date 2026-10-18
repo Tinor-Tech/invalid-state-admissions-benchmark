@@ -1,10 +1,11 @@
 {
-  "benchmarkVersion": "2.0.0",
-  "outputSchema": "isa-run-output/2",
+  "benchmarkVersion": "2.1.0",
+  "outputSchema": "isa-run-output/2.1",
   "adapter": {
     "name": "reference-rules",
     "kind": "reference",
-    "description": "Schema, evidence, identity, authority and temporal rules with a deterministic resolver. Written with knowledge of the public cases; see the header."
+    "description": "Schema, evidence, identity, authority and temporal rules with a deterministic resolver. Written with knowledge of the public cases; see the header.",
+    "contract": "isa-adapter/2.1"
   },
   "outputs": {
     "probe-1d1f7b": {
@@ -69,6 +70,86 @@
           "qualifiers": []
         }
       ],
+      "snapshots": [
+        {
+          "after": "s1",
+          "records": [
+            {
+              "id": "r1",
+              "candidate": null,
+              "step": null,
+              "target": "delivery",
+              "recordType": "offer",
+              "subject": "org:northfield-components",
+              "attributedTo": "org:northfield-components",
+              "actingFor": "org:northfield-components",
+              "submittedBy": "acct:nc-director",
+              "fields": {
+                "object": "HX-40 housings",
+                "quantity": 20000,
+                "dueBy": "2026-11-30",
+                "price": "USD 1.85",
+                "debtor": "org:northfield-components",
+                "creditor": "org:buyer-b"
+              },
+              "evidence": [
+                {
+                  "material": "m1",
+                  "quote": "We offer 20,000 HX-40 housings, delivery by 30 November 2026, USD 1.85 per unit, valid until 31 October 2026"
+                }
+              ],
+              "validity": {
+                "from": "2026-10-05",
+                "to": "2026-10-31"
+              },
+              "recordedAt": "2026-10-05T10:00:00Z",
+              "audience": null,
+              "supersedes": null,
+              "withdraws": null,
+              "confirmedBy": null
+            }
+          ]
+        },
+        {
+          "after": "reads",
+          "records": [
+            {
+              "id": "r1",
+              "candidate": null,
+              "step": null,
+              "target": "delivery",
+              "recordType": "offer",
+              "subject": "org:northfield-components",
+              "attributedTo": "org:northfield-components",
+              "actingFor": "org:northfield-components",
+              "submittedBy": "acct:nc-director",
+              "fields": {
+                "object": "HX-40 housings",
+                "quantity": 20000,
+                "dueBy": "2026-11-30",
+                "price": "USD 1.85",
+                "debtor": "org:northfield-components",
+                "creditor": "org:buyer-b"
+              },
+              "evidence": [
+                {
+                  "material": "m1",
+                  "quote": "We offer 20,000 HX-40 housings, delivery by 30 November 2026, USD 1.85 per unit, valid until 31 October 2026"
+                }
+              ],
+              "validity": {
+                "from": "2026-10-05",
+                "to": "2026-10-31"
+              },
+              "recordedAt": "2026-10-05T10:00:00Z",
+              "audience": null,
+              "supersedes": null,
+              "withdraws": null,
+              "confirmedBy": null
+            }
+          ]
+        }
+      ],
       "error": null
     },
     "probe-5d52ed": {
@@ -85,6 +166,16 @@
         {
           "read": "q1",
           "status": "none"
+        }
+      ],
+      "snapshots": [
+        {
+          "after": "s1",
+          "records": []
+        },
+        {
+          "after": "reads",
+          "records": []
         }
       ],
       "error": null
@@ -152,6 +243,84 @@
           ]
         }
       ],
+      "snapshots": [
+        {
+          "after": "s1",
+          "records": [
+            {
+              "id": "w1",
+              "candidate": "c1",
+              "step": "s1",
+              "submittedBy": "acct:lab-reports",
+              "recordedAt": "2026-10-05T10:00:00Z",
+              "audience": null,
+              "supersedes": null,
+              "withdraws": null,
+              "confirmedBy": null,
+              "target": "test_result",
+              "recordType": "issuer-attestation",
+              "subject": "material:pc-abs-2200",
+              "attributedTo": "org:lakeside-labs",
+              "actingFor": "org:lakeside-labs",
+              "fields": {
+                "material": "PC-ABS 2200",
+                "standard": "UL 94",
+                "thicknessMm": 1.5,
+                "result": "V-0",
+                "reportId": "FR-118"
+              },
+              "evidence": [
+                {
+                  "material": "m1",
+                  "quote": "achieved UL 94 V-0 at 1.5 mm"
+                }
+              ],
+              "validity": {
+                "from": "2026-10-05",
+                "to": null
+              }
+            }
+          ]
+        },
+        {
+          "after": "reads",
+          "records": [
+            {
+              "id": "w1",
+              "candidate": "c1",
+              "step": "s1",
+              "submittedBy": "acct:lab-reports",
+              "recordedAt": "2026-10-05T10:00:00Z",
+              "audience": null,
+              "supersedes": null,
+              "withdraws": null,
+              "confirmedBy": null,
+              "target": "test_result",
+              "recordType": "issuer-attestation",
+              "subject": "material:pc-abs-2200",
+              "attributedTo": "org:lakeside-labs",
+              "actingFor": "org:lakeside-labs",
+              "fields": {
+                "material": "PC-ABS 2200",
+                "standard": "UL 94",
+                "thicknessMm": 1.5,
+                "result": "V-0",
+                "reportId": "FR-118"
+              },
+              "evidence": [
+                {
+                  "material": "m1",
+                  "quote": "achieved UL 94 V-0 at 1.5 mm"
+                }
+              ],
+              "validity": {
+                "from": "2026-10-05",
+                "to": null
+              }
+            }
+          ]
+        }
+      ],
       "error": null
     },
     "probe-a54a0c": {
@@ -210,6 +379,80 @@
           "qualifiers": []
         }
       ],
+      "snapshots": [
+        {
+          "after": "s1",
+          "records": [
+            {
+              "id": "w1",
+              "candidate": "c1",
+              "step": "s1",
+              "submittedBy": "acct:nc-quality",
+              "recordedAt": "2026-10-05T10:00:00Z",
+              "audience": null,
+              "supersedes": null,
+              "withdraws": null,
+              "confirmedBy": null,
+              "target": "certificate_status",
+              "recordType": "claim",
+              "subject": "org:northfield-components",
+              "attributedTo": "org:northfield-components",
+              "actingFor": "org:northfield-components",
+              "fields": {
+                "certificateId": "Q-5521",
+                "scope": "ISO 9001",
+                "status": "valid"
+              },
+              "evidence": [
+                {
+                  "material": "m1",
+                  "quote": "ISO 9001 certificate Q-5521 for Northfield Components"
+                }
+              ],
+              "validity": {
+                "from": "2023-10-01",
+                "to": null
+              }
+            }
+          ]
+        },
+        {
+          "after": "reads",
+          "records": [
+            {
+              "id": "w1",
+              "candidate": "c1",
+              "step": "s1",
+              "submittedBy": "acct:nc-quality",
+              "recordedAt": "2026-10-05T10:00:00Z",
+              "audience": null,
+              "supersedes": null,
+              "withdraws": null,
+              "confirmedBy": null,
+              "target": "certificate_status",
+              "recordType": "claim",
+              "subject": "org:northfield-components",
+              "attributedTo": "org:northfield-components",
+              "actingFor": "org:northfield-components",
+              "fields": {
+                "certificateId": "Q-5521",
+                "scope": "ISO 9001",
+                "status": "valid"
+              },
+              "evidence": [
+                {
+                  "material": "m1",
+                  "quote": "ISO 9001 certificate Q-5521 for Northfield Components"
+                }
+              ],
+              "validity": {
+                "from": "2023-10-01",
+                "to": null
+              }
+            }
+          ]
+        }
+      ],
       "error": null
     },
     "probe-a7c85f": {
@@ -226,6 +469,16 @@
         {
           "read": "q1",
           "status": "none"
+        }
+      ],
+      "snapshots": [
+        {
+          "after": "s1",
+          "records": []
+        },
+        {
+          "after": "reads",
+          "records": []
         }
       ],
       "error": null
@@ -246,6 +499,16 @@
           "status": "none"
         }
       ],
+      "snapshots": [
+        {
+          "after": "s1",
+          "records": []
+        },
+        {
+          "after": "reads",
+          "records": []
+        }
+      ],
       "error": null
     },
     "probe-efc7d5": {
@@ -262,6 +525,16 @@
         {
           "read": "q1",
           "status": "none"
+        }
+      ],
+      "snapshots": [
+        {
+          "after": "s1",
+          "records": []
+        },
+        {
+          "after": "reads",
+          "records": []
         }
       ],
       "error": null

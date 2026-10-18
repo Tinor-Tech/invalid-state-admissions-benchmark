@@ -4,7 +4,7 @@
   "adapter": {
     "name": "example",
     "kind": "recorded",
-    "description": "Format illustration: two cases copied from the reference-rules output. Not a result."
+    "description": "Format illustration of the earlier isa-run-output/2 (2.0.0): no snapshots; still accepted and scored on records only. Not a result."
   },
   "outputs": {
     "case-10f3c3": {
