@@ -1,5 +1,47 @@
 # Changelog
 
+## 2.1.0 (unreleased)
+
+Scorer-correctness release. Not tagged, not archived; 2.0.0 and its DOI are unchanged. Each fix was
+driven by a mutation test written first and failing against 2.0.0 (`test/scorer-fixes.test.mjs`).
+
+### Fixed
+
+- **Fabricated extra record fields passed IPAR (P0-1).** `recordMismatches` compared only the fields the
+  ground truth listed. It now compares `fields` in full: an extra non-null field is
+  `unsupported_field` unless the ground truth declares it in the new `optionalFields` (allowed variance).
+  METRICS.md, Section 2.1.
+- **Extra served fields passed SRA and UFR (P0-2).** `compareAnswer` checked only the expected fields. An
+  extra field is now `unexpected_field` (not in the contract) or `unsupported_additional_claim` (no
+  record of the admissible state holds that value), wrong for SRA and unsupported for UFR. Section 2.3.
+- **Temporal attribution was not checked (P1-3).** A record's `step`, `submittedBy` and `recordedAt` are
+  now matched to the step that submitted its candidate, with an explicit one-second tolerance
+  (`wrong_step`, `wrong_submitter`, `wrong_recorded_at`, `backdated_commit`, `future_dated_commit`), and
+  count in IPAR. Section 2.2.
+- **Only the final state was checked (P1-4).** The runner now exports state after every step and after
+  all reads; the scorer scores every observed version of every record, so an invalid admission that is
+  later deleted or overwritten counts, and a read that changes state is a new critical failure,
+  `STATE_CHANGED_BY_READ`. Section 2.4.
+
+### Compatibility
+
+- **Adapter contract `isa-adapter/2.1`.** `exportRecords()` is called after every step and once after
+  reads (was: once). It must be side-effect free and reflect current state; reads must not change state;
+  a step's writes must be visible when `submit` resolves. 2.0.0 adapters that meet this run unchanged.
+  ADAPTERS.md.
+- **Output schema `isa-run-output/2.1`** (`benchmarkVersion` 2.1.0) adds per-case `snapshots`; `records`
+  keeps its 2.0.0 meaning. `isa-run-output/2` files still validate and are scored on `records` only, as
+  in 2.0.0; `metrics.coverage.casesWithSnapshots` tells the two apart. The `recorded` adapter replays
+  either. `examples/output.v2.0.example.json` keeps the old format.
+- **Metrics object:** new keys `critical.STATE_CHANGED_BY_READ` and `coverage.casesWithSnapshots`.
+- **Ground-truth schema:** new optional `optionalFields` on expected records. Probe x05's expected record
+  gained the `fields` it lacked (the same five values as f03, all stated in its material); without them
+  the full comparison would have had no reference.
+- **Numbers:** every baseline metric on the public set and the probes is unchanged (regenerated
+  `baselines/results/`; only the wall-time table differs). Results of other systems can change, and
+  2.0.0 and 2.1.0 results are not comparable for systems with extra fields, wrong timestamps, or state
+  that changes between steps or during reads.
+
 ## 2.0.0 (2026-10-18)
 
 Released as a new Zenodo version under the concept DOI 10.5281/zenodo.23447898; v1.0.0 and its
