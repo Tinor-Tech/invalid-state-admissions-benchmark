@@ -1,8 +1,7 @@
 # Consistency: article, code, metrics and cases
 
 Item-by-item check of the research note *Toward Zero Invalid State Admissions*
-(tinor.io/journal/toward-zero-invalid-state-admissions, revision prepared on branch
-`journal/isa-benchmark-v2`, not yet published) against this repository.
+(tinor.io/journal/toward-zero-invalid-state-admissions, revision of 18 October 2026) against this repository.
 
 "Automated" means a test fails if the item drifts: **B** = a test in this repository, **J** = a test in the
 journal site's repository (`tests/journal-reference-models.test.mjs`). "Manual" means checked by reading

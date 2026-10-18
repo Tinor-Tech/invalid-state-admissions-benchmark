@@ -8,7 +8,7 @@ committed files; any difference is a bug.
 ```sh
 git clone https://github.com/Tinor-Tech/invalid-state-admissions-benchmark.git
 cd invalid-state-admissions-benchmark
-git checkout <tag or commit>      # cite the tag or commit you used; v2.0.0 is not released yet
+git checkout <tag or commit>      # cite the tag or commit you used, e.g. v2.0.0
 node --version                    # >= 22
 ```
 

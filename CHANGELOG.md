@@ -1,9 +1,9 @@
 # Changelog
 
-## 2.0.0 (candidate, unreleased)
+## 2.0.0 (2026-10-18)
 
-Not yet tagged or released. When released, it will be a new Zenodo version under the concept DOI
-10.5281/zenodo.23447898; v1.0.0 and its version DOI are unchanged.
+Released as a new Zenodo version under the concept DOI 10.5281/zenodo.23447898; v1.0.0 and its
+version DOI (10.5281/zenodo.23447899) are unchanged.
 
 ### Breaking changes
 

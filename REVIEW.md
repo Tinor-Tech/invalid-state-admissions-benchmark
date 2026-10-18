@@ -1,4 +1,4 @@
-# Strict review of v2.0.0 (candidate)
+# Strict review of v2.0.0
 
 Written by the benchmark authors, acting as a strict reviewer of their own work. A self-review is not an
 independent one; treat it as a list of known weaknesses, not as an endorsement.
@@ -60,9 +60,8 @@ reasons for anything stronger:
   narrow to rank anything.
 - Ground truth has one author team and no agreement study.
 - There is no hidden set, so any public score can be the product of tuning or memorisation.
-- v2.0.0 is not released; the concept DOI still resolves to v1.0.0.
 
-Recommended wording for any external mention: "v2 candidate: a runnable protocol with measured
+Recommended wording for any external mention: "v2.0.0: a runnable protocol with measured
 trivial and rule-based baselines; no AI-system results yet; contributions of cases, reviews and
 adapters welcome".
 

@@ -10,7 +10,7 @@ and whether the persisted record says exactly what the source supports.
 Companion repository for the Tinor Journal research note
 [Toward Zero Invalid State Admissions](https://tinor.io/journal/toward-zero-invalid-state-admissions).
 
-> **Status: v2.0.0 candidate (unreleased).** A public, synthetic, open case set with a runnable
+> **Status: v2.0.0 (released 2026-10-18).** A public, synthetic, open case set with a runnable
 > evaluation protocol. **No result is reported for any AI system, including Tinor's.** The only numbers
 > here are for three trivial baselines and one non-LLM reference baseline written by the benchmark
 > authors with knowledge of the public cases (see [BASELINES.md](BASELINES.md)). No language-model
@@ -92,8 +92,8 @@ Formal comparison needs a hidden, refreshed set and independent judges ([REVIEW.
 ## How to cite
 
 The concept DOI refers to all versions and resolves to the latest released one:
-[10.5281/zenodo.23447898](https://doi.org/10.5281/zenodo.23447898). Version 2.0.0 has not been released
-yet; until it is, the DOI resolves to v1.0.0. Cite the exact version you used.
+[10.5281/zenodo.23447898](https://doi.org/10.5281/zenodo.23447898). Each release also has its own
+version DOI, listed on the Zenodo record. Cite the exact version you used.
 
 > Tinor (2026). Invalid State Admissions Benchmark: admission cases and disposition scorer. Zenodo.
 > https://doi.org/10.5281/zenodo.23447898
