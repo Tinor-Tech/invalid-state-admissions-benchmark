@@ -111,7 +111,7 @@
           ]
         },
         {
-          "after": "reads",
+          "after": "read:q1",
           "records": [
             {
               "id": "w1",
@@ -255,7 +255,81 @@
           ]
         },
         {
-          "after": "reads",
+          "after": "read:q1",
+          "records": [
+            {
+              "id": "w1",
+              "candidate": "c1",
+              "step": "s1",
+              "submittedBy": "acct:bb-buyer",
+              "recordedAt": "2026-10-05T10:00:00Z",
+              "audience": [
+                "org:buyer-b"
+              ],
+              "supersedes": null,
+              "withdraws": null,
+              "confirmedBy": null,
+              "target": "target_price",
+              "recordType": "claim",
+              "subject": "org:buyer-b",
+              "attributedTo": "org:buyer-b",
+              "actingFor": "org:buyer-b",
+              "fields": {
+                "object": "HX-40 housings",
+                "price": "USD 1.80"
+              },
+              "evidence": [
+                {
+                  "material": "m1",
+                  "quote": "target price for HX-40 housings is USD 1.80 per unit"
+                }
+              ],
+              "validity": {
+                "from": "2026-10-05",
+                "to": null
+              }
+            }
+          ]
+        },
+        {
+          "after": "read:q2",
+          "records": [
+            {
+              "id": "w1",
+              "candidate": "c1",
+              "step": "s1",
+              "submittedBy": "acct:bb-buyer",
+              "recordedAt": "2026-10-05T10:00:00Z",
+              "audience": [
+                "org:buyer-b"
+              ],
+              "supersedes": null,
+              "withdraws": null,
+              "confirmedBy": null,
+              "target": "target_price",
+              "recordType": "claim",
+              "subject": "org:buyer-b",
+              "attributedTo": "org:buyer-b",
+              "actingFor": "org:buyer-b",
+              "fields": {
+                "object": "HX-40 housings",
+                "price": "USD 1.80"
+              },
+              "evidence": [
+                {
+                  "material": "m1",
+                  "quote": "target price for HX-40 housings is USD 1.80 per unit"
+                }
+              ],
+              "validity": {
+                "from": "2026-10-05",
+                "to": null
+              }
+            }
+          ]
+        },
+        {
+          "after": "read:q3",
           "records": [
             {
               "id": "w1",

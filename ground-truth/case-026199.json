@@ -30,7 +30,11 @@
             },
             "evidenceMaterials": [
               "m1"
-            ]
+            ],
+            "validity": {
+              "from": "2026-10-05",
+              "to": null
+            }
           }
         }
       ],

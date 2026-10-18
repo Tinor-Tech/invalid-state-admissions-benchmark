@@ -31,7 +31,18 @@
             },
             "evidenceMaterials": [
               "m2"
-            ]
+            ],
+            "validity": {
+              "from": "2026-10-08",
+              "to": null
+            },
+            "allowedVariance": {
+              "confirmedBy": [
+                [
+                  "org:buyer-b"
+                ]
+              ]
+            }
           }
         }
       ],

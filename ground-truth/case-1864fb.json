@@ -57,6 +57,7 @@
       "expected": {
         "status": "value",
         "recordType": "agreement",
+        "attributedTo": "org:buyer-b",
         "fields": {
           "quantity": 20000,
           "price": "USD 1.85"

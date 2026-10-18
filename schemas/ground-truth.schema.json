@@ -171,6 +171,10 @@
         "fieldsIncludes": {
           "type": "object"
         },
+        "allowedVariance": {
+          "type": "object",
+          "description": "Allowed variance (2.1) for record-level properties: property name -> list of further acceptable values (compared as sets for evidenceMaterials, audience and confirmedBy). Any other value than the stated one, or the default null, is a mismatch."
+        },
         "optionalFields": {
           "type": "object",
           "description": "Allowed variance (2.1): fields a record may omit or carry with exactly this value. Any other non-null field not in fields or fieldsIncludes is unsupported."

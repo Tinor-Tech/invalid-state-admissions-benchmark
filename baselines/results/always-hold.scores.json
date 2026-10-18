@@ -889,7 +889,8 @@
         {
           "read": "q1",
           "codes": [
-            "wrong_record_type"
+            "wrong_record_type",
+            "wrong_attribution"
           ]
         }
       ]
@@ -1337,7 +1338,9 @@
           "codes": [
             "missing_qualifier:withdrawn",
             "missing_qualifier:independence-not-established",
-            "missing_qualifier:accreditation-not-established"
+            "missing_qualifier:accreditation-not-established",
+            "unsupported_additional_claim:scope",
+            "unsupported_additional_claim:status"
           ]
         }
       ]
@@ -1548,7 +1551,8 @@
         {
           "read": "q2",
           "codes": [
-            "wrong_record_type"
+            "wrong_record_type",
+            "wrong_attribution"
           ]
         }
       ]

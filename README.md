@@ -51,7 +51,7 @@ Companion repository for the Tinor Journal research note
 Node.js 22 or later. No dependencies, no install step.
 
 ```sh
-npm test                                              # 68 tests (node:test)
+npm test                                              # 86 tests (node:test)
 node run.mjs --adapter reference-rules                # Level 2: run, score, print
 node run.mjs --adapter always-admit                   # a trivial baseline
 node score-dispositions.mjs --baseline always-reject  # Level 1

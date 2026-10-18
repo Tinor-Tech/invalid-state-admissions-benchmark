@@ -489,7 +489,9 @@
         {
           "read": "q1",
           "codes": [
-            "missing_qualifier:expired"
+            "missing_qualifier:expired",
+            "unsupported_additional_claim:certificateId",
+            "unsupported_additional_claim:scope"
           ]
         }
       ]

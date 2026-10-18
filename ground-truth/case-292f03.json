@@ -35,6 +35,13 @@
             "validity": {
               "from": "2026-10-05",
               "to": "2026-10-31"
+            },
+            "allowedVariance": {
+              "confirmedBy": [
+                [
+                  "org:northfield-components"
+                ]
+              ]
             }
           }
         }

@@ -972,7 +972,12 @@
         {
           "read": "q2",
           "codes": [
-            "missing_qualifier:expired"
+            "missing_qualifier:expired",
+            "unsupported_additional_claim:object",
+            "unsupported_additional_claim:dueBy",
+            "unsupported_additional_claim:price",
+            "unsupported_additional_claim:debtor",
+            "unsupported_additional_claim:creditor"
           ]
         }
       ]
@@ -1084,7 +1089,8 @@
           },
           "diagnostics": [
             "wrong_record_type",
-            "missing_field_content:condition"
+            "missing_field_content:condition",
+            "wrong_confirmations"
           ]
         }
       ],
@@ -1264,7 +1270,9 @@
         {
           "read": "q2",
           "codes": [
-            "missing_qualifier:expired"
+            "missing_qualifier:expired",
+            "unsupported_additional_claim:certificateId",
+            "unsupported_additional_claim:scope"
           ]
         }
       ]
@@ -1347,7 +1355,9 @@
           "codes": [
             "missing_qualifier:withdrawn",
             "missing_qualifier:independence-not-established",
-            "missing_qualifier:accreditation-not-established"
+            "missing_qualifier:accreditation-not-established",
+            "unsupported_additional_claim:scope",
+            "unsupported_additional_claim:status"
           ]
         }
       ]
@@ -1367,7 +1377,8 @@
           },
           "diagnostics": [
             "wrong_record_type",
-            "wrong_evidence"
+            "wrong_evidence",
+            "wrong_confirmations"
           ]
         }
       ],

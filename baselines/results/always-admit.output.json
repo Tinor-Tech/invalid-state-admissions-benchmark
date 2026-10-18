@@ -107,7 +107,7 @@
           ]
         },
         {
-          "after": "reads",
+          "after": "read:q1",
           "records": [
             {
               "id": "w1",
@@ -253,7 +253,7 @@
           ]
         },
         {
-          "after": "reads",
+          "after": "read:q1",
           "records": [
             {
               "id": "w1",
@@ -480,7 +480,7 @@
           ]
         },
         {
-          "after": "reads",
+          "after": "read:q1",
           "records": [
             {
               "id": "r1",
@@ -655,7 +655,7 @@
           ]
         },
         {
-          "after": "reads",
+          "after": "read:q1",
           "records": [
             {
               "id": "w1",
@@ -792,7 +792,7 @@
           ]
         },
         {
-          "after": "reads",
+          "after": "read:q1",
           "records": [
             {
               "id": "w1",
@@ -953,7 +953,48 @@
           ]
         },
         {
-          "after": "reads",
+          "after": "read:q1",
+          "records": [
+            {
+              "id": "w1",
+              "candidate": "c1",
+              "step": "s1",
+              "submittedBy": "acct:nc-director",
+              "recordedAt": "2026-10-05T10:00:00Z",
+              "audience": null,
+              "supersedes": null,
+              "withdraws": null,
+              "confirmedBy": [
+                "org:northfield-components"
+              ],
+              "target": "delivery",
+              "recordType": "offer",
+              "subject": "org:northfield-components",
+              "attributedTo": "org:northfield-components",
+              "actingFor": "org:northfield-components",
+              "fields": {
+                "object": "HX-40 housings",
+                "quantity": 20000,
+                "dueBy": "2026-11-30",
+                "price": "USD 1.85",
+                "debtor": "org:northfield-components",
+                "creditor": "org:buyer-b"
+              },
+              "evidence": [
+                {
+                  "material": "m1",
+                  "quote": "valid until 31 October 2026"
+                }
+              ],
+              "validity": {
+                "from": "2026-10-05",
+                "to": "2026-10-31"
+              }
+            }
+          ]
+        },
+        {
+          "after": "read:q2",
           "records": [
             {
               "id": "w1",
@@ -1151,7 +1192,7 @@
           ]
         },
         {
-          "after": "reads",
+          "after": "read:q1",
           "records": [
             {
               "id": "r1",
@@ -1323,7 +1364,7 @@
           ]
         },
         {
-          "after": "reads",
+          "after": "read:q1",
           "records": [
             {
               "id": "w1",
@@ -1532,7 +1573,74 @@
           ]
         },
         {
-          "after": "reads",
+          "after": "read:q1",
+          "records": [
+            {
+              "id": "r1",
+              "candidate": null,
+              "step": null,
+              "target": "lead_time",
+              "recordType": "claim",
+              "subject": "org:northfield-components",
+              "attributedTo": "org:northfield-components",
+              "actingFor": "org:northfield-components",
+              "submittedBy": "acct:nc-director",
+              "fields": {
+                "product": "HX-40",
+                "value": 6,
+                "unit": "week"
+              },
+              "evidence": [
+                {
+                  "material": "m1",
+                  "quote": "HX-40 lead time is six weeks"
+                }
+              ],
+              "validity": {
+                "from": "2026-10-01",
+                "to": null
+              },
+              "recordedAt": "2026-10-01T10:00:00Z",
+              "audience": null,
+              "supersedes": null,
+              "withdraws": null,
+              "confirmedBy": null
+            },
+            {
+              "id": "w1",
+              "candidate": "c1",
+              "step": "s1",
+              "submittedBy": "acct:nc-director",
+              "recordedAt": "2026-10-06T10:00:00Z",
+              "audience": null,
+              "supersedes": null,
+              "withdraws": null,
+              "confirmedBy": null,
+              "target": "lead_time",
+              "recordType": "claim",
+              "subject": "org:northfield-components",
+              "attributedTo": "org:northfield-components",
+              "actingFor": "org:northfield-components",
+              "fields": {
+                "product": "HX-60",
+                "value": 9,
+                "unit": "week"
+              },
+              "evidence": [
+                {
+                  "material": "m2",
+                  "quote": "HX-60 lead time is nine weeks"
+                }
+              ],
+              "validity": {
+                "from": "2026-10-06",
+                "to": null
+              }
+            }
+          ]
+        },
+        {
+          "after": "read:q2",
           "records": [
             {
               "id": "r1",
@@ -1774,7 +1882,141 @@
           ]
         },
         {
-          "after": "reads",
+          "after": "read:q1",
+          "records": [
+            {
+              "id": "r1",
+              "candidate": null,
+              "step": null,
+              "target": "lead_time",
+              "recordType": "claim",
+              "subject": "org:northfield-components",
+              "attributedTo": "org:northfield-components",
+              "actingFor": "org:northfield-components",
+              "submittedBy": "acct:nc-director",
+              "fields": {
+                "product": "HX-40",
+                "value": 6,
+                "unit": "week"
+              },
+              "evidence": [
+                {
+                  "material": "m1",
+                  "quote": "HX-40 lead time is six weeks"
+                }
+              ],
+              "validity": {
+                "from": "2026-10-01",
+                "to": null
+              },
+              "recordedAt": "2026-10-01T10:00:00Z",
+              "audience": null,
+              "supersedes": null,
+              "withdraws": null,
+              "confirmedBy": null
+            },
+            {
+              "id": "r2",
+              "candidate": null,
+              "step": null,
+              "target": "lead_time",
+              "recordType": "claim",
+              "subject": "org:northfield-components",
+              "attributedTo": "org:northfield-components",
+              "actingFor": "org:northfield-components",
+              "submittedBy": "acct:nc-director",
+              "fields": {
+                "product": "HX-40",
+                "value": 7,
+                "unit": "week"
+              },
+              "evidence": [
+                {
+                  "material": "m2",
+                  "quote": "From 12 October, HX-40 lead time is seven weeks"
+                }
+              ],
+              "validity": {
+                "from": "2026-10-12",
+                "to": null
+              },
+              "recordedAt": "2026-10-10T10:00:00Z",
+              "audience": null,
+              "supersedes": null,
+              "withdraws": null,
+              "confirmedBy": null
+            }
+          ]
+        },
+        {
+          "after": "read:q2",
+          "records": [
+            {
+              "id": "r1",
+              "candidate": null,
+              "step": null,
+              "target": "lead_time",
+              "recordType": "claim",
+              "subject": "org:northfield-components",
+              "attributedTo": "org:northfield-components",
+              "actingFor": "org:northfield-components",
+              "submittedBy": "acct:nc-director",
+              "fields": {
+                "product": "HX-40",
+                "value": 6,
+                "unit": "week"
+              },
+              "evidence": [
+                {
+                  "material": "m1",
+                  "quote": "HX-40 lead time is six weeks"
+                }
+              ],
+              "validity": {
+                "from": "2026-10-01",
+                "to": null
+              },
+              "recordedAt": "2026-10-01T10:00:00Z",
+              "audience": null,
+              "supersedes": null,
+              "withdraws": null,
+              "confirmedBy": null
+            },
+            {
+              "id": "r2",
+              "candidate": null,
+              "step": null,
+              "target": "lead_time",
+              "recordType": "claim",
+              "subject": "org:northfield-components",
+              "attributedTo": "org:northfield-components",
+              "actingFor": "org:northfield-components",
+              "submittedBy": "acct:nc-director",
+              "fields": {
+                "product": "HX-40",
+                "value": 7,
+                "unit": "week"
+              },
+              "evidence": [
+                {
+                  "material": "m2",
+                  "quote": "From 12 October, HX-40 lead time is seven weeks"
+                }
+              ],
+              "validity": {
+                "from": "2026-10-12",
+                "to": null
+              },
+              "recordedAt": "2026-10-10T10:00:00Z",
+              "audience": null,
+              "supersedes": null,
+              "withdraws": null,
+              "confirmedBy": null
+            }
+          ]
+        },
+        {
+          "after": "read:q3",
           "records": [
             {
               "id": "r1",
@@ -1946,7 +2188,7 @@
           ]
         },
         {
-          "after": "reads",
+          "after": "read:q1",
           "records": [
             {
               "id": "w1",
@@ -2173,7 +2415,80 @@
           ]
         },
         {
-          "after": "reads",
+          "after": "read:q1",
+          "records": [
+            {
+              "id": "r1",
+              "candidate": null,
+              "step": null,
+              "target": "monthly_output",
+              "recordType": "claim",
+              "subject": "org:northfield-components",
+              "attributedTo": "org:northfield-components",
+              "actingFor": "org:northfield-components",
+              "submittedBy": "acct:nc-director",
+              "fields": {
+                "value": 41200,
+                "unit": "units",
+                "period": {
+                  "from": "2026-09-01",
+                  "to": "2026-09-30"
+                }
+              },
+              "evidence": [
+                {
+                  "material": "m1",
+                  "quote": "produced 41,200 HX-40 housings in September 2026"
+                }
+              ],
+              "validity": {
+                "from": "2026-09-01",
+                "to": "2026-09-30"
+              },
+              "recordedAt": "2026-10-02T10:00:00Z",
+              "audience": null,
+              "supersedes": null,
+              "withdraws": null,
+              "confirmedBy": null
+            },
+            {
+              "id": "w1",
+              "candidate": "c1",
+              "step": "s1",
+              "submittedBy": "acct:nc-director",
+              "recordedAt": "2026-10-09T10:00:00Z",
+              "audience": null,
+              "supersedes": "r1",
+              "withdraws": null,
+              "confirmedBy": null,
+              "target": "monthly_output",
+              "recordType": "claim",
+              "subject": "org:northfield-components",
+              "attributedTo": "org:northfield-components",
+              "actingFor": "org:northfield-components",
+              "fields": {
+                "value": 42100,
+                "unit": "units",
+                "period": {
+                  "from": "2026-09-01",
+                  "to": "2026-09-30"
+                }
+              },
+              "evidence": [
+                {
+                  "material": "m2",
+                  "quote": "Correction: our September 2026 output was 42,100 HX-40 housings"
+                }
+              ],
+              "validity": {
+                "from": "2026-09-01",
+                "to": "2026-09-30"
+              }
+            }
+          ]
+        },
+        {
+          "after": "read:q2",
           "records": [
             {
               "id": "r1",
@@ -2347,7 +2662,7 @@
           ]
         },
         {
-          "after": "reads",
+          "after": "read:q1",
           "records": [
             {
               "id": "w1",
@@ -2489,7 +2804,7 @@
           ]
         },
         {
-          "after": "reads",
+          "after": "read:q1",
           "records": [
             {
               "id": "w1",
@@ -2685,7 +3000,7 @@
           ]
         },
         {
-          "after": "reads",
+          "after": "read:q1",
           "records": [
             {
               "id": "r1",
@@ -2853,7 +3168,7 @@
           ]
         },
         {
-          "after": "reads",
+          "after": "read:q1",
           "records": [
             {
               "id": "w1",
@@ -3009,7 +3324,81 @@
           ]
         },
         {
-          "after": "reads",
+          "after": "read:q1",
+          "records": [
+            {
+              "id": "w1",
+              "candidate": "c1",
+              "step": "s1",
+              "submittedBy": "acct:bb-buyer",
+              "recordedAt": "2026-10-05T10:00:00Z",
+              "audience": [
+                "org:buyer-b"
+              ],
+              "supersedes": null,
+              "withdraws": null,
+              "confirmedBy": null,
+              "target": "target_price",
+              "recordType": "claim",
+              "subject": "org:buyer-b",
+              "attributedTo": "org:buyer-b",
+              "actingFor": "org:buyer-b",
+              "fields": {
+                "object": "HX-40 housings",
+                "price": "USD 1.80"
+              },
+              "evidence": [
+                {
+                  "material": "m1",
+                  "quote": "target price for HX-40 housings is USD 1.80 per unit"
+                }
+              ],
+              "validity": {
+                "from": "2026-10-05",
+                "to": null
+              }
+            }
+          ]
+        },
+        {
+          "after": "read:q2",
+          "records": [
+            {
+              "id": "w1",
+              "candidate": "c1",
+              "step": "s1",
+              "submittedBy": "acct:bb-buyer",
+              "recordedAt": "2026-10-05T10:00:00Z",
+              "audience": [
+                "org:buyer-b"
+              ],
+              "supersedes": null,
+              "withdraws": null,
+              "confirmedBy": null,
+              "target": "target_price",
+              "recordType": "claim",
+              "subject": "org:buyer-b",
+              "attributedTo": "org:buyer-b",
+              "actingFor": "org:buyer-b",
+              "fields": {
+                "object": "HX-40 housings",
+                "price": "USD 1.80"
+              },
+              "evidence": [
+                {
+                  "material": "m1",
+                  "quote": "target price for HX-40 housings is USD 1.80 per unit"
+                }
+              ],
+              "validity": {
+                "from": "2026-10-05",
+                "to": null
+              }
+            }
+          ]
+        },
+        {
+          "after": "read:q3",
           "records": [
             {
               "id": "w1",
@@ -3153,7 +3542,43 @@
           ]
         },
         {
-          "after": "reads",
+          "after": "read:q1",
+          "records": [
+            {
+              "id": "w1",
+              "candidate": "c1",
+              "step": "s1",
+              "submittedBy": "acct:nc-quality",
+              "recordedAt": "2026-10-05T10:00:00Z",
+              "audience": null,
+              "supersedes": null,
+              "withdraws": null,
+              "confirmedBy": null,
+              "target": "certificate_status",
+              "recordType": "claim",
+              "subject": "org:northfield-components",
+              "attributedTo": "org:northfield-components",
+              "actingFor": "org:northfield-components",
+              "fields": {
+                "certificateId": "Q-5521",
+                "scope": "ISO 9001",
+                "status": "valid"
+              },
+              "evidence": [
+                {
+                  "material": "m1",
+                  "quote": "ISO 9001 certificate Q-5521 for Northfield Components"
+                }
+              ],
+              "validity": {
+                "from": "2023-10-01",
+                "to": null
+              }
+            }
+          ]
+        },
+        {
+          "after": "read:q2",
           "records": [
             {
               "id": "w1",
@@ -3288,7 +3713,43 @@
           ]
         },
         {
-          "after": "reads",
+          "after": "read:q1",
+          "records": [
+            {
+              "id": "w1",
+              "candidate": "c1",
+              "step": "s1",
+              "submittedBy": "acct:nc-director",
+              "recordedAt": "2026-10-05T10:00:00Z",
+              "audience": null,
+              "supersedes": null,
+              "withdraws": null,
+              "confirmedBy": null,
+              "target": "lead_time",
+              "recordType": "claim",
+              "subject": "org:northfield-precision",
+              "attributedTo": "org:northfield-precision",
+              "actingFor": "org:northfield-components",
+              "fields": {
+                "product": "HX-40",
+                "value": 6,
+                "unit": "week"
+              },
+              "evidence": [
+                {
+                  "material": "m1",
+                  "quote": "our HX-40 lead time is now six weeks"
+                }
+              ],
+              "validity": {
+                "from": "2026-10-05",
+                "to": null
+              }
+            }
+          ]
+        },
+        {
+          "after": "read:q2",
           "records": [
             {
               "id": "w1",
@@ -3411,7 +3872,7 @@
           ]
         },
         {
-          "after": "reads",
+          "after": "read:q1",
           "records": [
             {
               "id": "w1",
@@ -3612,7 +4073,72 @@
           ]
         },
         {
-          "after": "reads",
+          "after": "read:q1",
+          "records": [
+            {
+              "id": "r1",
+              "candidate": null,
+              "step": null,
+              "target": "certificate_status",
+              "recordType": "issuer-attestation",
+              "subject": "org:northfield-components",
+              "attributedTo": "org:lakeside-labs",
+              "actingFor": "org:lakeside-labs",
+              "submittedBy": "acct:lab-reports",
+              "fields": {
+                "certificateId": "C-77",
+                "scope": "UL 94 V-0 listing, PC-ABS 2200",
+                "status": "valid"
+              },
+              "evidence": [
+                {
+                  "material": "m1",
+                  "quote": "Certificate C-77"
+                }
+              ],
+              "validity": {
+                "from": "2026-03-01",
+                "to": "2027-02-28"
+              },
+              "recordedAt": "2026-03-01T10:00:00Z",
+              "audience": null,
+              "supersedes": null,
+              "withdraws": null,
+              "confirmedBy": null
+            },
+            {
+              "id": "w1",
+              "candidate": "c1",
+              "step": "s1",
+              "submittedBy": "acct:lab-reports",
+              "recordedAt": "2026-10-10T10:00:00Z",
+              "audience": null,
+              "supersedes": null,
+              "withdraws": "r1",
+              "confirmedBy": null,
+              "target": "certificate_status",
+              "recordType": "withdrawal",
+              "subject": "org:northfield-components",
+              "attributedTo": "org:lakeside-labs",
+              "actingFor": "org:lakeside-labs",
+              "fields": {
+                "certificateId": "C-77"
+              },
+              "evidence": [
+                {
+                  "material": "m2",
+                  "quote": "Lakeside Labs withdraws certificate C-77 with effect from 10 October 2026"
+                }
+              ],
+              "validity": {
+                "from": "2026-10-10",
+                "to": null
+              }
+            }
+          ]
+        },
+        {
+          "after": "read:q2",
           "records": [
             {
               "id": "r1",
@@ -3863,7 +4389,7 @@
           ]
         },
         {
-          "after": "reads",
+          "after": "read:q1",
           "records": [
             {
               "id": "r1",
@@ -4038,7 +4564,7 @@
           ]
         },
         {
-          "after": "reads",
+          "after": "read:q1",
           "records": [
             {
               "id": "w1",
@@ -4173,7 +4699,43 @@
           ]
         },
         {
-          "after": "reads",
+          "after": "read:q1",
+          "records": [
+            {
+              "id": "w1",
+              "candidate": "c1",
+              "step": "s1",
+              "submittedBy": "acct:bb-inbox",
+              "recordedAt": "2026-10-05T10:00:00Z",
+              "audience": null,
+              "supersedes": null,
+              "withdraws": null,
+              "confirmedBy": null,
+              "target": "lead_time",
+              "recordType": "claim",
+              "subject": "org:northfield-precision",
+              "attributedTo": "org:northfield-precision",
+              "actingFor": "org:buyer-b",
+              "fields": {
+                "product": "HX-40",
+                "value": 6,
+                "unit": "week"
+              },
+              "evidence": [
+                {
+                  "material": "m1",
+                  "quote": "our HX-40 lead time is now six weeks"
+                }
+              ],
+              "validity": {
+                "from": "2026-10-05",
+                "to": null
+              }
+            }
+          ]
+        },
+        {
+          "after": "read:q2",
           "records": [
             {
               "id": "w1",
@@ -4304,7 +4866,7 @@
           ]
         },
         {
-          "after": "reads",
+          "after": "read:q1",
           "records": [
             {
               "id": "w1",
@@ -4461,7 +5023,91 @@
           ]
         },
         {
-          "after": "reads",
+          "after": "read:q1",
+          "records": [
+            {
+              "id": "r1",
+              "candidate": null,
+              "step": null,
+              "target": "test_result",
+              "recordType": "issuer-attestation",
+              "subject": "material:pc-abs-2200",
+              "attributedTo": "org:lakeside-labs",
+              "actingFor": "org:lakeside-labs",
+              "submittedBy": "acct:lab-reports",
+              "fields": {
+                "material": "PC-ABS 2200",
+                "standard": "UL 94",
+                "thicknessMm": 0.8,
+                "result": "V-2",
+                "reportId": "FR-131"
+              },
+              "evidence": [
+                {
+                  "material": "m1",
+                  "quote": "UL 94 V-2 at 0.8 mm"
+                }
+              ],
+              "validity": {
+                "from": "2026-09-28",
+                "to": null
+              },
+              "recordedAt": "2026-09-29T10:00:00Z",
+              "audience": [
+                "org:buyer-b",
+                "org:northfield-components",
+                "org:lakeside-labs"
+              ],
+              "supersedes": null,
+              "withdraws": null,
+              "confirmedBy": null
+            }
+          ]
+        },
+        {
+          "after": "read:q2",
+          "records": [
+            {
+              "id": "r1",
+              "candidate": null,
+              "step": null,
+              "target": "test_result",
+              "recordType": "issuer-attestation",
+              "subject": "material:pc-abs-2200",
+              "attributedTo": "org:lakeside-labs",
+              "actingFor": "org:lakeside-labs",
+              "submittedBy": "acct:lab-reports",
+              "fields": {
+                "material": "PC-ABS 2200",
+                "standard": "UL 94",
+                "thicknessMm": 0.8,
+                "result": "V-2",
+                "reportId": "FR-131"
+              },
+              "evidence": [
+                {
+                  "material": "m1",
+                  "quote": "UL 94 V-2 at 0.8 mm"
+                }
+              ],
+              "validity": {
+                "from": "2026-09-28",
+                "to": null
+              },
+              "recordedAt": "2026-09-29T10:00:00Z",
+              "audience": [
+                "org:buyer-b",
+                "org:northfield-components",
+                "org:lakeside-labs"
+              ],
+              "supersedes": null,
+              "withdraws": null,
+              "confirmedBy": null
+            }
+          ]
+        },
+        {
+          "after": "read:q3",
           "records": [
             {
               "id": "r1",
@@ -4656,7 +5302,7 @@
           ]
         },
         {
-          "after": "reads",
+          "after": "read:q1",
           "records": [
             {
               "id": "r1",
@@ -4829,7 +5475,7 @@
           ]
         },
         {
-          "after": "reads",
+          "after": "read:q1",
           "records": [
             {
               "id": "w1",
@@ -5214,7 +5860,291 @@
           ]
         },
         {
-          "after": "reads",
+          "after": "read:q1",
+          "records": [
+            {
+              "id": "r0",
+              "candidate": null,
+              "step": null,
+              "target": "delivery",
+              "recordType": "offer",
+              "subject": "org:northfield-components",
+              "attributedTo": "org:buyer-b",
+              "actingFor": "org:buyer-b",
+              "submittedBy": "acct:bb-buyer",
+              "fields": {
+                "object": "HX-40 housings",
+                "quantity": 20000,
+                "dueBy": "2026-11-30",
+                "price": "USD 1.85",
+                "debtor": "org:northfield-components",
+                "creditor": "org:buyer-b"
+              },
+              "evidence": [
+                {
+                  "material": "m0",
+                  "quote": "Purchase order PO-881"
+                }
+              ],
+              "validity": {
+                "from": "2026-10-02",
+                "to": "2026-10-16"
+              },
+              "recordedAt": "2026-10-02T10:00:00Z",
+              "audience": null,
+              "supersedes": null,
+              "withdraws": null,
+              "confirmedBy": null
+            },
+            {
+              "id": "w1",
+              "candidate": "c1",
+              "step": "s1",
+              "submittedBy": "acct:nc-director",
+              "recordedAt": "2026-10-07T10:00:00Z",
+              "audience": null,
+              "supersedes": null,
+              "withdraws": null,
+              "confirmedBy": null,
+              "target": "lead_time",
+              "recordType": "claim",
+              "subject": "org:northfield-components",
+              "attributedTo": "org:northfield-components",
+              "actingFor": "org:northfield-components",
+              "fields": {
+                "product": "HX-40",
+                "value": 7,
+                "unit": "week"
+              },
+              "evidence": [
+                {
+                  "material": "m1",
+                  "quote": "Lead time for HX-40 is now seven weeks"
+                }
+              ],
+              "validity": {
+                "from": "2026-10-07",
+                "to": null
+              }
+            },
+            {
+              "id": "w2",
+              "candidate": "c2",
+              "step": "s1",
+              "submittedBy": "acct:nc-director",
+              "recordedAt": "2026-10-07T10:00:00Z",
+              "audience": null,
+              "supersedes": null,
+              "withdraws": null,
+              "confirmedBy": [
+                "org:buyer-b",
+                "org:northfield-components"
+              ],
+              "target": "delivery",
+              "recordType": "agreement",
+              "subject": "org:northfield-components",
+              "attributedTo": "org:northfield-components",
+              "actingFor": "org:northfield-components",
+              "fields": {
+                "object": "HX-40 housings",
+                "quantity": 20000,
+                "dueBy": "2026-11-30",
+                "price": "USD 1.85",
+                "debtor": "org:northfield-components",
+                "creditor": "org:buyer-b"
+              },
+              "evidence": [
+                {
+                  "material": "m0",
+                  "quote": "Purchase order PO-881: 20,000 HX-40 housings, delivery by 30 November 2026, USD 1.85 per unit"
+                },
+                {
+                  "material": "m1",
+                  "quote": "We accept PO-881: 20,000 HX-40 housings by 30 November 2026 at USD 1.85 per unit"
+                }
+              ],
+              "validity": {
+                "from": "2026-10-07",
+                "to": null
+              }
+            },
+            {
+              "id": "w3",
+              "candidate": "c3",
+              "step": "s1",
+              "submittedBy": "acct:nc-director",
+              "recordedAt": "2026-10-07T10:00:00Z",
+              "audience": null,
+              "supersedes": null,
+              "withdraws": null,
+              "confirmedBy": null,
+              "target": "certificate_status",
+              "recordType": "issuer-attestation",
+              "subject": "org:northfield-components",
+              "attributedTo": "org:lakeside-labs",
+              "actingFor": "org:lakeside-labs",
+              "fields": {
+                "certificateId": "ISO 9001",
+                "scope": "ISO 9001",
+                "status": "valid"
+              },
+              "evidence": [
+                {
+                  "material": "m1",
+                  "quote": "Our ISO 9001 certificate has been verified by Lakeside Labs"
+                }
+              ],
+              "validity": {
+                "from": "2026-10-07",
+                "to": null
+              }
+            }
+          ]
+        },
+        {
+          "after": "read:q2",
+          "records": [
+            {
+              "id": "r0",
+              "candidate": null,
+              "step": null,
+              "target": "delivery",
+              "recordType": "offer",
+              "subject": "org:northfield-components",
+              "attributedTo": "org:buyer-b",
+              "actingFor": "org:buyer-b",
+              "submittedBy": "acct:bb-buyer",
+              "fields": {
+                "object": "HX-40 housings",
+                "quantity": 20000,
+                "dueBy": "2026-11-30",
+                "price": "USD 1.85",
+                "debtor": "org:northfield-components",
+                "creditor": "org:buyer-b"
+              },
+              "evidence": [
+                {
+                  "material": "m0",
+                  "quote": "Purchase order PO-881"
+                }
+              ],
+              "validity": {
+                "from": "2026-10-02",
+                "to": "2026-10-16"
+              },
+              "recordedAt": "2026-10-02T10:00:00Z",
+              "audience": null,
+              "supersedes": null,
+              "withdraws": null,
+              "confirmedBy": null
+            },
+            {
+              "id": "w1",
+              "candidate": "c1",
+              "step": "s1",
+              "submittedBy": "acct:nc-director",
+              "recordedAt": "2026-10-07T10:00:00Z",
+              "audience": null,
+              "supersedes": null,
+              "withdraws": null,
+              "confirmedBy": null,
+              "target": "lead_time",
+              "recordType": "claim",
+              "subject": "org:northfield-components",
+              "attributedTo": "org:northfield-components",
+              "actingFor": "org:northfield-components",
+              "fields": {
+                "product": "HX-40",
+                "value": 7,
+                "unit": "week"
+              },
+              "evidence": [
+                {
+                  "material": "m1",
+                  "quote": "Lead time for HX-40 is now seven weeks"
+                }
+              ],
+              "validity": {
+                "from": "2026-10-07",
+                "to": null
+              }
+            },
+            {
+              "id": "w2",
+              "candidate": "c2",
+              "step": "s1",
+              "submittedBy": "acct:nc-director",
+              "recordedAt": "2026-10-07T10:00:00Z",
+              "audience": null,
+              "supersedes": null,
+              "withdraws": null,
+              "confirmedBy": [
+                "org:buyer-b",
+                "org:northfield-components"
+              ],
+              "target": "delivery",
+              "recordType": "agreement",
+              "subject": "org:northfield-components",
+              "attributedTo": "org:northfield-components",
+              "actingFor": "org:northfield-components",
+              "fields": {
+                "object": "HX-40 housings",
+                "quantity": 20000,
+                "dueBy": "2026-11-30",
+                "price": "USD 1.85",
+                "debtor": "org:northfield-components",
+                "creditor": "org:buyer-b"
+              },
+              "evidence": [
+                {
+                  "material": "m0",
+                  "quote": "Purchase order PO-881: 20,000 HX-40 housings, delivery by 30 November 2026, USD 1.85 per unit"
+                },
+                {
+                  "material": "m1",
+                  "quote": "We accept PO-881: 20,000 HX-40 housings by 30 November 2026 at USD 1.85 per unit"
+                }
+              ],
+              "validity": {
+                "from": "2026-10-07",
+                "to": null
+              }
+            },
+            {
+              "id": "w3",
+              "candidate": "c3",
+              "step": "s1",
+              "submittedBy": "acct:nc-director",
+              "recordedAt": "2026-10-07T10:00:00Z",
+              "audience": null,
+              "supersedes": null,
+              "withdraws": null,
+              "confirmedBy": null,
+              "target": "certificate_status",
+              "recordType": "issuer-attestation",
+              "subject": "org:northfield-components",
+              "attributedTo": "org:lakeside-labs",
+              "actingFor": "org:lakeside-labs",
+              "fields": {
+                "certificateId": "ISO 9001",
+                "scope": "ISO 9001",
+                "status": "valid"
+              },
+              "evidence": [
+                {
+                  "material": "m1",
+                  "quote": "Our ISO 9001 certificate has been verified by Lakeside Labs"
+                }
+              ],
+              "validity": {
+                "from": "2026-10-07",
+                "to": null
+              }
+            }
+          ]
+        },
+        {
+          "after": "read:q3",
           "records": [
             {
               "id": "r0",
@@ -5554,7 +6484,7 @@
           ]
         },
         {
-          "after": "reads",
+          "after": "read:q1",
           "records": [
             {
               "id": "w1",
@@ -5802,7 +6732,141 @@
           ]
         },
         {
-          "after": "reads",
+          "after": "read:q1",
+          "records": [
+            {
+              "id": "r1",
+              "candidate": null,
+              "step": null,
+              "target": "lead_time",
+              "recordType": "claim",
+              "subject": "org:northfield-components",
+              "attributedTo": "org:northfield-components",
+              "actingFor": "org:northfield-components",
+              "submittedBy": "acct:nc-director",
+              "fields": {
+                "product": "HX-40",
+                "value": 6,
+                "unit": "week"
+              },
+              "evidence": [
+                {
+                  "material": "m1",
+                  "quote": "HX-40 lead time is six weeks"
+                }
+              ],
+              "validity": {
+                "from": "2026-10-01",
+                "to": null
+              },
+              "recordedAt": "2026-10-01T10:00:00Z",
+              "audience": null,
+              "supersedes": null,
+              "withdraws": null,
+              "confirmedBy": null
+            },
+            {
+              "id": "w1",
+              "candidate": "c1",
+              "step": "s1",
+              "submittedBy": "acct:nc-director",
+              "recordedAt": "2026-10-12T10:00:00Z",
+              "audience": null,
+              "supersedes": null,
+              "withdraws": null,
+              "confirmedBy": null,
+              "target": "lead_time",
+              "recordType": "claim",
+              "subject": "org:northfield-components",
+              "attributedTo": "org:northfield-components",
+              "actingFor": "org:northfield-components",
+              "fields": {
+                "product": "HX-40",
+                "value": 7,
+                "unit": "week"
+              },
+              "evidence": [
+                {
+                  "material": "m2",
+                  "quote": "From 12 October, HX-40 lead time is seven weeks"
+                }
+              ],
+              "validity": {
+                "from": "2026-10-12",
+                "to": null
+              }
+            }
+          ]
+        },
+        {
+          "after": "read:q2",
+          "records": [
+            {
+              "id": "r1",
+              "candidate": null,
+              "step": null,
+              "target": "lead_time",
+              "recordType": "claim",
+              "subject": "org:northfield-components",
+              "attributedTo": "org:northfield-components",
+              "actingFor": "org:northfield-components",
+              "submittedBy": "acct:nc-director",
+              "fields": {
+                "product": "HX-40",
+                "value": 6,
+                "unit": "week"
+              },
+              "evidence": [
+                {
+                  "material": "m1",
+                  "quote": "HX-40 lead time is six weeks"
+                }
+              ],
+              "validity": {
+                "from": "2026-10-01",
+                "to": null
+              },
+              "recordedAt": "2026-10-01T10:00:00Z",
+              "audience": null,
+              "supersedes": null,
+              "withdraws": null,
+              "confirmedBy": null
+            },
+            {
+              "id": "w1",
+              "candidate": "c1",
+              "step": "s1",
+              "submittedBy": "acct:nc-director",
+              "recordedAt": "2026-10-12T10:00:00Z",
+              "audience": null,
+              "supersedes": null,
+              "withdraws": null,
+              "confirmedBy": null,
+              "target": "lead_time",
+              "recordType": "claim",
+              "subject": "org:northfield-components",
+              "attributedTo": "org:northfield-components",
+              "actingFor": "org:northfield-components",
+              "fields": {
+                "product": "HX-40",
+                "value": 7,
+                "unit": "week"
+              },
+              "evidence": [
+                {
+                  "material": "m2",
+                  "quote": "From 12 October, HX-40 lead time is seven weeks"
+                }
+              ],
+              "validity": {
+                "from": "2026-10-12",
+                "to": null
+              }
+            }
+          ]
+        },
+        {
+          "after": "read:q3",
           "records": [
             {
               "id": "r1",
@@ -5964,7 +7028,7 @@
           ]
         },
         {
-          "after": "reads",
+          "after": "read:q1",
           "records": [
             {
               "id": "w1",
@@ -6095,7 +7159,7 @@
           ]
         },
         {
-          "after": "reads",
+          "after": "read:q1",
           "records": [
             {
               "id": "w1",
@@ -6305,7 +7369,74 @@
           ]
         },
         {
-          "after": "reads",
+          "after": "read:q1",
+          "records": [
+            {
+              "id": "w1",
+              "candidate": "c1",
+              "step": "s1",
+              "submittedBy": "acct:nc-director",
+              "recordedAt": "2026-10-05T10:00:00Z",
+              "audience": null,
+              "supersedes": null,
+              "withdraws": null,
+              "confirmedBy": null,
+              "target": "capacity_rate",
+              "recordType": "claim",
+              "subject": "org:northfield-components",
+              "attributedTo": "org:northfield-components",
+              "actingFor": "org:northfield-components",
+              "fields": {
+                "value": 46000,
+                "unit": "units/month",
+                "basis": "unstated"
+              },
+              "evidence": [
+                {
+                  "material": "m1",
+                  "quote": "Capacity: 46,000 units/month"
+                }
+              ],
+              "validity": {
+                "from": "2026-10-05",
+                "to": null
+              }
+            },
+            {
+              "id": "w2",
+              "candidate": "c2",
+              "step": "s1",
+              "submittedBy": "acct:nc-director",
+              "recordedAt": "2026-10-05T10:00:00Z",
+              "audience": null,
+              "supersedes": null,
+              "withdraws": null,
+              "confirmedBy": null,
+              "target": "lead_time",
+              "recordType": "claim",
+              "subject": "org:northfield-components",
+              "attributedTo": "org:northfield-components",
+              "actingFor": "org:northfield-components",
+              "fields": {
+                "product": "HX-40",
+                "value": 4,
+                "unit": "week"
+              },
+              "evidence": [
+                {
+                  "material": "m1",
+                  "quote": "Standard HX-40 lead time: four weeks"
+                }
+              ],
+              "validity": {
+                "from": "2026-10-05",
+                "to": null
+              }
+            }
+          ]
+        },
+        {
+          "after": "read:q2",
           "records": [
             {
               "id": "w1",
@@ -6473,7 +7604,7 @@
           ]
         },
         {
-          "after": "reads",
+          "after": "read:q1",
           "records": [
             {
               "id": "w1",
@@ -6609,7 +7740,7 @@
           ]
         },
         {
-          "after": "reads",
+          "after": "read:q1",
           "records": [
             {
               "id": "w1",
@@ -6805,7 +7936,7 @@
           ]
         },
         {
-          "after": "reads",
+          "after": "read:q1",
           "records": [
             {
               "id": "r1",
@@ -6973,7 +8104,7 @@
           ]
         },
         {
-          "after": "reads",
+          "after": "read:q1",
           "records": [
             {
               "id": "w1",
@@ -7126,7 +8257,45 @@
           ]
         },
         {
-          "after": "reads",
+          "after": "read:q1",
+          "records": [
+            {
+              "id": "w1",
+              "candidate": "c1",
+              "step": "s1",
+              "submittedBy": "acct:lab-reports",
+              "recordedAt": "2026-10-12T10:00:00Z",
+              "audience": null,
+              "supersedes": null,
+              "withdraws": null,
+              "confirmedBy": null,
+              "target": "test_result",
+              "recordType": "issuer-attestation",
+              "subject": "material:pc-abs-2200",
+              "attributedTo": "org:lakeside-labs",
+              "actingFor": "org:lakeside-labs",
+              "fields": {
+                "material": "PC-ABS 2200",
+                "standard": "UL 94",
+                "thicknessMm": 3,
+                "result": "V-0",
+                "reportId": "FR-120"
+              },
+              "evidence": [
+                {
+                  "material": "m1",
+                  "quote": "tested 20 September 2026: PC-ABS 2200, UL 94 V-0 at 3.0 mm"
+                }
+              ],
+              "validity": {
+                "from": "2026-09-20",
+                "to": null
+              }
+            }
+          ]
+        },
+        {
+          "after": "read:q2",
           "records": [
             {
               "id": "w1",

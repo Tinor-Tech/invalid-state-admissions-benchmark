@@ -127,6 +127,7 @@
       "expected": {
         "status": "value",
         "recordType": "agreement",
+        "attributedTo": "org:northfield-components",
         "fields": {
           "quantity": 20000
         },
