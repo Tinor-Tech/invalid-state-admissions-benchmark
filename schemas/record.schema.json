@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Tinor-Tech/invalid-state-admissions-benchmark/schemas/record.schema.json",
+  "title": "Persisted record (neutral record model, v2)",
+  "description": "One record in a system's exported state. Initial-state records have candidate and step null. Systems may store anything internally; this is the export format.",
+  "type": "object",
+  "required": ["id", "candidate", "step", "target", "recordType", "subject", "attributedTo", "actingFor", "submittedBy", "fields", "evidence", "validity", "recordedAt", "audience", "supersedes", "withdraws", "confirmedBy"],
+  "additionalProperties": false,
+  "properties": {
+    "id": { "type": "string", "minLength": 1 },
+    "candidate": { "type": ["string", "null"], "description": "The candidate ref this record was written for." },
+    "step": { "type": ["string", "null"] },
+    "target": { "type": "string" },
+    "recordType": { "type": "string" },
+    "subject": { "type": "string" },
+    "attributedTo": { "type": "string", "description": "Whose statement the record is." },
+    "actingFor": { "type": "string", "description": "The party the write was made on behalf of." },
+    "submittedBy": { "type": "string" },
+    "fields": { "type": "object" },
+    "evidence": { "type": "array", "items": { "$ref": "#/$defs/evidence" } },
+    "validity": { "$ref": "#/$defs/validity" },
+    "recordedAt": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}T" },
+    "audience": { "type": ["array", "null"], "items": { "type": "string" } },
+    "supersedes": { "type": ["string", "null"] },
+    "withdraws": { "type": ["string", "null"] },
+    "confirmedBy": { "type": ["array", "null"], "items": { "type": "string" } }
+  },
+  "$defs": {
+    "evidence": { "type": "object", "required": ["material"], "additionalProperties": false, "properties": { "material": { "type": "string" }, "quote": { "type": "string" } } },
+    "validity": { "type": "object", "required": ["from", "to"], "additionalProperties": false, "properties": { "from": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" }, "to": { "type": ["string", "null"] } } }
+  }
+}

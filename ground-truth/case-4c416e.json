@@ -1,0 +1,64 @@
+{
+  "id": "case-4c416e",
+  "label": "v04-monthly-output",
+  "title": "A count for a stated month",
+  "benchmarkVersion": "2.0.0",
+  "family": "valid-admission",
+  "nature": "synthetic",
+  "v1Case": null,
+  "propositions": [
+    {
+      "id": "p1",
+      "step": "s1",
+      "candidate": "c1",
+      "target": "monthly_output",
+      "acceptable": [
+        {
+          "outcome": "ADMIT",
+          "reason": "as_stated_claim",
+          "record": {
+            "recordType": "claim",
+            "subject": "org:northfield-components",
+            "attributedTo": "org:northfield-components",
+            "actingFor": "org:northfield-components",
+            "fields": {
+              "value": 41200,
+              "unit": "units",
+              "period": {
+                "from": "2026-09-01",
+                "to": "2026-09-30"
+              }
+            },
+            "evidenceMaterials": [
+              "m1"
+            ]
+          }
+        }
+      ],
+      "rules": [
+        "R-SEM-1"
+      ],
+      "why": "A count with its stated calendar month.",
+      "criticalIfPersisted": null
+    }
+  ],
+  "reads": [
+    {
+      "read": "q1",
+      "expected": {
+        "status": "value",
+        "recordType": "claim",
+        "attributedTo": "org:northfield-components",
+        "fields": {
+          "value": 41200
+        },
+        "qualifiers": []
+      },
+      "restricted": false,
+      "rules": [
+        "R-READ-1"
+      ],
+      "why": "Read inside the stated month, after it was recorded."
+    }
+  ]
+}

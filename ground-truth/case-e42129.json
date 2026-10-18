@@ -1,0 +1,65 @@
+{
+  "id": "case-e42129",
+  "label": "e05-basis-overstated",
+  "title": "A rate proposed with a basis the source does not state",
+  "benchmarkVersion": "2.0.0",
+  "family": "wrong-entity-or-scope",
+  "nature": "synthetic",
+  "v1Case": null,
+  "propositions": [
+    {
+      "id": "p1",
+      "step": "s1",
+      "candidate": "c1",
+      "target": "capacity_rate",
+      "acceptable": [
+        {
+          "outcome": "ADMIT-QUALIFIED",
+          "reason": "stronger_than_source",
+          "record": {
+            "recordType": "claim",
+            "subject": "org:northfield-components",
+            "attributedTo": "org:northfield-components",
+            "actingFor": "org:northfield-components",
+            "fields": {
+              "value": 46000,
+              "unit": "units/month",
+              "basis": "unstated"
+            },
+            "evidenceMaterials": [
+              "m1"
+            ],
+            "validity": {
+              "from": "2026-10-05",
+              "to": null
+            }
+          }
+        }
+      ],
+      "rules": [
+        "R-QUAL-1"
+      ],
+      "why": "The deck does not say whether 46,000 is nameplate or demonstrated. A record with basis demonstrated has the correct strength and the wrong content.",
+      "criticalIfPersisted": null
+    }
+  ],
+  "reads": [
+    {
+      "read": "q1",
+      "expected": {
+        "status": "value",
+        "recordType": "claim",
+        "attributedTo": "org:northfield-components",
+        "fields": {
+          "basis": "unstated"
+        },
+        "qualifiers": []
+      },
+      "restricted": false,
+      "rules": [
+        "R-READ-2"
+      ],
+      "why": "Served with the basis the source supports."
+    }
+  ]
+}

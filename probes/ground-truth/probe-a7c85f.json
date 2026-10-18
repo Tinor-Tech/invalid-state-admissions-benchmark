@@ -1,0 +1,74 @@
+{
+  "id": "probe-a7c85f",
+  "label": "x01-hedge-paraphrase",
+  "title": "Probe: v02 with different hedge words",
+  "benchmarkVersion": "2.0.0",
+  "family": "valid-admission",
+  "nature": "synthetic",
+  "v1Case": null,
+  "propositions": [
+    {
+      "id": "p1",
+      "step": "s1",
+      "candidate": "c1",
+      "target": "delivery",
+      "acceptable": [
+        {
+          "outcome": "ADMIT-QUALIFIED",
+          "reason": "stronger_than_source",
+          "record": {
+            "recordType": "expectation",
+            "subject": "org:northfield-components",
+            "attributedTo": "org:northfield-components",
+            "actingFor": "org:northfield-components",
+            "fields": {
+              "object": "HX-40 housings",
+              "quantity": 20000,
+              "dueBy": "2026-11-30",
+              "debtor": "org:northfield-components",
+              "creditor": "org:buyer-b"
+            },
+            "fieldsIncludes": {
+              "condition": [
+                "resin"
+              ]
+            },
+            "evidenceMaterials": [
+              "m1"
+            ],
+            "validity": {
+              "from": "2026-10-05",
+              "to": null
+            }
+          }
+        }
+      ],
+      "rules": [
+        "R-QUAL-1"
+      ],
+      "why": "Same meaning as v02.",
+      "criticalIfPersisted": null
+    }
+  ],
+  "reads": [
+    {
+      "read": "q1",
+      "expected": {
+        "status": "value",
+        "recordType": "expectation",
+        "attributedTo": "org:northfield-components",
+        "fields": {
+          "quantity": 20000
+        },
+        "qualifiers": [
+          "conditional"
+        ]
+      },
+      "restricted": false,
+      "rules": [
+        "R-READ-3"
+      ],
+      "why": "Conditional."
+    }
+  ]
+}

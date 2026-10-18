@@ -1,0 +1,73 @@
+{
+  "id": "case-1864fb",
+  "label": "o02-both-parties-confirm",
+  "title": "The buyer accepts the offer on identical terms",
+  "benchmarkVersion": "2.0.0",
+  "family": "offer-vs-agreement",
+  "nature": "synthetic",
+  "v1Case": null,
+  "propositions": [
+    {
+      "id": "p1",
+      "step": "s1",
+      "candidate": "c1",
+      "target": "delivery",
+      "acceptable": [
+        {
+          "outcome": "ADMIT",
+          "reason": "as_confirmed_agreement",
+          "record": {
+            "recordType": "agreement",
+            "subject": "org:northfield-components",
+            "attributedTo": "org:buyer-b",
+            "actingFor": "org:buyer-b",
+            "fields": {
+              "object": "HX-40 housings",
+              "quantity": 20000,
+              "dueBy": "2026-11-30",
+              "price": "USD 1.85",
+              "debtor": "org:northfield-components",
+              "creditor": "org:buyer-b"
+            },
+            "evidenceMaterials": [
+              "m1",
+              "m2"
+            ],
+            "confirmedBy": [
+              "org:northfield-components",
+              "org:buyer-b"
+            ],
+            "validity": {
+              "from": "2026-10-08",
+              "to": null
+            }
+          }
+        }
+      ],
+      "rules": [
+        "R-OFFER-1"
+      ],
+      "why": "Both parties have stated identical terms through accounts with commit grants, inside the offer's validity.",
+      "criticalIfPersisted": null
+    }
+  ],
+  "reads": [
+    {
+      "read": "q1",
+      "expected": {
+        "status": "value",
+        "recordType": "agreement",
+        "fields": {
+          "quantity": 20000,
+          "price": "USD 1.85"
+        },
+        "qualifiers": []
+      },
+      "restricted": false,
+      "rules": [
+        "R-READ-4"
+      ],
+      "why": "The agreement is the answer."
+    }
+  ]
+}

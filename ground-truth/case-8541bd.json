@@ -1,0 +1,85 @@
+{
+  "id": "case-8541bd",
+  "label": "t01-validity-dropped",
+  "title": "A certificate proposed without its expiry",
+  "benchmarkVersion": "2.0.0",
+  "family": "temporal-validity",
+  "nature": "synthetic",
+  "v1Case": null,
+  "propositions": [
+    {
+      "id": "p1",
+      "step": "s1",
+      "candidate": "c1",
+      "target": "certificate_status",
+      "acceptable": [
+        {
+          "outcome": "ADMIT-QUALIFIED",
+          "reason": "validity_narrower_than_proposed",
+          "record": {
+            "recordType": "claim",
+            "subject": "org:northfield-components",
+            "attributedTo": "org:northfield-components",
+            "actingFor": "org:northfield-components",
+            "fields": {
+              "certificateId": "Q-5521",
+              "scope": "ISO 9001",
+              "status": "valid"
+            },
+            "evidenceMaterials": [
+              "m1"
+            ],
+            "validity": {
+              "from": "2023-10-01",
+              "to": "2026-09-30"
+            }
+          }
+        }
+      ],
+      "rules": [
+        "R-QUAL-1",
+        "R-TIME-1"
+      ],
+      "why": "The source states an end date the proposal dropped. An open-ended record has the right strength and the wrong validity.",
+      "criticalIfPersisted": null
+    }
+  ],
+  "reads": [
+    {
+      "read": "q1",
+      "expected": {
+        "status": "value",
+        "recordType": "claim",
+        "attributedTo": "org:northfield-components",
+        "fields": {
+          "status": "valid"
+        },
+        "qualifiers": []
+      },
+      "restricted": false,
+      "rules": [
+        "R-READ-3"
+      ],
+      "why": "Within validity."
+    },
+    {
+      "read": "q2",
+      "expected": {
+        "status": "value",
+        "recordType": "claim",
+        "attributedTo": "org:northfield-components",
+        "fields": {
+          "status": "valid"
+        },
+        "qualifiers": [
+          "expired"
+        ]
+      },
+      "restricted": false,
+      "rules": [
+        "R-READ-3"
+      ],
+      "why": "After validity ended."
+    }
+  ]
+}

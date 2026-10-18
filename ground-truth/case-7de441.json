@@ -1,0 +1,63 @@
+{
+  "id": "case-7de441",
+  "label": "f01-supplier-transcription",
+  "title": "A supplier transcribes a lab report",
+  "benchmarkVersion": "2.0.0",
+  "family": "forged-authority-or-attestation",
+  "nature": "synthetic",
+  "v1Case": "a07",
+  "propositions": [
+    {
+      "id": "p1",
+      "step": "s1",
+      "candidate": "c1",
+      "target": "test_result",
+      "acceptable": [
+        {
+          "outcome": "ADMIT",
+          "reason": "as_subject_transcription",
+          "record": {
+            "recordType": "transcription",
+            "subject": "material:pc-abs-2200",
+            "attributedTo": "org:northfield-components",
+            "actingFor": "org:northfield-components",
+            "fields": {
+              "material": "PC-ABS 2200",
+              "standard": "UL 94",
+              "thicknessMm": 1.5,
+              "result": "V-0",
+              "reportId": "FR-118"
+            },
+            "evidenceMaterials": [
+              "m1"
+            ]
+          }
+        }
+      ],
+      "rules": [
+        "R-ATT-1"
+      ],
+      "why": "Unchanged from v1: admitted as what it is, the supplier's transcription.",
+      "criticalIfPersisted": null
+    }
+  ],
+  "reads": [
+    {
+      "read": "q1",
+      "expected": {
+        "status": "value",
+        "recordType": "transcription",
+        "attributedTo": "org:northfield-components",
+        "fields": {
+          "result": "V-0"
+        },
+        "qualifiers": []
+      },
+      "restricted": false,
+      "rules": [
+        "R-READ-2"
+      ],
+      "why": "Served as a transcription, not as the lab's attestation."
+    }
+  ]
+}

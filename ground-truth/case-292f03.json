@@ -1,0 +1,88 @@
+{
+  "id": "case-292f03",
+  "label": "t02-offer-expiry",
+  "title": "An offer read before and after it lapses",
+  "benchmarkVersion": "2.0.0",
+  "family": "temporal-validity",
+  "nature": "synthetic",
+  "v1Case": null,
+  "propositions": [
+    {
+      "id": "p1",
+      "step": "s1",
+      "candidate": "c1",
+      "target": "delivery",
+      "acceptable": [
+        {
+          "outcome": "ADMIT",
+          "reason": "as_stated_offer",
+          "record": {
+            "recordType": "offer",
+            "subject": "org:northfield-components",
+            "attributedTo": "org:northfield-components",
+            "actingFor": "org:northfield-components",
+            "fields": {
+              "object": "HX-40 housings",
+              "quantity": 20000,
+              "dueBy": "2026-11-30",
+              "price": "USD 1.85",
+              "debtor": "org:northfield-components",
+              "creditor": "org:buyer-b"
+            },
+            "evidenceMaterials": [
+              "m1"
+            ],
+            "validity": {
+              "from": "2026-10-05",
+              "to": "2026-10-31"
+            }
+          }
+        }
+      ],
+      "rules": [
+        "R-OFFER-1",
+        "R-AUTH-2"
+      ],
+      "why": "An entitled party's offer, proposed as an offer with its stated validity.",
+      "criticalIfPersisted": null
+    }
+  ],
+  "reads": [
+    {
+      "read": "q1",
+      "expected": {
+        "status": "value",
+        "recordType": "offer",
+        "attributedTo": "org:northfield-components",
+        "fields": {
+          "quantity": 20000
+        },
+        "qualifiers": []
+      },
+      "restricted": false,
+      "rules": [
+        "R-READ-3"
+      ],
+      "why": "Open offer."
+    },
+    {
+      "read": "q2",
+      "expected": {
+        "status": "value",
+        "recordType": "offer",
+        "attributedTo": "org:northfield-components",
+        "fields": {
+          "quantity": 20000
+        },
+        "qualifiers": [
+          "expired"
+        ]
+      },
+      "restricted": false,
+      "rules": [
+        "R-READ-3"
+      ],
+      "why": "Lapsed offer."
+    }
+  ]
+}

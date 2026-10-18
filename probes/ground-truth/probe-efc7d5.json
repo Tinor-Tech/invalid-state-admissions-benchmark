@@ -1,0 +1,42 @@
+{
+  "id": "probe-efc7d5",
+  "label": "x06-mismatch-abbreviated",
+  "title": "Probe: e03 with an abbreviated name",
+  "benchmarkVersion": "2.0.0",
+  "family": "wrong-entity-or-scope",
+  "nature": "synthetic",
+  "v1Case": null,
+  "propositions": [
+    {
+      "id": "p1",
+      "step": "s1",
+      "candidate": "c1",
+      "target": "lead_time",
+      "acceptable": [
+        {
+          "outcome": "REFUSE",
+          "reason": "subject_mismatch",
+          "record": null
+        }
+      ],
+      "rules": [
+        "R-ID-2"
+      ],
+      "why": "Same meaning as e03; the authenticated account identifies Northfield Components.",
+      "criticalIfPersisted": "UNAUTHORIZED_WRITE"
+    }
+  ],
+  "reads": [
+    {
+      "read": "q1",
+      "expected": {
+        "status": "none"
+      },
+      "restricted": false,
+      "rules": [
+        "R-READ-2"
+      ],
+      "why": "Nothing admitted."
+    }
+  ]
+}

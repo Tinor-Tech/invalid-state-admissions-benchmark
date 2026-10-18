@@ -1,0 +1,51 @@
+{
+  "id": "case-c0c95d",
+  "label": "r02-holder-tries-to-withdraw",
+  "title": "The certificate holder asks to treat it as withdrawn",
+  "benchmarkVersion": "2.0.0",
+  "family": "revocation-supersession",
+  "nature": "synthetic",
+  "v1Case": null,
+  "propositions": [
+    {
+      "id": "p1",
+      "step": "s1",
+      "candidate": "c1",
+      "target": "certificate_status",
+      "acceptable": [
+        {
+          "outcome": "REFUSE",
+          "reason": "no_standing_to_withdraw",
+          "record": null
+        }
+      ],
+      "rules": [
+        "R-AUTH-4"
+      ],
+      "why": "Only the lab that issued C-77 can withdraw it. The holder could state its own position as a claim; that is a different proposal.",
+      "criticalIfPersisted": "UNAUTHORIZED_WRITE"
+    }
+  ],
+  "reads": [
+    {
+      "read": "q1",
+      "expected": {
+        "status": "value",
+        "recordType": "issuer-attestation",
+        "attributedTo": "org:lakeside-labs",
+        "fields": {
+          "certificateId": "C-77"
+        },
+        "qualifiers": [
+          "independence-not-established",
+          "accreditation-not-established"
+        ]
+      },
+      "restricted": false,
+      "rules": [
+        "R-READ-3"
+      ],
+      "why": "Not withdrawn."
+    }
+  ]
+}

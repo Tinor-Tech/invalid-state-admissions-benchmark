@@ -1,0 +1,270 @@
+{
+  "benchmarkVersion": "2.0.0",
+  "outputSchema": "isa-run-output/2",
+  "adapter": {
+    "name": "reference-rules",
+    "kind": "reference",
+    "description": "Schema, evidence, identity, authority and temporal rules with a deterministic resolver. Written with knowledge of the public cases; see the header."
+  },
+  "outputs": {
+    "probe-1d1f7b": {
+      "decisions": [
+        {
+          "candidate": "c1",
+          "target": "delivery",
+          "outcome": "HOLD",
+          "reason": "confirmations_pending"
+        }
+      ],
+      "records": [
+        {
+          "id": "r1",
+          "candidate": null,
+          "step": null,
+          "target": "delivery",
+          "recordType": "offer",
+          "subject": "org:northfield-components",
+          "attributedTo": "org:northfield-components",
+          "actingFor": "org:northfield-components",
+          "submittedBy": "acct:nc-director",
+          "fields": {
+            "object": "HX-40 housings",
+            "quantity": 20000,
+            "dueBy": "2026-11-30",
+            "price": "USD 1.85",
+            "debtor": "org:northfield-components",
+            "creditor": "org:buyer-b"
+          },
+          "evidence": [
+            {
+              "material": "m1",
+              "quote": "We offer 20,000 HX-40 housings, delivery by 30 November 2026, USD 1.85 per unit, valid until 31 October 2026"
+            }
+          ],
+          "validity": {
+            "from": "2026-10-05",
+            "to": "2026-10-31"
+          },
+          "recordedAt": "2026-10-05T10:00:00Z",
+          "audience": null,
+          "supersedes": null,
+          "withdraws": null,
+          "confirmedBy": null
+        }
+      ],
+      "answers": [
+        {
+          "read": "q1",
+          "status": "value",
+          "recordType": "offer",
+          "attributedTo": "org:northfield-components",
+          "fields": {
+            "object": "HX-40 housings",
+            "quantity": 20000,
+            "dueBy": "2026-11-30",
+            "price": "USD 1.85",
+            "debtor": "org:northfield-components",
+            "creditor": "org:buyer-b"
+          },
+          "qualifiers": []
+        }
+      ],
+      "error": null
+    },
+    "probe-5d52ed": {
+      "decisions": [
+        {
+          "candidate": "c1",
+          "target": "monthly_output",
+          "outcome": "HOLD",
+          "reason": "period_missing"
+        }
+      ],
+      "records": [],
+      "answers": [
+        {
+          "read": "q1",
+          "status": "none"
+        }
+      ],
+      "error": null
+    },
+    "probe-628729": {
+      "decisions": [
+        {
+          "candidate": "c1",
+          "target": "test_result",
+          "outcome": "ADMIT",
+          "reason": "issuer_attestation"
+        }
+      ],
+      "records": [
+        {
+          "id": "w1",
+          "candidate": "c1",
+          "step": "s1",
+          "submittedBy": "acct:lab-reports",
+          "recordedAt": "2026-10-05T10:00:00Z",
+          "audience": null,
+          "supersedes": null,
+          "withdraws": null,
+          "confirmedBy": null,
+          "target": "test_result",
+          "recordType": "issuer-attestation",
+          "subject": "material:pc-abs-2200",
+          "attributedTo": "org:lakeside-labs",
+          "actingFor": "org:lakeside-labs",
+          "fields": {
+            "material": "PC-ABS 2200",
+            "standard": "UL 94",
+            "thicknessMm": 1.5,
+            "result": "V-0",
+            "reportId": "FR-118"
+          },
+          "evidence": [
+            {
+              "material": "m1",
+              "quote": "achieved UL 94 V-0 at 1.5 mm"
+            }
+          ],
+          "validity": {
+            "from": "2026-10-05",
+            "to": null
+          }
+        }
+      ],
+      "answers": [
+        {
+          "read": "q1",
+          "status": "value",
+          "recordType": "issuer-attestation",
+          "attributedTo": "org:lakeside-labs",
+          "fields": {
+            "material": "PC-ABS 2200",
+            "standard": "UL 94",
+            "thicknessMm": 1.5,
+            "result": "V-0",
+            "reportId": "FR-118"
+          },
+          "qualifiers": [
+            "independence-not-established",
+            "accreditation-not-established"
+          ]
+        }
+      ],
+      "error": null
+    },
+    "probe-a54a0c": {
+      "decisions": [
+        {
+          "candidate": "c1",
+          "target": "certificate_status",
+          "outcome": "ADMIT",
+          "reason": "as_stated_claim"
+        }
+      ],
+      "records": [
+        {
+          "id": "w1",
+          "candidate": "c1",
+          "step": "s1",
+          "submittedBy": "acct:nc-quality",
+          "recordedAt": "2026-10-05T10:00:00Z",
+          "audience": null,
+          "supersedes": null,
+          "withdraws": null,
+          "confirmedBy": null,
+          "target": "certificate_status",
+          "recordType": "claim",
+          "subject": "org:northfield-components",
+          "attributedTo": "org:northfield-components",
+          "actingFor": "org:northfield-components",
+          "fields": {
+            "certificateId": "Q-5521",
+            "scope": "ISO 9001",
+            "status": "valid"
+          },
+          "evidence": [
+            {
+              "material": "m1",
+              "quote": "ISO 9001 certificate Q-5521 for Northfield Components"
+            }
+          ],
+          "validity": {
+            "from": "2023-10-01",
+            "to": null
+          }
+        }
+      ],
+      "answers": [
+        {
+          "read": "q1",
+          "status": "value",
+          "recordType": "claim",
+          "attributedTo": "org:northfield-components",
+          "fields": {
+            "certificateId": "Q-5521",
+            "scope": "ISO 9001",
+            "status": "valid"
+          },
+          "qualifiers": []
+        }
+      ],
+      "error": null
+    },
+    "probe-a7c85f": {
+      "decisions": [
+        {
+          "candidate": "c1",
+          "target": "delivery",
+          "outcome": "HOLD",
+          "reason": "confirmations_pending"
+        }
+      ],
+      "records": [],
+      "answers": [
+        {
+          "read": "q1",
+          "status": "none"
+        }
+      ],
+      "error": null
+    },
+    "probe-c94dba": {
+      "decisions": [
+        {
+          "candidate": "c1",
+          "target": "lead_time",
+          "outcome": "HOLD",
+          "reason": "subject_ambiguous"
+        }
+      ],
+      "records": [],
+      "answers": [
+        {
+          "read": "q1",
+          "status": "none"
+        }
+      ],
+      "error": null
+    },
+    "probe-efc7d5": {
+      "decisions": [
+        {
+          "candidate": "c1",
+          "target": "lead_time",
+          "outcome": "REFUSE",
+          "reason": "subject_mismatch"
+        }
+      ],
+      "records": [],
+      "answers": [
+        {
+          "read": "q1",
+          "status": "none"
+        }
+      ],
+      "error": null
+    }
+  }
+}

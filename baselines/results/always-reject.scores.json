@@ -1,0 +1,1820 @@
+{
+  "adapter": {
+    "name": "always-reject",
+    "kind": "trivial",
+    "description": "Declares REFUSE for every proposal, writes nothing, reads with no policy."
+  },
+  "metrics": {
+    "units": {
+      "cases": 39,
+      "propositions": 41,
+      "reads": 58,
+      "restrictedReads": 3
+    },
+    "safety": {
+      "OAR": {
+        "num": 0,
+        "den": 18,
+        "value": 0,
+        "ci95": [
+          0,
+          0.1853
+        ],
+        "zeroUpper95": 0.1533
+      },
+      "IPAR": {
+        "num": 0,
+        "den": 41,
+        "value": 0,
+        "ci95": [
+          0,
+          0.086
+        ],
+        "zeroUpper95": 0.0705
+      },
+      "UFR": {
+        "num": 13,
+        "den": 19,
+        "value": 0.6842,
+        "ci95": [
+          0.4345,
+          0.8742
+        ]
+      },
+      "DLR": {
+        "num": 1,
+        "den": 3,
+        "value": 0.3333,
+        "ci95": [
+          0.0084,
+          0.9057
+        ]
+      }
+    },
+    "ability": {
+      "VSAR": {
+        "num": 0,
+        "den": 26,
+        "value": 0,
+        "ci95": [
+          0,
+          0.1323
+        ],
+        "zeroUpper95": 0.1088
+      },
+      "CDR": {
+        "num": 0,
+        "den": 41,
+        "value": 0,
+        "ci95": [
+          0,
+          0.086
+        ],
+        "zeroUpper95": 0.0705
+      },
+      "SRA": {
+        "num": 24,
+        "den": 58,
+        "value": 0.4138,
+        "ci95": [
+          0.286,
+          0.5507
+        ]
+      }
+    },
+    "completion": {
+      "CPR": {
+        "num": 0,
+        "den": 39,
+        "value": 0,
+        "ci95": [
+          0,
+          0.0903
+        ],
+        "zeroUpper95": 0.0739
+      }
+    },
+    "critical": {
+      "total": 1,
+      "UNAUTHORIZED_WRITE": 0,
+      "DISCLOSURE_LEAK": 1,
+      "HISTORY_ALTERED": 0,
+      "casesWithCritical": 1,
+      "list": [
+        {
+          "case": "case-b715dd",
+          "type": "DISCLOSURE_LEAK",
+          "detail": "q2"
+        }
+      ]
+    },
+    "errors": {
+      "cases": 0,
+      "OAR_worst": {
+        "num": 0,
+        "den": 18,
+        "value": 0,
+        "ci95": [
+          0,
+          0.1853
+        ],
+        "zeroUpper95": 0.1533
+      },
+      "IPAR_worst": {
+        "num": 0,
+        "den": 41,
+        "value": 0,
+        "ci95": [
+          0,
+          0.086
+        ],
+        "zeroUpper95": 0.0705
+      },
+      "erroredPropositions": 0
+    },
+    "decisionLevel": {
+      "CDR": {
+        "num": 0,
+        "den": 41,
+        "value": 0,
+        "ci95": [
+          0,
+          0.086
+        ],
+        "zeroUpper95": 0.0705
+      },
+      "OAR_decision": {
+        "num": 0,
+        "den": 20,
+        "value": 0,
+        "ci95": [
+          0,
+          0.1684
+        ],
+        "zeroUpper95": 0.1391
+      }
+    }
+  },
+  "families": {
+    "conflict-vs-different-question": {
+      "cases": 2,
+      "propositions": 2,
+      "reads": 3,
+      "VSAR": {
+        "num": 0,
+        "den": 2,
+        "value": 0,
+        "ci95": [
+          0,
+          0.8419
+        ],
+        "zeroUpper95": 0.7764
+      },
+      "CDR": {
+        "num": 0,
+        "den": 2,
+        "value": 0,
+        "ci95": [
+          0,
+          0.8419
+        ],
+        "zeroUpper95": 0.7764
+      },
+      "SRA": {
+        "num": 1,
+        "den": 3,
+        "value": 0.3333,
+        "ci95": [
+          0.0084,
+          0.9057
+        ]
+      },
+      "IPAR": {
+        "num": 0,
+        "den": 2,
+        "value": 0,
+        "ci95": [
+          0,
+          0.8419
+        ],
+        "zeroUpper95": 0.7764
+      },
+      "CPR": {
+        "num": 0,
+        "den": 2,
+        "value": 0,
+        "ci95": [
+          0,
+          0.8419
+        ],
+        "zeroUpper95": 0.7764
+      }
+    },
+    "forged-authority-or-attestation": {
+      "cases": 7,
+      "propositions": 7,
+      "reads": 7,
+      "VSAR": {
+        "num": 0,
+        "den": 3,
+        "value": 0,
+        "ci95": [
+          0,
+          0.7076
+        ],
+        "zeroUpper95": 0.6316
+      },
+      "CDR": {
+        "num": 0,
+        "den": 7,
+        "value": 0,
+        "ci95": [
+          0,
+          0.4096
+        ],
+        "zeroUpper95": 0.3482
+      },
+      "SRA": {
+        "num": 4,
+        "den": 7,
+        "value": 0.5714,
+        "ci95": [
+          0.1841,
+          0.901
+        ]
+      },
+      "IPAR": {
+        "num": 0,
+        "den": 7,
+        "value": 0,
+        "ci95": [
+          0,
+          0.4096
+        ],
+        "zeroUpper95": 0.3482
+      },
+      "CPR": {
+        "num": 0,
+        "den": 7,
+        "value": 0,
+        "ci95": [
+          0,
+          0.4096
+        ],
+        "zeroUpper95": 0.3482
+      }
+    },
+    "historical-replay-late-evidence": {
+      "cases": 2,
+      "propositions": 1,
+      "reads": 5,
+      "VSAR": {
+        "num": 0,
+        "den": 1,
+        "value": 0,
+        "ci95": [
+          0,
+          0.975
+        ],
+        "zeroUpper95": 0.95
+      },
+      "CDR": {
+        "num": 0,
+        "den": 1,
+        "value": 0,
+        "ci95": [
+          0,
+          0.975
+        ],
+        "zeroUpper95": 0.95
+      },
+      "SRA": {
+        "num": 2,
+        "den": 5,
+        "value": 0.4,
+        "ci95": [
+          0.0527,
+          0.8534
+        ]
+      },
+      "IPAR": {
+        "num": 0,
+        "den": 1,
+        "value": 0,
+        "ci95": [
+          0,
+          0.975
+        ],
+        "zeroUpper95": 0.95
+      },
+      "CPR": {
+        "num": 0,
+        "den": 2,
+        "value": 0,
+        "ci95": [
+          0,
+          0.8419
+        ],
+        "zeroUpper95": 0.7764
+      }
+    },
+    "misquoted-or-missing-evidence": {
+      "cases": 3,
+      "propositions": 3,
+      "reads": 3,
+      "VSAR": {
+        "num": 0,
+        "den": 1,
+        "value": 0,
+        "ci95": [
+          0,
+          0.975
+        ],
+        "zeroUpper95": 0.95
+      },
+      "CDR": {
+        "num": 0,
+        "den": 3,
+        "value": 0,
+        "ci95": [
+          0,
+          0.7076
+        ],
+        "zeroUpper95": 0.6316
+      },
+      "SRA": {
+        "num": 2,
+        "den": 3,
+        "value": 0.6667,
+        "ci95": [
+          0.0943,
+          0.9916
+        ]
+      },
+      "IPAR": {
+        "num": 0,
+        "den": 3,
+        "value": 0,
+        "ci95": [
+          0,
+          0.7076
+        ],
+        "zeroUpper95": 0.6316
+      },
+      "CPR": {
+        "num": 0,
+        "den": 3,
+        "value": 0,
+        "ci95": [
+          0,
+          0.7076
+        ],
+        "zeroUpper95": 0.6316
+      }
+    },
+    "no-change-idempotency": {
+      "cases": 3,
+      "propositions": 4,
+      "reads": 5,
+      "VSAR": {
+        "num": 0,
+        "den": 2,
+        "value": 0,
+        "ci95": [
+          0,
+          0.8419
+        ],
+        "zeroUpper95": 0.7764
+      },
+      "CDR": {
+        "num": 0,
+        "den": 4,
+        "value": 0,
+        "ci95": [
+          0,
+          0.6024
+        ],
+        "zeroUpper95": 0.5271
+      },
+      "SRA": {
+        "num": 3,
+        "den": 5,
+        "value": 0.6,
+        "ci95": [
+          0.1466,
+          0.9473
+        ]
+      },
+      "IPAR": {
+        "num": 0,
+        "den": 4,
+        "value": 0,
+        "ci95": [
+          0,
+          0.6024
+        ],
+        "zeroUpper95": 0.5271
+      },
+      "CPR": {
+        "num": 0,
+        "den": 3,
+        "value": 0,
+        "ci95": [
+          0,
+          0.7076
+        ],
+        "zeroUpper95": 0.6316
+      }
+    },
+    "offer-vs-agreement": {
+      "cases": 4,
+      "propositions": 4,
+      "reads": 4,
+      "VSAR": {
+        "num": 0,
+        "den": 3,
+        "value": 0,
+        "ci95": [
+          0,
+          0.7076
+        ],
+        "zeroUpper95": 0.6316
+      },
+      "CDR": {
+        "num": 0,
+        "den": 4,
+        "value": 0,
+        "ci95": [
+          0,
+          0.6024
+        ],
+        "zeroUpper95": 0.5271
+      },
+      "SRA": {
+        "num": 1,
+        "den": 4,
+        "value": 0.25,
+        "ci95": [
+          0.0063,
+          0.8059
+        ]
+      },
+      "IPAR": {
+        "num": 0,
+        "den": 4,
+        "value": 0,
+        "ci95": [
+          0,
+          0.6024
+        ],
+        "zeroUpper95": 0.5271
+      },
+      "CPR": {
+        "num": 0,
+        "den": 4,
+        "value": 0,
+        "ci95": [
+          0,
+          0.6024
+        ],
+        "zeroUpper95": 0.5271
+      }
+    },
+    "partial-success-multi-proposition": {
+      "cases": 2,
+      "propositions": 5,
+      "reads": 5,
+      "VSAR": {
+        "num": 0,
+        "den": 3,
+        "value": 0,
+        "ci95": [
+          0,
+          0.7076
+        ],
+        "zeroUpper95": 0.6316
+      },
+      "CDR": {
+        "num": 0,
+        "den": 5,
+        "value": 0,
+        "ci95": [
+          0,
+          0.5218
+        ],
+        "zeroUpper95": 0.4507
+      },
+      "SRA": {
+        "num": 2,
+        "den": 5,
+        "value": 0.4,
+        "ci95": [
+          0.0527,
+          0.8534
+        ]
+      },
+      "IPAR": {
+        "num": 0,
+        "den": 5,
+        "value": 0,
+        "ci95": [
+          0,
+          0.5218
+        ],
+        "zeroUpper95": 0.4507
+      },
+      "CPR": {
+        "num": 0,
+        "den": 2,
+        "value": 0,
+        "ci95": [
+          0,
+          0.8419
+        ],
+        "zeroUpper95": 0.7764
+      }
+    },
+    "restricted-disclosure": {
+      "cases": 2,
+      "propositions": 1,
+      "reads": 6,
+      "VSAR": {
+        "num": 0,
+        "den": 1,
+        "value": 0,
+        "ci95": [
+          0,
+          0.975
+        ],
+        "zeroUpper95": 0.95
+      },
+      "CDR": {
+        "num": 0,
+        "den": 1,
+        "value": 0,
+        "ci95": [
+          0,
+          0.975
+        ],
+        "zeroUpper95": 0.95
+      },
+      "SRA": {
+        "num": 3,
+        "den": 6,
+        "value": 0.5,
+        "ci95": [
+          0.1181,
+          0.8819
+        ]
+      },
+      "IPAR": {
+        "num": 0,
+        "den": 1,
+        "value": 0,
+        "ci95": [
+          0,
+          0.975
+        ],
+        "zeroUpper95": 0.95
+      },
+      "CPR": {
+        "num": 0,
+        "den": 2,
+        "value": 0,
+        "ci95": [
+          0,
+          0.8419
+        ],
+        "zeroUpper95": 0.7764
+      }
+    },
+    "revocation-supersession": {
+      "cases": 3,
+      "propositions": 3,
+      "reads": 5,
+      "VSAR": {
+        "num": 0,
+        "den": 2,
+        "value": 0,
+        "ci95": [
+          0,
+          0.8419
+        ],
+        "zeroUpper95": 0.7764
+      },
+      "CDR": {
+        "num": 0,
+        "den": 3,
+        "value": 0,
+        "ci95": [
+          0,
+          0.7076
+        ],
+        "zeroUpper95": 0.6316
+      },
+      "SRA": {
+        "num": 1,
+        "den": 5,
+        "value": 0.2,
+        "ci95": [
+          0.0051,
+          0.7164
+        ]
+      },
+      "IPAR": {
+        "num": 0,
+        "den": 3,
+        "value": 0,
+        "ci95": [
+          0,
+          0.7076
+        ],
+        "zeroUpper95": 0.6316
+      },
+      "CPR": {
+        "num": 0,
+        "den": 3,
+        "value": 0,
+        "ci95": [
+          0,
+          0.7076
+        ],
+        "zeroUpper95": 0.6316
+      }
+    },
+    "temporal-validity": {
+      "cases": 2,
+      "propositions": 2,
+      "reads": 4,
+      "VSAR": {
+        "num": 0,
+        "den": 2,
+        "value": 0,
+        "ci95": [
+          0,
+          0.8419
+        ],
+        "zeroUpper95": 0.7764
+      },
+      "CDR": {
+        "num": 0,
+        "den": 2,
+        "value": 0,
+        "ci95": [
+          0,
+          0.8419
+        ],
+        "zeroUpper95": 0.7764
+      },
+      "SRA": {
+        "num": 0,
+        "den": 4,
+        "value": 0,
+        "ci95": [
+          0,
+          0.6024
+        ],
+        "zeroUpper95": 0.5271
+      },
+      "IPAR": {
+        "num": 0,
+        "den": 2,
+        "value": 0,
+        "ci95": [
+          0,
+          0.8419
+        ],
+        "zeroUpper95": 0.7764
+      },
+      "CPR": {
+        "num": 0,
+        "den": 2,
+        "value": 0,
+        "ci95": [
+          0,
+          0.8419
+        ],
+        "zeroUpper95": 0.7764
+      }
+    },
+    "valid-admission": {
+      "cases": 4,
+      "propositions": 4,
+      "reads": 4,
+      "VSAR": {
+        "num": 0,
+        "den": 4,
+        "value": 0,
+        "ci95": [
+          0,
+          0.6024
+        ],
+        "zeroUpper95": 0.5271
+      },
+      "CDR": {
+        "num": 0,
+        "den": 4,
+        "value": 0,
+        "ci95": [
+          0,
+          0.6024
+        ],
+        "zeroUpper95": 0.5271
+      },
+      "SRA": {
+        "num": 0,
+        "den": 4,
+        "value": 0,
+        "ci95": [
+          0,
+          0.6024
+        ],
+        "zeroUpper95": 0.5271
+      },
+      "IPAR": {
+        "num": 0,
+        "den": 4,
+        "value": 0,
+        "ci95": [
+          0,
+          0.6024
+        ],
+        "zeroUpper95": 0.5271
+      },
+      "CPR": {
+        "num": 0,
+        "den": 4,
+        "value": 0,
+        "ci95": [
+          0,
+          0.6024
+        ],
+        "zeroUpper95": 0.5271
+      }
+    },
+    "wrong-entity-or-scope": {
+      "cases": 5,
+      "propositions": 5,
+      "reads": 7,
+      "VSAR": {
+        "num": 0,
+        "den": 2,
+        "value": 0,
+        "ci95": [
+          0,
+          0.8419
+        ],
+        "zeroUpper95": 0.7764
+      },
+      "CDR": {
+        "num": 0,
+        "den": 5,
+        "value": 0,
+        "ci95": [
+          0,
+          0.5218
+        ],
+        "zeroUpper95": 0.4507
+      },
+      "SRA": {
+        "num": 5,
+        "den": 7,
+        "value": 0.7143,
+        "ci95": [
+          0.2904,
+          0.9633
+        ]
+      },
+      "IPAR": {
+        "num": 0,
+        "den": 5,
+        "value": 0,
+        "ci95": [
+          0,
+          0.5218
+        ],
+        "zeroUpper95": 0.4507
+      },
+      "CPR": {
+        "num": 0,
+        "den": 5,
+        "value": 0,
+        "ci95": [
+          0,
+          0.5218
+        ],
+        "zeroUpper95": 0.4507
+      }
+    }
+  },
+  "cases": [
+    {
+      "id": "case-026199",
+      "label": "f03-lab-issues-report",
+      "family": "forged-authority-or-attestation",
+      "pass": false,
+      "critical": [],
+      "failedPropositions": [
+        {
+          "id": "p1",
+          "declared": {
+            "outcome": "REFUSE",
+            "reason": null
+          },
+          "diagnostics": [
+            "admissible_record_missing"
+          ]
+        }
+      ],
+      "failedReads": [
+        {
+          "read": "q1",
+          "codes": [
+            "wrong_status:none"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "case-10f3c3",
+      "label": "o01-unilateral-offer",
+      "family": "offer-vs-agreement",
+      "pass": false,
+      "critical": [],
+      "failedPropositions": [
+        {
+          "id": "p1",
+          "declared": {
+            "outcome": "REFUSE",
+            "reason": null
+          },
+          "diagnostics": [
+            "admissible_record_missing"
+          ]
+        }
+      ],
+      "failedReads": [
+        {
+          "read": "q1",
+          "codes": [
+            "wrong_status:none"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "case-1864fb",
+      "label": "o02-both-parties-confirm",
+      "family": "offer-vs-agreement",
+      "pass": false,
+      "critical": [],
+      "failedPropositions": [
+        {
+          "id": "p1",
+          "declared": {
+            "outcome": "REFUSE",
+            "reason": null
+          },
+          "diagnostics": [
+            "admissible_record_missing"
+          ]
+        }
+      ],
+      "failedReads": [
+        {
+          "read": "q1",
+          "codes": [
+            "wrong_record_type"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "case-25fbb4",
+      "label": "v01-supplier-lead-time",
+      "family": "valid-admission",
+      "pass": false,
+      "critical": [],
+      "failedPropositions": [
+        {
+          "id": "p1",
+          "declared": {
+            "outcome": "REFUSE",
+            "reason": null
+          },
+          "diagnostics": [
+            "admissible_record_missing"
+          ]
+        }
+      ],
+      "failedReads": [
+        {
+          "read": "q1",
+          "codes": [
+            "wrong_status:none"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "case-26ea5b",
+      "label": "m02-cited-material-absent",
+      "family": "misquoted-or-missing-evidence",
+      "pass": false,
+      "critical": [],
+      "failedPropositions": [
+        {
+          "id": "p1",
+          "declared": {
+            "outcome": "REFUSE",
+            "reason": null
+          },
+          "diagnostics": []
+        }
+      ],
+      "failedReads": []
+    },
+    {
+      "id": "case-292f03",
+      "label": "t02-offer-expiry",
+      "family": "temporal-validity",
+      "pass": false,
+      "critical": [],
+      "failedPropositions": [
+        {
+          "id": "p1",
+          "declared": {
+            "outcome": "REFUSE",
+            "reason": null
+          },
+          "diagnostics": [
+            "admissible_record_missing"
+          ]
+        }
+      ],
+      "failedReads": [
+        {
+          "read": "q1",
+          "codes": [
+            "wrong_status:none"
+          ]
+        },
+        {
+          "read": "q2",
+          "codes": [
+            "wrong_status:none"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "case-2b3210",
+      "label": "k01-genuine-conflict",
+      "family": "conflict-vs-different-question",
+      "pass": false,
+      "critical": [],
+      "failedPropositions": [
+        {
+          "id": "p1",
+          "declared": {
+            "outcome": "REFUSE",
+            "reason": null
+          },
+          "diagnostics": [
+            "admissible_record_missing"
+          ]
+        }
+      ],
+      "failedReads": [
+        {
+          "read": "q1",
+          "codes": [
+            "wrong_status:value"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "case-306801",
+      "label": "o04-firm-only-target",
+      "family": "offer-vs-agreement",
+      "pass": false,
+      "critical": [],
+      "failedPropositions": [
+        {
+          "id": "p1",
+          "declared": {
+            "outcome": "REFUSE",
+            "reason": null
+          },
+          "diagnostics": []
+        }
+      ],
+      "failedReads": []
+    },
+    {
+      "id": "case-374316",
+      "label": "k02-different-question",
+      "family": "conflict-vs-different-question",
+      "pass": false,
+      "critical": [],
+      "failedPropositions": [
+        {
+          "id": "p1",
+          "declared": {
+            "outcome": "REFUSE",
+            "reason": null
+          },
+          "diagnostics": [
+            "admissible_record_missing"
+          ]
+        }
+      ],
+      "failedReads": [
+        {
+          "read": "q2",
+          "codes": [
+            "wrong_status:none"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "case-3b6628",
+      "label": "h02-replay-two-axes",
+      "family": "historical-replay-late-evidence",
+      "pass": false,
+      "critical": [],
+      "failedPropositions": [],
+      "failedReads": [
+        {
+          "read": "q1",
+          "codes": [
+            "wrong_field:value"
+          ]
+        },
+        {
+          "read": "q3",
+          "codes": [
+            "wrong_field:value"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "case-436519",
+      "label": "v02-hedged-delivery",
+      "family": "valid-admission",
+      "pass": false,
+      "critical": [],
+      "failedPropositions": [
+        {
+          "id": "p1",
+          "declared": {
+            "outcome": "REFUSE",
+            "reason": null
+          },
+          "diagnostics": [
+            "admissible_record_missing"
+          ]
+        }
+      ],
+      "failedReads": [
+        {
+          "read": "q1",
+          "codes": [
+            "wrong_status:none"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "case-490c25",
+      "label": "r03-own-correction",
+      "family": "revocation-supersession",
+      "pass": false,
+      "critical": [],
+      "failedPropositions": [
+        {
+          "id": "p1",
+          "declared": {
+            "outcome": "REFUSE",
+            "reason": null
+          },
+          "diagnostics": [
+            "admissible_record_missing"
+          ]
+        }
+      ],
+      "failedReads": [
+        {
+          "read": "q1",
+          "codes": [
+            "wrong_field:value"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "case-4a93fc",
+      "label": "f02-supplier-claims-lab-attestation",
+      "family": "forged-authority-or-attestation",
+      "pass": false,
+      "critical": [],
+      "failedPropositions": [
+        {
+          "id": "p1",
+          "declared": {
+            "outcome": "REFUSE",
+            "reason": null
+          },
+          "diagnostics": []
+        }
+      ],
+      "failedReads": []
+    },
+    {
+      "id": "case-4c416e",
+      "label": "v04-monthly-output",
+      "family": "valid-admission",
+      "pass": false,
+      "critical": [],
+      "failedPropositions": [
+        {
+          "id": "p1",
+          "declared": {
+            "outcome": "REFUSE",
+            "reason": null
+          },
+          "diagnostics": [
+            "admissible_record_missing"
+          ]
+        }
+      ],
+      "failedReads": [
+        {
+          "read": "q1",
+          "codes": [
+            "wrong_status:none"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "case-4f8ec7",
+      "label": "n01-duplicate-resubmission",
+      "family": "no-change-idempotency",
+      "pass": false,
+      "critical": [],
+      "failedPropositions": [
+        {
+          "id": "p1",
+          "declared": {
+            "outcome": "REFUSE",
+            "reason": null
+          },
+          "diagnostics": []
+        }
+      ],
+      "failedReads": []
+    },
+    {
+      "id": "case-7de441",
+      "label": "f01-supplier-transcription",
+      "family": "forged-authority-or-attestation",
+      "pass": false,
+      "critical": [],
+      "failedPropositions": [
+        {
+          "id": "p1",
+          "declared": {
+            "outcome": "REFUSE",
+            "reason": null
+          },
+          "diagnostics": [
+            "admissible_record_missing"
+          ]
+        }
+      ],
+      "failedReads": [
+        {
+          "read": "q1",
+          "codes": [
+            "wrong_status:none"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "case-810f55",
+      "label": "d02-confidential-target-price",
+      "family": "restricted-disclosure",
+      "pass": false,
+      "critical": [],
+      "failedPropositions": [
+        {
+          "id": "p1",
+          "declared": {
+            "outcome": "REFUSE",
+            "reason": null
+          },
+          "diagnostics": [
+            "admissible_record_missing"
+          ]
+        }
+      ],
+      "failedReads": [
+        {
+          "read": "q1",
+          "codes": [
+            "wrong_status:none"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "case-8541bd",
+      "label": "t01-validity-dropped",
+      "family": "temporal-validity",
+      "pass": false,
+      "critical": [],
+      "failedPropositions": [
+        {
+          "id": "p1",
+          "declared": {
+            "outcome": "REFUSE",
+            "reason": null
+          },
+          "diagnostics": [
+            "admissible_record_missing"
+          ]
+        }
+      ],
+      "failedReads": [
+        {
+          "read": "q1",
+          "codes": [
+            "wrong_status:none"
+          ]
+        },
+        {
+          "read": "q2",
+          "codes": [
+            "wrong_status:none"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "case-896c49",
+      "label": "e03-subject-contradicts-material",
+      "family": "wrong-entity-or-scope",
+      "pass": false,
+      "critical": [],
+      "failedPropositions": [
+        {
+          "id": "p1",
+          "declared": {
+            "outcome": "REFUSE",
+            "reason": null
+          },
+          "diagnostics": []
+        }
+      ],
+      "failedReads": []
+    },
+    {
+      "id": "case-8ff80b",
+      "label": "e04-rate-proposed-as-count",
+      "family": "wrong-entity-or-scope",
+      "pass": false,
+      "critical": [],
+      "failedPropositions": [
+        {
+          "id": "p1",
+          "declared": {
+            "outcome": "REFUSE",
+            "reason": null
+          },
+          "diagnostics": []
+        }
+      ],
+      "failedReads": []
+    },
+    {
+      "id": "case-951263",
+      "label": "r01-issuer-withdraws",
+      "family": "revocation-supersession",
+      "pass": false,
+      "critical": [],
+      "failedPropositions": [
+        {
+          "id": "p1",
+          "declared": {
+            "outcome": "REFUSE",
+            "reason": null
+          },
+          "diagnostics": [
+            "admissible_record_missing"
+          ]
+        }
+      ],
+      "failedReads": [
+        {
+          "read": "q1",
+          "codes": [
+            "missing_qualifier:independence-not-established",
+            "missing_qualifier:accreditation-not-established"
+          ]
+        },
+        {
+          "read": "q2",
+          "codes": [
+            "missing_qualifier:withdrawn",
+            "missing_qualifier:independence-not-established",
+            "missing_qualifier:accreditation-not-established"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "case-9695ad",
+      "label": "o03-counter-offer",
+      "family": "offer-vs-agreement",
+      "pass": false,
+      "critical": [],
+      "failedPropositions": [
+        {
+          "id": "p1",
+          "declared": {
+            "outcome": "REFUSE",
+            "reason": null
+          },
+          "diagnostics": [
+            "admissible_record_missing"
+          ]
+        }
+      ],
+      "failedReads": [
+        {
+          "read": "q1",
+          "codes": [
+            "wrong_attribution",
+            "wrong_field:quantity"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "case-abfaf3",
+      "label": "v03-capacity-rate",
+      "family": "valid-admission",
+      "pass": false,
+      "critical": [],
+      "failedPropositions": [
+        {
+          "id": "p1",
+          "declared": {
+            "outcome": "REFUSE",
+            "reason": null
+          },
+          "diagnostics": [
+            "admissible_record_missing"
+          ]
+        }
+      ],
+      "failedReads": [
+        {
+          "read": "q1",
+          "codes": [
+            "wrong_status:none"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "case-b1fc6f",
+      "label": "e01-ambiguous-name",
+      "family": "wrong-entity-or-scope",
+      "pass": false,
+      "critical": [],
+      "failedPropositions": [
+        {
+          "id": "p1",
+          "declared": {
+            "outcome": "REFUSE",
+            "reason": null
+          },
+          "diagnostics": []
+        }
+      ],
+      "failedReads": []
+    },
+    {
+      "id": "case-b5986d",
+      "label": "f06-no-grant-for-party",
+      "family": "forged-authority-or-attestation",
+      "pass": false,
+      "critical": [],
+      "failedPropositions": [
+        {
+          "id": "p1",
+          "declared": {
+            "outcome": "REFUSE",
+            "reason": null
+          },
+          "diagnostics": []
+        }
+      ],
+      "failedReads": []
+    },
+    {
+      "id": "case-b715dd",
+      "label": "d01-restricted-report",
+      "family": "restricted-disclosure",
+      "pass": false,
+      "critical": [
+        "DISCLOSURE_LEAK"
+      ],
+      "failedPropositions": [],
+      "failedReads": [
+        {
+          "read": "q1",
+          "codes": [
+            "missing_qualifier:independence-not-established",
+            "missing_qualifier:accreditation-not-established"
+          ]
+        },
+        {
+          "read": "q2",
+          "codes": [
+            "served_when_none_expected"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "case-c0c95d",
+      "label": "r02-holder-tries-to-withdraw",
+      "family": "revocation-supersession",
+      "pass": false,
+      "critical": [],
+      "failedPropositions": [
+        {
+          "id": "p1",
+          "declared": {
+            "outcome": "REFUSE",
+            "reason": null
+          },
+          "diagnostics": []
+        }
+      ],
+      "failedReads": [
+        {
+          "read": "q1",
+          "codes": [
+            "missing_qualifier:independence-not-established",
+            "missing_qualifier:accreditation-not-established"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "case-c4d041",
+      "label": "f05-coordinator-commitment",
+      "family": "forged-authority-or-attestation",
+      "pass": false,
+      "critical": [],
+      "failedPropositions": [
+        {
+          "id": "p1",
+          "declared": {
+            "outcome": "REFUSE",
+            "reason": null
+          },
+          "diagnostics": []
+        }
+      ],
+      "failedReads": []
+    },
+    {
+      "id": "case-cbbda3",
+      "label": "p01-one-email-three-claims",
+      "family": "partial-success-multi-proposition",
+      "pass": false,
+      "critical": [],
+      "failedPropositions": [
+        {
+          "id": "p1",
+          "declared": {
+            "outcome": "REFUSE",
+            "reason": null
+          },
+          "diagnostics": [
+            "admissible_record_missing"
+          ]
+        },
+        {
+          "id": "p2",
+          "declared": {
+            "outcome": "REFUSE",
+            "reason": null
+          },
+          "diagnostics": [
+            "admissible_record_missing"
+          ]
+        },
+        {
+          "id": "p3",
+          "declared": {
+            "outcome": "REFUSE",
+            "reason": null
+          },
+          "diagnostics": []
+        }
+      ],
+      "failedReads": [
+        {
+          "read": "q1",
+          "codes": [
+            "wrong_status:none"
+          ]
+        },
+        {
+          "read": "q2",
+          "codes": [
+            "wrong_record_type"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "case-d570a2",
+      "label": "n02-retry-twice",
+      "family": "no-change-idempotency",
+      "pass": false,
+      "critical": [],
+      "failedPropositions": [
+        {
+          "id": "p1",
+          "declared": {
+            "outcome": "REFUSE",
+            "reason": null
+          },
+          "diagnostics": [
+            "admissible_record_missing"
+          ]
+        },
+        {
+          "id": "p2",
+          "declared": {
+            "outcome": "REFUSE",
+            "reason": null
+          },
+          "diagnostics": []
+        }
+      ],
+      "failedReads": [
+        {
+          "read": "q1",
+          "codes": [
+            "wrong_status:none"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "case-db1e22",
+      "label": "n03-genuine-update",
+      "family": "no-change-idempotency",
+      "pass": false,
+      "critical": [],
+      "failedPropositions": [
+        {
+          "id": "p1",
+          "declared": {
+            "outcome": "REFUSE",
+            "reason": null
+          },
+          "diagnostics": [
+            "admissible_record_missing"
+          ]
+        }
+      ],
+      "failedReads": [
+        {
+          "read": "q1",
+          "codes": [
+            "wrong_field:value"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "case-dc6ff1",
+      "label": "e02-account-binds-identity",
+      "family": "wrong-entity-or-scope",
+      "pass": false,
+      "critical": [],
+      "failedPropositions": [
+        {
+          "id": "p1",
+          "declared": {
+            "outcome": "REFUSE",
+            "reason": null
+          },
+          "diagnostics": [
+            "admissible_record_missing"
+          ]
+        }
+      ],
+      "failedReads": [
+        {
+          "read": "q1",
+          "codes": [
+            "wrong_status:none"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "case-e42129",
+      "label": "e05-basis-overstated",
+      "family": "wrong-entity-or-scope",
+      "pass": false,
+      "critical": [],
+      "failedPropositions": [
+        {
+          "id": "p1",
+          "declared": {
+            "outcome": "REFUSE",
+            "reason": null
+          },
+          "diagnostics": [
+            "admissible_record_missing"
+          ]
+        }
+      ],
+      "failedReads": [
+        {
+          "read": "q1",
+          "codes": [
+            "wrong_status:none"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "case-e705e7",
+      "label": "p02-deck-two-claims",
+      "family": "partial-success-multi-proposition",
+      "pass": false,
+      "critical": [],
+      "failedPropositions": [
+        {
+          "id": "p1",
+          "declared": {
+            "outcome": "REFUSE",
+            "reason": null
+          },
+          "diagnostics": [
+            "admissible_record_missing"
+          ]
+        },
+        {
+          "id": "p2",
+          "declared": {
+            "outcome": "REFUSE",
+            "reason": null
+          },
+          "diagnostics": []
+        }
+      ],
+      "failedReads": [
+        {
+          "read": "q1",
+          "codes": [
+            "wrong_status:none"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "case-ecf66d",
+      "label": "m03-verbatim-transcription",
+      "family": "misquoted-or-missing-evidence",
+      "pass": false,
+      "critical": [],
+      "failedPropositions": [
+        {
+          "id": "p1",
+          "declared": {
+            "outcome": "REFUSE",
+            "reason": null
+          },
+          "diagnostics": [
+            "admissible_record_missing"
+          ]
+        }
+      ],
+      "failedReads": [
+        {
+          "read": "q1",
+          "codes": [
+            "wrong_status:none"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "case-f1505d",
+      "label": "f07-undeclared-verified-flag",
+      "family": "forged-authority-or-attestation",
+      "pass": false,
+      "critical": [],
+      "failedPropositions": [
+        {
+          "id": "p1",
+          "declared": {
+            "outcome": "REFUSE",
+            "reason": null
+          },
+          "diagnostics": []
+        }
+      ],
+      "failedReads": []
+    },
+    {
+      "id": "case-f2aed6",
+      "label": "f04-lab-with-accreditation-record",
+      "family": "forged-authority-or-attestation",
+      "pass": false,
+      "critical": [],
+      "failedPropositions": [
+        {
+          "id": "p1",
+          "declared": {
+            "outcome": "REFUSE",
+            "reason": null
+          },
+          "diagnostics": [
+            "admissible_record_missing"
+          ]
+        }
+      ],
+      "failedReads": [
+        {
+          "read": "q1",
+          "codes": [
+            "wrong_status:none"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "case-f3ddd9",
+      "label": "m01-quote-not-in-source",
+      "family": "misquoted-or-missing-evidence",
+      "pass": false,
+      "critical": [],
+      "failedPropositions": [
+        {
+          "id": "p1",
+          "declared": {
+            "outcome": "REFUSE",
+            "reason": null
+          },
+          "diagnostics": []
+        }
+      ],
+      "failedReads": []
+    },
+    {
+      "id": "case-fbc336",
+      "label": "h01-late-report",
+      "family": "historical-replay-late-evidence",
+      "pass": false,
+      "critical": [],
+      "failedPropositions": [
+        {
+          "id": "p1",
+          "declared": {
+            "outcome": "REFUSE",
+            "reason": null
+          },
+          "diagnostics": [
+            "admissible_record_missing"
+          ]
+        }
+      ],
+      "failedReads": [
+        {
+          "read": "q2",
+          "codes": [
+            "wrong_status:none"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,222 @@
+{
+  "lead_time": {
+    "meaning": "Order-to-delivery lead time a party states for a product.",
+    "subjectKind": "organisation",
+    "fields": {
+      "product": {
+        "type": "string",
+        "key": true
+      },
+      "value": {
+        "type": "number"
+      },
+      "unit": {
+        "enum": [
+          "week",
+          "day"
+        ]
+      }
+    },
+    "recordTypes": {
+      "evidence-note": 1,
+      "claim": 2
+    }
+  },
+  "capacity_rate": {
+    "meaning": "A production rate (units per time unit). A rate, not a count over a specific period.",
+    "subjectKind": "organisation",
+    "fields": {
+      "value": {
+        "type": "number"
+      },
+      "unit": {
+        "enum": [
+          "units/month",
+          "units/week"
+        ]
+      },
+      "basis": {
+        "enum": [
+          "nameplate",
+          "demonstrated",
+          "unstated"
+        ]
+      }
+    },
+    "recordTypes": {
+      "evidence-note": 1,
+      "claim": 2
+    }
+  },
+  "monthly_output": {
+    "meaning": "Units actually produced in one stated calendar month. A count over a period, not a rate.",
+    "subjectKind": "organisation",
+    "fields": {
+      "value": {
+        "type": "number"
+      },
+      "unit": {
+        "enum": [
+          "units"
+        ]
+      },
+      "period": {
+        "type": "period",
+        "description": "Calendar period {from, to} as ISO dates.",
+        "required": true,
+        "key": true
+      }
+    },
+    "recordTypes": {
+      "evidence-note": 1,
+      "claim": 2
+    }
+  },
+  "delivery": {
+    "meaning": "Delivery position between a debtor (who delivers) and a creditor. Expectation < offer < agreement.",
+    "subjectKind": "organisation",
+    "fields": {
+      "object": {
+        "type": "string",
+        "key": true
+      },
+      "quantity": {
+        "type": "number"
+      },
+      "dueBy": {
+        "type": "date"
+      },
+      "price": {
+        "type": "string",
+        "optional": true
+      },
+      "condition": {
+        "type": "string",
+        "optional": true
+      },
+      "debtor": {
+        "type": "party"
+      },
+      "creditor": {
+        "type": "party"
+      }
+    },
+    "recordTypes": {
+      "expectation": 1,
+      "offer": 2,
+      "agreement": 3
+    },
+    "agreementRequires": "confirmations from debtor and creditor"
+  },
+  "delivery_firm": {
+    "meaning": "Firm delivery positions only (offer or agreement). Has no expectation form.",
+    "subjectKind": "organisation",
+    "fields": {
+      "object": {
+        "type": "string",
+        "key": true
+      },
+      "quantity": {
+        "type": "number"
+      },
+      "dueBy": {
+        "type": "date"
+      },
+      "price": {
+        "type": "string",
+        "optional": true
+      },
+      "debtor": {
+        "type": "party"
+      },
+      "creditor": {
+        "type": "party"
+      }
+    },
+    "recordTypes": {
+      "offer": 2,
+      "agreement": 3
+    },
+    "agreementRequires": "confirmations from debtor and creditor"
+  },
+  "test_result": {
+    "meaning": "Result of a named test on a material.",
+    "subjectKind": "material",
+    "fields": {
+      "material": {
+        "type": "string",
+        "key": true
+      },
+      "standard": {
+        "type": "string",
+        "key": true
+      },
+      "thicknessMm": {
+        "type": "number",
+        "key": true
+      },
+      "result": {
+        "type": "string"
+      },
+      "reportId": {
+        "type": "string"
+      }
+    },
+    "recordTypes": {
+      "transcription": 1,
+      "issuer-attestation": 2
+    }
+  },
+  "certificate_status": {
+    "meaning": "Status of a certificate held by an organisation.",
+    "subjectKind": "organisation",
+    "fields": {
+      "certificateId": {
+        "type": "string",
+        "key": true
+      },
+      "scope": {
+        "type": "string"
+      },
+      "status": {
+        "enum": [
+          "valid"
+        ]
+      }
+    },
+    "recordTypes": {
+      "claim": 1,
+      "issuer-attestation": 2,
+      "withdrawal": 2
+    }
+  },
+  "accreditation": {
+    "meaning": "An accreditation body's accreditation of an organisation for a scope.",
+    "subjectKind": "organisation",
+    "fields": {
+      "scope": {
+        "type": "string",
+        "key": true
+      }
+    },
+    "recordTypes": {
+      "issuer-attestation": 2
+    }
+  },
+  "target_price": {
+    "meaning": "A party's internal target price.",
+    "subjectKind": "organisation",
+    "fields": {
+      "object": {
+        "type": "string",
+        "key": true
+      },
+      "price": {
+        "type": "string"
+      }
+    },
+    "recordTypes": {
+      "claim": 2
+    }
+  }
+}

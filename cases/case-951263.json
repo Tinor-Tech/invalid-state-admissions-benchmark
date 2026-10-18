@@ -1,0 +1,306 @@
+{
+  "id": "case-951263",
+  "benchmarkVersion": "2.0.0",
+  "contracts": [
+    "certificate_status"
+  ],
+  "parties": [
+    {
+      "id": "org:buyer-b",
+      "name": "Buyer B",
+      "kind": "organisation",
+      "emailDomains": [
+        "buyer-b.example"
+      ]
+    },
+    {
+      "id": "org:northfield-components",
+      "name": "Northfield Components",
+      "kind": "organisation",
+      "emailDomains": [
+        "northfield-components.example"
+      ]
+    },
+    {
+      "id": "org:northfield-precision",
+      "name": "Northfield Precision",
+      "kind": "organisation",
+      "emailDomains": [
+        "northfield-precision.example"
+      ]
+    },
+    {
+      "id": "org:lakeside-labs",
+      "name": "Lakeside Labs",
+      "kind": "organisation",
+      "emailDomains": [
+        "lakeside-labs.example"
+      ]
+    },
+    {
+      "id": "org:regional-accreditation",
+      "name": "Regional Accreditation Service",
+      "kind": "organisation",
+      "emailDomains": [
+        "regional-accreditation.example"
+      ]
+    },
+    {
+      "id": "org:harbor-distribution",
+      "name": "Harbor Distribution",
+      "kind": "organisation",
+      "emailDomains": [
+        "harbor-distribution.example"
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "id": "acct:bb-buyer",
+      "party": "org:buyer-b",
+      "label": "purchasing manager"
+    },
+    {
+      "id": "acct:bb-inbox",
+      "party": "org:buyer-b",
+      "label": "inbound mail ingestion"
+    },
+    {
+      "id": "acct:nc-director",
+      "party": "org:northfield-components",
+      "label": "sales director"
+    },
+    {
+      "id": "acct:nc-coordinator",
+      "party": "org:northfield-components",
+      "label": "sales coordinator"
+    },
+    {
+      "id": "acct:nc-quality",
+      "party": "org:northfield-components",
+      "label": "quality engineer"
+    },
+    {
+      "id": "acct:nc-integration",
+      "party": "org:northfield-components",
+      "label": "ERP integration"
+    },
+    {
+      "id": "acct:np-sales",
+      "party": "org:northfield-precision",
+      "label": "sales manager"
+    },
+    {
+      "id": "acct:lab-reports",
+      "party": "org:lakeside-labs",
+      "label": "report issuing desk"
+    },
+    {
+      "id": "acct:acc-registry",
+      "party": "org:regional-accreditation",
+      "label": "accreditation registry"
+    },
+    {
+      "id": "acct:hd-sales",
+      "party": "org:harbor-distribution",
+      "label": "sales desk"
+    }
+  ],
+  "grants": [
+    {
+      "id": "g-bb-buyer",
+      "account": "acct:bb-buyer",
+      "party": "org:buyer-b",
+      "scopes": [
+        "submit",
+        "commit"
+      ]
+    },
+    {
+      "id": "g-bb-inbox",
+      "account": "acct:bb-inbox",
+      "party": "org:buyer-b",
+      "scopes": [
+        "submit"
+      ]
+    },
+    {
+      "id": "g-nc-director",
+      "account": "acct:nc-director",
+      "party": "org:northfield-components",
+      "scopes": [
+        "submit",
+        "commit"
+      ]
+    },
+    {
+      "id": "g-nc-coordinator",
+      "account": "acct:nc-coordinator",
+      "party": "org:northfield-components",
+      "scopes": [
+        "submit"
+      ]
+    },
+    {
+      "id": "g-nc-quality",
+      "account": "acct:nc-quality",
+      "party": "org:northfield-components",
+      "scopes": [
+        "submit"
+      ]
+    },
+    {
+      "id": "g-nc-integration",
+      "account": "acct:nc-integration",
+      "party": "org:northfield-components",
+      "scopes": [
+        "submit"
+      ]
+    },
+    {
+      "id": "g-np-sales",
+      "account": "acct:np-sales",
+      "party": "org:northfield-precision",
+      "scopes": [
+        "submit",
+        "commit"
+      ]
+    },
+    {
+      "id": "g-lab-reports",
+      "account": "acct:lab-reports",
+      "party": "org:lakeside-labs",
+      "scopes": [
+        "submit",
+        "attest"
+      ]
+    },
+    {
+      "id": "g-acc-registry",
+      "account": "acct:acc-registry",
+      "party": "org:regional-accreditation",
+      "scopes": [
+        "submit",
+        "attest"
+      ]
+    },
+    {
+      "id": "g-hd-sales",
+      "account": "acct:hd-sales",
+      "party": "org:harbor-distribution",
+      "scopes": [
+        "submit"
+      ]
+    }
+  ],
+  "initialState": {
+    "records": [
+      {
+        "id": "r1",
+        "candidate": null,
+        "step": null,
+        "target": "certificate_status",
+        "recordType": "issuer-attestation",
+        "subject": "org:northfield-components",
+        "attributedTo": "org:lakeside-labs",
+        "actingFor": "org:lakeside-labs",
+        "submittedBy": "acct:lab-reports",
+        "fields": {
+          "certificateId": "C-77",
+          "scope": "UL 94 V-0 listing, PC-ABS 2200",
+          "status": "valid"
+        },
+        "evidence": [
+          {
+            "material": "m1",
+            "quote": "Certificate C-77"
+          }
+        ],
+        "validity": {
+          "from": "2026-03-01",
+          "to": "2027-02-28"
+        },
+        "recordedAt": "2026-03-01T10:00:00Z",
+        "audience": null,
+        "supersedes": null,
+        "withdraws": null,
+        "confirmedBy": null
+      }
+    ]
+  },
+  "materials": [
+    {
+      "id": "m1",
+      "kind": "document",
+      "from": "acct:lab-reports",
+      "receivedAt": "2026-03-01T09:00:00Z",
+      "text": "Certificate C-77: UL 94 V-0 listing, PC-ABS 2200, held by Northfield Components, valid 1 March 2026 to 28 February 2027. Issued by Lakeside Labs."
+    },
+    {
+      "id": "m2",
+      "kind": "document",
+      "from": "acct:lab-reports",
+      "receivedAt": "2026-10-10T09:00:00Z",
+      "text": "Lakeside Labs withdraws certificate C-77 with effect from 10 October 2026."
+    }
+  ],
+  "steps": [
+    {
+      "id": "s1",
+      "at": "2026-10-10T10:00:00Z",
+      "submittedBy": "acct:lab-reports",
+      "request": "Record the withdrawal.",
+      "candidates": [
+        {
+          "ref": "c1",
+          "target": "certificate_status",
+          "recordType": "withdrawal",
+          "subject": "org:northfield-components",
+          "attributedTo": "org:lakeside-labs",
+          "actingFor": "org:lakeside-labs",
+          "fields": {
+            "certificateId": "C-77"
+          },
+          "evidence": [
+            {
+              "material": "m2",
+              "quote": "Lakeside Labs withdraws certificate C-77 with effect from 10 October 2026"
+            }
+          ],
+          "validity": {
+            "from": "2026-10-10",
+            "to": null
+          },
+          "audience": null,
+          "supersedes": null,
+          "withdraws": "r1",
+          "confirmedBy": null
+        }
+      ]
+    }
+  ],
+  "reads": [
+    {
+      "id": "q1",
+      "viewer": "acct:bb-buyer",
+      "subject": "org:northfield-components",
+      "target": "certificate_status",
+      "match": {
+        "certificateId": "C-77"
+      },
+      "asOf": "2026-10-05",
+      "knownAt": "2026-10-11T23:59:59Z"
+    },
+    {
+      "id": "q2",
+      "viewer": "acct:bb-buyer",
+      "subject": "org:northfield-components",
+      "target": "certificate_status",
+      "match": {
+        "certificateId": "C-77"
+      },
+      "asOf": "2026-10-11",
+      "knownAt": "2026-10-11T23:59:59Z"
+    }
+  ]
+}

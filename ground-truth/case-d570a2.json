@@ -1,0 +1,85 @@
+{
+  "id": "case-d570a2",
+  "label": "n02-retry-twice",
+  "title": "A retried submission",
+  "benchmarkVersion": "2.0.0",
+  "family": "no-change-idempotency",
+  "nature": "synthetic",
+  "v1Case": null,
+  "propositions": [
+    {
+      "id": "p1",
+      "step": "s1",
+      "candidate": "c1",
+      "target": "lead_time",
+      "acceptable": [
+        {
+          "outcome": "ADMIT",
+          "reason": "as_stated_claim",
+          "record": {
+            "recordType": "claim",
+            "subject": "org:northfield-components",
+            "attributedTo": "org:northfield-components",
+            "actingFor": "org:northfield-components",
+            "fields": {
+              "product": "HX-40",
+              "value": 6,
+              "unit": "week"
+            },
+            "evidenceMaterials": [
+              "m1"
+            ],
+            "validity": {
+              "from": "2026-10-01",
+              "to": null
+            }
+          }
+        }
+      ],
+      "rules": [
+        "R-AUTH-1"
+      ],
+      "why": "First submission is admissible.",
+      "criticalIfPersisted": null
+    },
+    {
+      "id": "p2",
+      "step": "s2",
+      "candidate": "c2",
+      "target": "lead_time",
+      "acceptable": [
+        {
+          "outcome": "NO-CHANGE",
+          "reason": "duplicate_of_existing",
+          "record": null
+        }
+      ],
+      "rules": [
+        "R-DUP-1"
+      ],
+      "why": "The retry is identical to the record written in s1.",
+      "criticalIfPersisted": null
+    }
+  ],
+  "reads": [
+    {
+      "read": "q1",
+      "expected": {
+        "status": "value",
+        "recordType": "claim",
+        "attributedTo": "org:northfield-components",
+        "fields": {
+          "product": "HX-40",
+          "value": 6,
+          "unit": "week"
+        },
+        "qualifiers": []
+      },
+      "restricted": false,
+      "rules": [
+        "R-READ-1"
+      ],
+      "why": "One claim."
+    }
+  ]
+}

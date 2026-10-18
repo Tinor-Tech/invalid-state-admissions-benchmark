@@ -1,0 +1,68 @@
+{
+  "id": "case-abfaf3",
+  "label": "v03-capacity-rate",
+  "title": "A capacity rate written as a rate",
+  "benchmarkVersion": "2.0.0",
+  "family": "valid-admission",
+  "nature": "synthetic",
+  "v1Case": null,
+  "propositions": [
+    {
+      "id": "p1",
+      "step": "s1",
+      "candidate": "c1",
+      "target": "capacity_rate",
+      "acceptable": [
+        {
+          "outcome": "ADMIT",
+          "reason": "as_stated_claim",
+          "record": {
+            "recordType": "claim",
+            "subject": "org:northfield-components",
+            "attributedTo": "org:northfield-components",
+            "actingFor": "org:northfield-components",
+            "fields": {
+              "value": 46000,
+              "unit": "units/month",
+              "basis": "unstated"
+            },
+            "evidenceMaterials": [
+              "m1"
+            ],
+            "validity": {
+              "from": "2026-10-05",
+              "to": null
+            }
+          }
+        }
+      ],
+      "rules": [
+        "R-SEM-1",
+        "R-AUTH-1"
+      ],
+      "why": "The deck states a rate and the proposal writes it as a rate with an unstated basis: exactly what the source supports. This is the legitimate counterpart of e04.",
+      "criticalIfPersisted": null
+    }
+  ],
+  "reads": [
+    {
+      "read": "q1",
+      "expected": {
+        "status": "value",
+        "recordType": "claim",
+        "attributedTo": "org:northfield-components",
+        "fields": {
+          "value": 46000,
+          "unit": "units/month",
+          "basis": "unstated"
+        },
+        "qualifiers": []
+      },
+      "restricted": false,
+      "rules": [
+        "R-READ-2"
+      ],
+      "why": "One current claim."
+    }
+  ]
+}

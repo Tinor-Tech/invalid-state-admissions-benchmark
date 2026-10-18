@@ -1,0 +1,90 @@
+{
+  "id": "case-810f55",
+  "label": "d02-confidential-target-price",
+  "title": "A buyer records a confidential target price",
+  "benchmarkVersion": "2.0.0",
+  "family": "restricted-disclosure",
+  "nature": "synthetic",
+  "v1Case": null,
+  "propositions": [
+    {
+      "id": "p1",
+      "step": "s1",
+      "candidate": "c1",
+      "target": "target_price",
+      "acceptable": [
+        {
+          "outcome": "ADMIT",
+          "reason": "as_stated_claim",
+          "record": {
+            "recordType": "claim",
+            "subject": "org:buyer-b",
+            "attributedTo": "org:buyer-b",
+            "actingFor": "org:buyer-b",
+            "fields": {
+              "object": "HX-40 housings",
+              "price": "USD 1.80"
+            },
+            "evidenceMaterials": [
+              "m1"
+            ],
+            "audience": [
+              "org:buyer-b"
+            ],
+            "validity": {
+              "from": "2026-10-05",
+              "to": null
+            }
+          }
+        }
+      ],
+      "rules": [
+        "R-DISC-1",
+        "R-AUTH-1"
+      ],
+      "why": "Admissible, with its audience. A record without the audience is invalid even before anyone reads it.",
+      "criticalIfPersisted": null
+    }
+  ],
+  "reads": [
+    {
+      "read": "q1",
+      "expected": {
+        "status": "value",
+        "recordType": "claim",
+        "attributedTo": "org:buyer-b",
+        "fields": {
+          "price": "USD 1.80"
+        },
+        "qualifiers": []
+      },
+      "restricted": false,
+      "rules": [
+        "R-DISC-1"
+      ],
+      "why": "In the audience."
+    },
+    {
+      "read": "q2",
+      "expected": {
+        "status": "none"
+      },
+      "restricted": true,
+      "rules": [
+        "R-DISC-1"
+      ],
+      "why": "The supplier must not learn that the target price exists."
+    },
+    {
+      "read": "q3",
+      "expected": {
+        "status": "none"
+      },
+      "restricted": true,
+      "rules": [
+        "R-DISC-1"
+      ],
+      "why": "Nor may an outsider."
+    }
+  ]
+}

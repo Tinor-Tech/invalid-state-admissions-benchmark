@@ -1,65 +1,84 @@
-# Invalid State Admissions Benchmark — admission cases and disposition scorer
+# Invalid State Admissions Benchmark
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23447898.svg)](https://doi.org/10.5281/zenodo.23447898)
 
+**When an AI system changes shared state, what makes that change admissible?** This benchmark scores
+what a stateful AI system *writes* and what it *serves from what it wrote*, not only what it answers.
+It checks each proposal at the level of the proposition: subject, evidence, authority, time, disclosure
+and whether the persisted record says exactly what the source supports.
+
 Companion repository for the Tinor Journal research note
-[Toward Zero Invalid State Admissions: A Benchmark Proposal](https://tinor.io/journal/toward-zero-invalid-state-admissions).
+[Toward Zero Invalid State Admissions](https://tinor.io/journal/toward-zero-invalid-state-admissions).
 
-> **Status: proposal.** The note defines a benchmark and reports **no** results. No system, including
-> Tinor's, is claimed to achieve zero invalid admissions. The numbers below are properties of the case
-> file, computed by the published scorer, not measurements.
+> **Status: v2.0.0 candidate (unreleased).** A public, synthetic, open case set with a runnable
+> evaluation protocol. **No result is reported for any AI system, including Tinor's.** The only numbers
+> here are for three trivial baselines and one non-LLM reference baseline written by the benchmark
+> authors with knowledge of the public cases (see [BASELINES.md](BASELINES.md)). No language-model
+> baseline has been run.
 
-## What it measures
+## What is new in v2
 
-The proposal scores what a stateful AI system *admits into shared state*, not only what it answers.
-For each proposition in an input, the expected **disposition** is an outcome — `ADMIT`,
-`ADMIT-QUALIFIED`, `HOLD`, `REFUSE` or `NO-CHANGE` — and a reason. The note defines five metrics
-(ISAR, VSAR, CDR, SRA, UFR) and three trivial baselines that any credible result must beat:
-**always-reject**, **always-hold** and **always-admit**.
+- **Two levels.** Level 1 scores declared dispositions, as v1 did. Level 2 runs a system through an
+  [adapter](ADAPTERS.md) (initial state → steps → exported records → reads) and scores the **persisted
+  records** and the **served answers** against [ground truth](CASES.md).
+- **Inputs separated from ground truth.** `cases/` holds only what a system may see, under opaque ids.
+  Expected outcomes, records, answers, rationales and the readable label of each case are in `ground-truth/`.
+- **New metrics** ([METRICS.md](METRICS.md)): OAR, IPAR, VSAR, CDR, SRA, UFR, DLR and CPR, plus critical
+  failures and system errors counted separately, with exact intervals and zero-of-n upper bounds.
+- **39 cases in 12 families**, each family with legitimate admissions so that refusing is never correct by
+  default. Four v1 expectations were corrected (A03, A05, A06, A09); see [CHANGELOG.md](CHANGELOG.md).
+- **Declared rules** ([RULES.md](RULES.md)) and target contracts that systems receive, so ground truth can
+  cite the rule it applies.
+- **v1 kept intact** under [`v1/fact-admission`](v1/fact-admission) so v1.0.0 numbers still reproduce.
 
-This repository contains the ten synthetic admission cases and the disposition-only scorer published
-with the note, unchanged from the downloads on tinor.io:
+## Quick start
 
-| File | What it is |
-| --- | --- |
-| [`fact-admission/cases.json`](fact-admission/cases.json) | Ten synthetic write cases with human-defined expected outcomes and reasons. |
-| [`fact-admission/score.mjs`](fact-admission/score.mjs) | Compares declared outcomes and reasons only, and reports CDR and disposition-level ISAR and VSAR for any outputs file or built-in baseline. No dependencies. Not Tinor code. |
-| [`fact-admission/README.md`](fact-admission/README.md) | What is synthetic, what is checked, what is not, and how to run it. |
-
-**What is not checked.** The scorer compares only the two labels. It does not check entity binding,
-evidence level, validity period, authority or whether any record was persisted, so its ISAR and VSAR
-are disposition-level simplifications of the metrics in the note. SRA, UFR and TCR are not computed
-here; TCR is reserved for a future end-to-end evaluation. A file containing exactly the expected labels
-scores 10/10 CDR; that shows the labels match, not that anything was admitted correctly.
-
-## How to run
-
-Requires Node.js 18 or later. No install step.
+Node.js 22 or later. No dependencies, no install step.
 
 ```sh
-cd fact-admission
-node score.mjs cases.json --baseline always-reject
-# cases 10 · ISAR (disposition) 0/8 · VSAR (disposition) 0/3 · CDR 0/10 · outcome-only 4/10
-node score.mjs cases.json --baseline always-hold
-# cases 10 · ISAR (disposition) 0/8 · VSAR (disposition) 0/3 · CDR 0/10 · outcome-only 3/10
-node score.mjs cases.json --baseline always-admit
-# cases 10 · ISAR (disposition) 8/8 · VSAR (disposition) 0/3 · CDR 0/10 · outcome-only 2/10
-node score.mjs cases.json my-outputs.json
+npm test                                              # 47 tests (node:test)
+node run.mjs --adapter reference-rules                # Level 2: run, score, print
+node run.mjs --adapter always-admit                   # a trivial baseline
+node score-dispositions.mjs --baseline always-reject  # Level 1
+node baselines/run-baselines.mjs                      # regenerate baselines/results/
 ```
 
-`my-outputs.json` maps every case id to a declared disposition:
-`{ "<case id>": { "outcome": "...", "reason": "..." | null } }`. Every case must be present exactly
-once; a missing case, an unknown id, an outcome or reason outside the vocabulary, or a malformed entry
-is an error (exit code 2), and nothing defaults to `NO-CHANGE`. Each run also prints the scope line.
+To evaluate your system, copy [`examples/adapter-template.mjs`](examples/adapter-template.mjs) and run
+`node run.mjs --adapter ./your-adapter.mjs --out run.json`. Recorded outputs from any language or
+harness can be scored with `node score.mjs run.json`. [REPRODUCE.md](REPRODUCE.md) has the full procedure.
 
-Ten cases with three valid ones is a worked example, not a benchmark. See the
-[note](https://tinor.io/journal/toward-zero-invalid-state-admissions) for the case families a full set should cover and for how results should be reported
-(ISAR is never reported alone).
+## Repository map
+
+| Path | What it is |
+|---|---|
+| `cases/` | 39 system-visible cases (opaque ids). Data, CC BY 4.0. |
+| `ground-truth/` | Scorer-only expectations, rationales and rule references. Data, CC BY 4.0. |
+| `spec/` | Vocabulary, target contracts and rules handed to systems. |
+| `schemas/` | JSON Schemas for cases, ground truth, records and run outputs. |
+| `lib/` | Runner, Level 1 and Level 2 scorers, statistics, schema validator. Code, MIT. |
+| `run.mjs`, `score.mjs`, `score-dispositions.mjs` | Command-line entry points. |
+| `adapters/` | Trivial baselines, the reference-rules baseline, the oracle mock (scorer testing only), the recorded-output adapter and the LLM harness (not run). |
+| `baselines/results/` | Generated outputs and scores of the baselines that were run. |
+| `probes/` | Seven paraphrase probes, written after the reference baseline, that measure its brittleness. Not part of the scored set. |
+| `examples/` | Adapter template, example output and decision files, a scripted stand-in model for harness tests. |
+| `test/` | node:test suite. |
+| `v1/fact-admission/` | v1.0.0 cases, scorer and README, unchanged. |
+| [METRICS.md](METRICS.md), [RULES.md](RULES.md), [CASES.md](CASES.md), [ADAPTERS.md](ADAPTERS.md), [BASELINES.md](BASELINES.md) | Specification. RULES.md and CASES.md are generated. |
+| [REVIEW.md](REVIEW.md), [CONSISTENCY.md](CONSISTENCY.md), [REPRODUCE.md](REPRODUCE.md), [CHANGELOG.md](CHANGELOG.md) | Independent review, article-code consistency check, reproduction guide, change log. |
+
+## What this benchmark is and is not
+
+It **is** a precise, executable definition of admissibility for a small set of synthetic write
+scenarios, with metrics that a trivial policy cannot satisfy jointly. It is **not** yet a basis for
+comparing systems: the set is public and small, its rules and ground truth were written by one party,
+and the reference baseline shows that the public set can be solved by rules written with knowledge of it.
+Formal comparison needs a hidden, refreshed set and independent judges ([REVIEW.md](REVIEW.md)).
 
 ## How to cite
 
-Archived on Zenodo. The DOI below refers to all versions and always resolves to the latest one:
-[10.5281/zenodo.23447898](https://doi.org/10.5281/zenodo.23447898).
+The concept DOI refers to all versions and resolves to the latest released one:
+[10.5281/zenodo.23447898](https://doi.org/10.5281/zenodo.23447898). Version 2.0.0 has not been released
+yet; until it is, the DOI resolves to v1.0.0. Cite the exact version you used.
 
 > Tinor (2026). Invalid State Admissions Benchmark: admission cases and disposition scorer. Zenodo.
 > https://doi.org/10.5281/zenodo.23447898
@@ -79,8 +98,8 @@ Citation metadata is also in [`CITATION.cff`](CITATION.cff).
 
 ## License
 
-- Code (`fact-admission/score.mjs`): [MIT](LICENSE).
-- Data and documentation (`fact-admission/cases.json`, the README files): [CC BY 4.0](LICENSE-DATA).
+- Code (`lib/`, `adapters/`, `tools/`, `baselines/*.mjs`, `test/`, `examples/*.mjs`, `*.mjs`, `v1/fact-admission/score.mjs`): [MIT](LICENSE).
+- Data and documentation (`cases/`, `ground-truth/`, `probes/`, `spec/`, `schemas/`, `baselines/results/`, `examples/*.json`, `v1/fact-admission/cases.json`, all Markdown files): [CC BY 4.0](LICENSE-DATA).
 
-Copyright © 2026 Tinor. If you use these files, please cite them as above
-and link to the [canonical article](https://tinor.io/journal/toward-zero-invalid-state-admissions).
+Copyright © 2026 Tinor. If you use these files, please cite them as above and link to the
+[canonical article](https://tinor.io/journal/toward-zero-invalid-state-admissions).

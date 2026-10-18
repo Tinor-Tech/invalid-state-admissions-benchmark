@@ -1,0 +1,42 @@
+{
+  "id": "case-8ff80b",
+  "label": "e04-rate-proposed-as-count",
+  "title": "A capacity rate proposed as a month's output",
+  "benchmarkVersion": "2.0.0",
+  "family": "wrong-entity-or-scope",
+  "nature": "synthetic",
+  "v1Case": "a03",
+  "propositions": [
+    {
+      "id": "p1",
+      "step": "s1",
+      "candidate": "c1",
+      "target": "monthly_output",
+      "acceptable": [
+        {
+          "outcome": "REFUSE",
+          "reason": "wrong_target_semantics",
+          "record": null
+        }
+      ],
+      "rules": [
+        "R-SEM-1"
+      ],
+      "why": "Changed from v1 (HOLD, period missing). 46,000 units/month is a capacity rate, not units produced in some month; asking which month would invite one to be invented. The admissible proposition is a capacity_rate claim (v03), which is a different proposal.",
+      "criticalIfPersisted": null
+    }
+  ],
+  "reads": [
+    {
+      "read": "q1",
+      "expected": {
+        "status": "none"
+      },
+      "restricted": false,
+      "rules": [
+        "R-READ-2"
+      ],
+      "why": "The refused proposal is not re-typed into a capacity record."
+    }
+  ]
+}

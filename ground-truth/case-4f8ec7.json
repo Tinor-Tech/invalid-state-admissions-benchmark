@@ -1,0 +1,50 @@
+{
+  "id": "case-4f8ec7",
+  "label": "n01-duplicate-resubmission",
+  "title": "The same message submitted again",
+  "benchmarkVersion": "2.0.0",
+  "family": "no-change-idempotency",
+  "nature": "synthetic",
+  "v1Case": null,
+  "propositions": [
+    {
+      "id": "p1",
+      "step": "s1",
+      "candidate": "c1",
+      "target": "lead_time",
+      "acceptable": [
+        {
+          "outcome": "NO-CHANGE",
+          "reason": "duplicate_of_existing",
+          "record": null
+        }
+      ],
+      "rules": [
+        "R-DUP-1"
+      ],
+      "why": "Identical to r1, same cited material. A second record would double-count one statement.",
+      "criticalIfPersisted": null
+    }
+  ],
+  "reads": [
+    {
+      "read": "q1",
+      "expected": {
+        "status": "value",
+        "recordType": "claim",
+        "attributedTo": "org:northfield-components",
+        "fields": {
+          "product": "HX-40",
+          "value": 6,
+          "unit": "week"
+        },
+        "qualifiers": []
+      },
+      "restricted": false,
+      "rules": [
+        "R-READ-1"
+      ],
+      "why": "Still exactly one current claim."
+    }
+  ]
+}

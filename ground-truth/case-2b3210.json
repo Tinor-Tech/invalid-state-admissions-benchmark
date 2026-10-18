@@ -1,0 +1,74 @@
+{
+  "id": "case-2b3210",
+  "label": "k01-genuine-conflict",
+  "title": "A distributor states a different lead time",
+  "benchmarkVersion": "2.0.0",
+  "family": "conflict-vs-different-question",
+  "nature": "synthetic",
+  "v1Case": null,
+  "propositions": [
+    {
+      "id": "p1",
+      "step": "s1",
+      "candidate": "c1",
+      "target": "lead_time",
+      "acceptable": [
+        {
+          "outcome": "ADMIT",
+          "reason": "as_stated_claim",
+          "record": {
+            "recordType": "claim",
+            "subject": "org:northfield-components",
+            "attributedTo": "org:harbor-distribution",
+            "actingFor": "org:harbor-distribution",
+            "fields": {
+              "product": "HX-40",
+              "value": 8,
+              "unit": "week"
+            },
+            "evidenceMaterials": [
+              "m2"
+            ],
+            "validity": {
+              "from": "2026-10-06",
+              "to": null
+            }
+          }
+        }
+      ],
+      "rules": [
+        "R-AUTH-1",
+        "R-ID-1"
+      ],
+      "why": "The distributor's own attributed claim about the supplier. Refusing it because it disagrees would hide a real conflict.",
+      "criticalIfPersisted": null
+    }
+  ],
+  "reads": [
+    {
+      "read": "q1",
+      "expected": {
+        "status": "conflicting",
+        "claims": [
+          {
+            "attributedTo": "org:northfield-components",
+            "fields": {
+              "value": 6
+            }
+          },
+          {
+            "attributedTo": "org:harbor-distribution",
+            "fields": {
+              "value": 8
+            }
+          }
+        ]
+      },
+      "restricted": false,
+      "rules": [
+        "R-READ-2"
+      ],
+      "why": "Two parties disagree about the same question."
+    }
+  ]
+}

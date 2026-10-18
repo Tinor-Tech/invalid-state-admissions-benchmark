@@ -1,0 +1,66 @@
+{
+  "id": "case-f2aed6",
+  "label": "f04-lab-with-accreditation-record",
+  "title": "A lab report when an accreditation record exists",
+  "benchmarkVersion": "2.0.0",
+  "family": "forged-authority-or-attestation",
+  "nature": "synthetic",
+  "v1Case": null,
+  "propositions": [
+    {
+      "id": "p1",
+      "step": "s1",
+      "candidate": "c1",
+      "target": "test_result",
+      "acceptable": [
+        {
+          "outcome": "ADMIT",
+          "reason": "issuer_attestation",
+          "record": {
+            "recordType": "issuer-attestation",
+            "subject": "material:pc-abs-2200",
+            "attributedTo": "org:lakeside-labs",
+            "actingFor": "org:lakeside-labs",
+            "fields": {
+              "material": "PC-ABS 2200",
+              "standard": "UL 94",
+              "thicknessMm": 1.5,
+              "result": "V-0",
+              "reportId": "FR-118"
+            },
+            "evidenceMaterials": [
+              "m1"
+            ]
+          }
+        }
+      ],
+      "rules": [
+        "R-ATT-2"
+      ],
+      "why": "Same admission as f03.",
+      "criticalIfPersisted": null
+    }
+  ],
+  "reads": [
+    {
+      "read": "q1",
+      "expected": {
+        "status": "value",
+        "recordType": "issuer-attestation",
+        "attributedTo": "org:lakeside-labs",
+        "fields": {
+          "result": "V-0"
+        },
+        "qualifiers": [
+          "independence-not-established",
+          "issuer-accredited"
+        ]
+      },
+      "restricted": false,
+      "rules": [
+        "R-ATT-2"
+      ],
+      "why": "Accreditation comes from another party's record; independence is still not established."
+    }
+  ]
+}

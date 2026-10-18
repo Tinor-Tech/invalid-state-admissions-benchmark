@@ -1,0 +1,18 @@
+{
+  "case-10f3c3": [
+    {
+      "candidate": "c1",
+      "target": "delivery",
+      "outcome": "ADMIT-QUALIFIED",
+      "reason": "offer_not_agreement"
+    }
+  ],
+  "case-810f55": [
+    {
+      "candidate": "c1",
+      "target": "target_price",
+      "outcome": "ADMIT",
+      "reason": "as_stated_claim"
+    }
+  ]
+}

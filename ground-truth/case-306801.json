@@ -1,0 +1,42 @@
+{
+  "id": "case-306801",
+  "label": "o04-firm-only-target",
+  "title": "The same hedge when the target only takes firm positions",
+  "benchmarkVersion": "2.0.0",
+  "family": "offer-vs-agreement",
+  "nature": "synthetic",
+  "v1Case": "a05",
+  "propositions": [
+    {
+      "id": "p1",
+      "step": "s1",
+      "candidate": "c1",
+      "target": "delivery_firm",
+      "acceptable": [
+        {
+          "outcome": "HOLD",
+          "reason": "commitment_not_made",
+          "record": null
+        }
+      ],
+      "rules": [
+        "R-QUAL-1"
+      ],
+      "why": "Second half of the A05 fix: the same hedge, but this target has no expectation form, and an offer would overstate the hedge. A firm statement from the supplier is obtainable.",
+      "criticalIfPersisted": null
+    }
+  ],
+  "reads": [
+    {
+      "read": "q1",
+      "expected": {
+        "status": "none"
+      },
+      "restricted": false,
+      "rules": [
+        "R-READ-2"
+      ],
+      "why": "Nothing admitted."
+    }
+  ]
+}

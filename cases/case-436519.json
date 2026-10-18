@@ -1,0 +1,262 @@
+{
+  "id": "case-436519",
+  "benchmarkVersion": "2.0.0",
+  "contracts": [
+    "delivery"
+  ],
+  "parties": [
+    {
+      "id": "org:buyer-b",
+      "name": "Buyer B",
+      "kind": "organisation",
+      "emailDomains": [
+        "buyer-b.example"
+      ]
+    },
+    {
+      "id": "org:northfield-components",
+      "name": "Northfield Components",
+      "kind": "organisation",
+      "emailDomains": [
+        "northfield-components.example"
+      ]
+    },
+    {
+      "id": "org:northfield-precision",
+      "name": "Northfield Precision",
+      "kind": "organisation",
+      "emailDomains": [
+        "northfield-precision.example"
+      ]
+    },
+    {
+      "id": "org:lakeside-labs",
+      "name": "Lakeside Labs",
+      "kind": "organisation",
+      "emailDomains": [
+        "lakeside-labs.example"
+      ]
+    },
+    {
+      "id": "org:regional-accreditation",
+      "name": "Regional Accreditation Service",
+      "kind": "organisation",
+      "emailDomains": [
+        "regional-accreditation.example"
+      ]
+    },
+    {
+      "id": "org:harbor-distribution",
+      "name": "Harbor Distribution",
+      "kind": "organisation",
+      "emailDomains": [
+        "harbor-distribution.example"
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "id": "acct:bb-buyer",
+      "party": "org:buyer-b",
+      "label": "purchasing manager"
+    },
+    {
+      "id": "acct:bb-inbox",
+      "party": "org:buyer-b",
+      "label": "inbound mail ingestion"
+    },
+    {
+      "id": "acct:nc-director",
+      "party": "org:northfield-components",
+      "label": "sales director"
+    },
+    {
+      "id": "acct:nc-coordinator",
+      "party": "org:northfield-components",
+      "label": "sales coordinator"
+    },
+    {
+      "id": "acct:nc-quality",
+      "party": "org:northfield-components",
+      "label": "quality engineer"
+    },
+    {
+      "id": "acct:nc-integration",
+      "party": "org:northfield-components",
+      "label": "ERP integration"
+    },
+    {
+      "id": "acct:np-sales",
+      "party": "org:northfield-precision",
+      "label": "sales manager"
+    },
+    {
+      "id": "acct:lab-reports",
+      "party": "org:lakeside-labs",
+      "label": "report issuing desk"
+    },
+    {
+      "id": "acct:acc-registry",
+      "party": "org:regional-accreditation",
+      "label": "accreditation registry"
+    },
+    {
+      "id": "acct:hd-sales",
+      "party": "org:harbor-distribution",
+      "label": "sales desk"
+    }
+  ],
+  "grants": [
+    {
+      "id": "g-bb-buyer",
+      "account": "acct:bb-buyer",
+      "party": "org:buyer-b",
+      "scopes": [
+        "submit",
+        "commit"
+      ]
+    },
+    {
+      "id": "g-bb-inbox",
+      "account": "acct:bb-inbox",
+      "party": "org:buyer-b",
+      "scopes": [
+        "submit"
+      ]
+    },
+    {
+      "id": "g-nc-director",
+      "account": "acct:nc-director",
+      "party": "org:northfield-components",
+      "scopes": [
+        "submit",
+        "commit"
+      ]
+    },
+    {
+      "id": "g-nc-coordinator",
+      "account": "acct:nc-coordinator",
+      "party": "org:northfield-components",
+      "scopes": [
+        "submit"
+      ]
+    },
+    {
+      "id": "g-nc-quality",
+      "account": "acct:nc-quality",
+      "party": "org:northfield-components",
+      "scopes": [
+        "submit"
+      ]
+    },
+    {
+      "id": "g-nc-integration",
+      "account": "acct:nc-integration",
+      "party": "org:northfield-components",
+      "scopes": [
+        "submit"
+      ]
+    },
+    {
+      "id": "g-np-sales",
+      "account": "acct:np-sales",
+      "party": "org:northfield-precision",
+      "scopes": [
+        "submit",
+        "commit"
+      ]
+    },
+    {
+      "id": "g-lab-reports",
+      "account": "acct:lab-reports",
+      "party": "org:lakeside-labs",
+      "scopes": [
+        "submit",
+        "attest"
+      ]
+    },
+    {
+      "id": "g-acc-registry",
+      "account": "acct:acc-registry",
+      "party": "org:regional-accreditation",
+      "scopes": [
+        "submit",
+        "attest"
+      ]
+    },
+    {
+      "id": "g-hd-sales",
+      "account": "acct:hd-sales",
+      "party": "org:harbor-distribution",
+      "scopes": [
+        "submit"
+      ]
+    }
+  ],
+  "initialState": {
+    "records": []
+  },
+  "materials": [
+    {
+      "id": "m1",
+      "kind": "email",
+      "from": "acct:nc-director",
+      "receivedAt": "2026-10-05T09:00:00Z",
+      "text": "We should be able to ship the 20,000 HX-40 housings by end of November, assuming the resin arrives on time."
+    }
+  ],
+  "steps": [
+    {
+      "id": "s1",
+      "at": "2026-10-05T10:00:00Z",
+      "submittedBy": "acct:nc-director",
+      "request": "Record the supplier's delivery position for the HX-40 order.",
+      "candidates": [
+        {
+          "ref": "c1",
+          "target": "delivery",
+          "recordType": "agreement",
+          "subject": "org:northfield-components",
+          "attributedTo": "org:northfield-components",
+          "actingFor": "org:northfield-components",
+          "fields": {
+            "object": "HX-40 housings",
+            "quantity": 20000,
+            "dueBy": "2026-11-30",
+            "debtor": "org:northfield-components",
+            "creditor": "org:buyer-b"
+          },
+          "evidence": [
+            {
+              "material": "m1",
+              "quote": "We should be able to ship the 20,000 HX-40 housings by end of November"
+            }
+          ],
+          "validity": {
+            "from": "2026-10-05",
+            "to": null
+          },
+          "audience": null,
+          "supersedes": null,
+          "withdraws": null,
+          "confirmedBy": [
+            "org:northfield-components"
+          ]
+        }
+      ]
+    }
+  ],
+  "reads": [
+    {
+      "id": "q1",
+      "viewer": "acct:bb-buyer",
+      "subject": "org:northfield-components",
+      "target": "delivery",
+      "match": {
+        "object": "HX-40 housings"
+      },
+      "asOf": "2026-10-06",
+      "knownAt": "2026-10-06T23:59:59Z"
+    }
+  ]
+}

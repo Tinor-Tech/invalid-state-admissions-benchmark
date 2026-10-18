@@ -1,0 +1,388 @@
+{
+  "id": "case-cbbda3",
+  "benchmarkVersion": "2.0.0",
+  "contracts": [
+    "lead_time",
+    "delivery",
+    "certificate_status"
+  ],
+  "parties": [
+    {
+      "id": "org:buyer-b",
+      "name": "Buyer B",
+      "kind": "organisation",
+      "emailDomains": [
+        "buyer-b.example"
+      ]
+    },
+    {
+      "id": "org:northfield-components",
+      "name": "Northfield Components",
+      "kind": "organisation",
+      "emailDomains": [
+        "northfield-components.example"
+      ]
+    },
+    {
+      "id": "org:northfield-precision",
+      "name": "Northfield Precision",
+      "kind": "organisation",
+      "emailDomains": [
+        "northfield-precision.example"
+      ]
+    },
+    {
+      "id": "org:lakeside-labs",
+      "name": "Lakeside Labs",
+      "kind": "organisation",
+      "emailDomains": [
+        "lakeside-labs.example"
+      ]
+    },
+    {
+      "id": "org:regional-accreditation",
+      "name": "Regional Accreditation Service",
+      "kind": "organisation",
+      "emailDomains": [
+        "regional-accreditation.example"
+      ]
+    },
+    {
+      "id": "org:harbor-distribution",
+      "name": "Harbor Distribution",
+      "kind": "organisation",
+      "emailDomains": [
+        "harbor-distribution.example"
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "id": "acct:bb-buyer",
+      "party": "org:buyer-b",
+      "label": "purchasing manager"
+    },
+    {
+      "id": "acct:bb-inbox",
+      "party": "org:buyer-b",
+      "label": "inbound mail ingestion"
+    },
+    {
+      "id": "acct:nc-director",
+      "party": "org:northfield-components",
+      "label": "sales director"
+    },
+    {
+      "id": "acct:nc-coordinator",
+      "party": "org:northfield-components",
+      "label": "sales coordinator"
+    },
+    {
+      "id": "acct:nc-quality",
+      "party": "org:northfield-components",
+      "label": "quality engineer"
+    },
+    {
+      "id": "acct:nc-integration",
+      "party": "org:northfield-components",
+      "label": "ERP integration"
+    },
+    {
+      "id": "acct:np-sales",
+      "party": "org:northfield-precision",
+      "label": "sales manager"
+    },
+    {
+      "id": "acct:lab-reports",
+      "party": "org:lakeside-labs",
+      "label": "report issuing desk"
+    },
+    {
+      "id": "acct:acc-registry",
+      "party": "org:regional-accreditation",
+      "label": "accreditation registry"
+    },
+    {
+      "id": "acct:hd-sales",
+      "party": "org:harbor-distribution",
+      "label": "sales desk"
+    }
+  ],
+  "grants": [
+    {
+      "id": "g-bb-buyer",
+      "account": "acct:bb-buyer",
+      "party": "org:buyer-b",
+      "scopes": [
+        "submit",
+        "commit"
+      ]
+    },
+    {
+      "id": "g-bb-inbox",
+      "account": "acct:bb-inbox",
+      "party": "org:buyer-b",
+      "scopes": [
+        "submit"
+      ]
+    },
+    {
+      "id": "g-nc-director",
+      "account": "acct:nc-director",
+      "party": "org:northfield-components",
+      "scopes": [
+        "submit",
+        "commit"
+      ]
+    },
+    {
+      "id": "g-nc-coordinator",
+      "account": "acct:nc-coordinator",
+      "party": "org:northfield-components",
+      "scopes": [
+        "submit"
+      ]
+    },
+    {
+      "id": "g-nc-quality",
+      "account": "acct:nc-quality",
+      "party": "org:northfield-components",
+      "scopes": [
+        "submit"
+      ]
+    },
+    {
+      "id": "g-nc-integration",
+      "account": "acct:nc-integration",
+      "party": "org:northfield-components",
+      "scopes": [
+        "submit"
+      ]
+    },
+    {
+      "id": "g-np-sales",
+      "account": "acct:np-sales",
+      "party": "org:northfield-precision",
+      "scopes": [
+        "submit",
+        "commit"
+      ]
+    },
+    {
+      "id": "g-lab-reports",
+      "account": "acct:lab-reports",
+      "party": "org:lakeside-labs",
+      "scopes": [
+        "submit",
+        "attest"
+      ]
+    },
+    {
+      "id": "g-acc-registry",
+      "account": "acct:acc-registry",
+      "party": "org:regional-accreditation",
+      "scopes": [
+        "submit",
+        "attest"
+      ]
+    },
+    {
+      "id": "g-hd-sales",
+      "account": "acct:hd-sales",
+      "party": "org:harbor-distribution",
+      "scopes": [
+        "submit"
+      ]
+    }
+  ],
+  "initialState": {
+    "records": [
+      {
+        "id": "r0",
+        "candidate": null,
+        "step": null,
+        "target": "delivery",
+        "recordType": "offer",
+        "subject": "org:northfield-components",
+        "attributedTo": "org:buyer-b",
+        "actingFor": "org:buyer-b",
+        "submittedBy": "acct:bb-buyer",
+        "fields": {
+          "object": "HX-40 housings",
+          "quantity": 20000,
+          "dueBy": "2026-11-30",
+          "price": "USD 1.85",
+          "debtor": "org:northfield-components",
+          "creditor": "org:buyer-b"
+        },
+        "evidence": [
+          {
+            "material": "m0",
+            "quote": "Purchase order PO-881"
+          }
+        ],
+        "validity": {
+          "from": "2026-10-02",
+          "to": "2026-10-16"
+        },
+        "recordedAt": "2026-10-02T10:00:00Z",
+        "audience": null,
+        "supersedes": null,
+        "withdraws": null,
+        "confirmedBy": null
+      }
+    ]
+  },
+  "materials": [
+    {
+      "id": "m0",
+      "kind": "document",
+      "from": "acct:bb-buyer",
+      "receivedAt": "2026-10-02T09:00:00Z",
+      "text": "Purchase order PO-881: 20,000 HX-40 housings, delivery by 30 November 2026, USD 1.85 per unit. Open until 16 October 2026."
+    },
+    {
+      "id": "m1",
+      "kind": "email",
+      "from": "acct:nc-director",
+      "receivedAt": "2026-10-07T09:00:00Z",
+      "text": "Lead time for HX-40 is now seven weeks. We accept PO-881: 20,000 HX-40 housings by 30 November 2026 at USD 1.85 per unit. Our ISO 9001 certificate has been verified by Lakeside Labs."
+    }
+  ],
+  "steps": [
+    {
+      "id": "s1",
+      "at": "2026-10-07T10:00:00Z",
+      "submittedBy": "acct:nc-director",
+      "request": "Record everything in this email.",
+      "candidates": [
+        {
+          "ref": "c1",
+          "target": "lead_time",
+          "recordType": "claim",
+          "subject": "org:northfield-components",
+          "attributedTo": "org:northfield-components",
+          "actingFor": "org:northfield-components",
+          "fields": {
+            "product": "HX-40",
+            "value": 7,
+            "unit": "week"
+          },
+          "evidence": [
+            {
+              "material": "m1",
+              "quote": "Lead time for HX-40 is now seven weeks"
+            }
+          ],
+          "validity": {
+            "from": "2026-10-07",
+            "to": null
+          },
+          "audience": null,
+          "supersedes": null,
+          "withdraws": null,
+          "confirmedBy": null
+        },
+        {
+          "ref": "c2",
+          "target": "delivery",
+          "recordType": "agreement",
+          "subject": "org:northfield-components",
+          "attributedTo": "org:northfield-components",
+          "actingFor": "org:northfield-components",
+          "fields": {
+            "object": "HX-40 housings",
+            "quantity": 20000,
+            "dueBy": "2026-11-30",
+            "price": "USD 1.85",
+            "debtor": "org:northfield-components",
+            "creditor": "org:buyer-b"
+          },
+          "evidence": [
+            {
+              "material": "m0",
+              "quote": "Purchase order PO-881: 20,000 HX-40 housings, delivery by 30 November 2026, USD 1.85 per unit"
+            },
+            {
+              "material": "m1",
+              "quote": "We accept PO-881: 20,000 HX-40 housings by 30 November 2026 at USD 1.85 per unit"
+            }
+          ],
+          "validity": {
+            "from": "2026-10-07",
+            "to": null
+          },
+          "audience": null,
+          "supersedes": null,
+          "withdraws": null,
+          "confirmedBy": [
+            "org:buyer-b",
+            "org:northfield-components"
+          ]
+        },
+        {
+          "ref": "c3",
+          "target": "certificate_status",
+          "recordType": "issuer-attestation",
+          "subject": "org:northfield-components",
+          "attributedTo": "org:lakeside-labs",
+          "actingFor": "org:lakeside-labs",
+          "fields": {
+            "certificateId": "ISO 9001",
+            "scope": "ISO 9001",
+            "status": "valid"
+          },
+          "evidence": [
+            {
+              "material": "m1",
+              "quote": "Our ISO 9001 certificate has been verified by Lakeside Labs"
+            }
+          ],
+          "validity": {
+            "from": "2026-10-07",
+            "to": null
+          },
+          "audience": null,
+          "supersedes": null,
+          "withdraws": null,
+          "confirmedBy": null
+        }
+      ]
+    }
+  ],
+  "reads": [
+    {
+      "id": "q1",
+      "viewer": "acct:bb-buyer",
+      "subject": "org:northfield-components",
+      "target": "lead_time",
+      "match": {
+        "product": "HX-40"
+      },
+      "asOf": "2026-10-08",
+      "knownAt": "2026-10-08T23:59:59Z"
+    },
+    {
+      "id": "q2",
+      "viewer": "acct:bb-buyer",
+      "subject": "org:northfield-components",
+      "target": "delivery",
+      "match": {
+        "object": "HX-40 housings"
+      },
+      "asOf": "2026-10-08",
+      "knownAt": "2026-10-08T23:59:59Z"
+    },
+    {
+      "id": "q3",
+      "viewer": "acct:bb-buyer",
+      "subject": "org:northfield-components",
+      "target": "certificate_status",
+      "match": {
+        "certificateId": "ISO 9001"
+      },
+      "asOf": "2026-10-08",
+      "knownAt": "2026-10-08T23:59:59Z"
+    }
+  ]
+}

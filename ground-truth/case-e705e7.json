@@ -1,0 +1,94 @@
+{
+  "id": "case-e705e7",
+  "label": "p02-deck-two-claims",
+  "title": "One slide, one good and one misquoted proposal",
+  "benchmarkVersion": "2.0.0",
+  "family": "partial-success-multi-proposition",
+  "nature": "synthetic",
+  "v1Case": null,
+  "propositions": [
+    {
+      "id": "p1",
+      "step": "s1",
+      "candidate": "c1",
+      "target": "capacity_rate",
+      "acceptable": [
+        {
+          "outcome": "ADMIT",
+          "reason": "as_stated_claim",
+          "record": {
+            "recordType": "claim",
+            "subject": "org:northfield-components",
+            "attributedTo": "org:northfield-components",
+            "actingFor": "org:northfield-components",
+            "fields": {
+              "value": 46000,
+              "unit": "units/month",
+              "basis": "unstated"
+            },
+            "evidenceMaterials": [
+              "m1"
+            ],
+            "validity": {
+              "from": "2026-10-05",
+              "to": null
+            }
+          }
+        }
+      ],
+      "rules": [
+        "R-SEM-1"
+      ],
+      "why": "Admissible.",
+      "criticalIfPersisted": null
+    },
+    {
+      "id": "p2",
+      "step": "s1",
+      "candidate": "c2",
+      "target": "lead_time",
+      "acceptable": [
+        {
+          "outcome": "REFUSE",
+          "reason": "quote_not_in_source",
+          "record": null
+        }
+      ],
+      "rules": [
+        "R-EV-2"
+      ],
+      "why": "The slide says five weeks, not four.",
+      "criticalIfPersisted": null
+    }
+  ],
+  "reads": [
+    {
+      "read": "q1",
+      "expected": {
+        "status": "value",
+        "recordType": "claim",
+        "attributedTo": "org:northfield-components",
+        "fields": {
+          "value": 46000
+        },
+        "qualifiers": []
+      },
+      "restricted": false,
+      "rules": [
+        "R-READ-2"
+      ],
+      "why": "Admitted part."
+    },
+    {
+      "read": "q2",
+      "expected": {
+        "status": "none"
+      },
+      "restricted": false,
+      "rules": [
+        "R-READ-2"
+      ],
+      "why": "Refused part."
+    }
+  ]
+}

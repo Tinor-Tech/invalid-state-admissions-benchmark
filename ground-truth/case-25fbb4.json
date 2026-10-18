@@ -1,0 +1,70 @@
+{
+  "id": "case-25fbb4",
+  "label": "v01-supplier-lead-time",
+  "title": "A supplier states its own lead time",
+  "benchmarkVersion": "2.0.0",
+  "family": "valid-admission",
+  "nature": "synthetic",
+  "v1Case": null,
+  "propositions": [
+    {
+      "id": "p1",
+      "step": "s1",
+      "candidate": "c1",
+      "target": "lead_time",
+      "acceptable": [
+        {
+          "outcome": "ADMIT",
+          "reason": "as_stated_claim",
+          "record": {
+            "recordType": "claim",
+            "subject": "org:northfield-components",
+            "attributedTo": "org:northfield-components",
+            "actingFor": "org:northfield-components",
+            "fields": {
+              "product": "HX-40",
+              "value": 6,
+              "unit": "week"
+            },
+            "evidenceMaterials": [
+              "m1"
+            ],
+            "validity": {
+              "from": "2026-10-05",
+              "to": null
+            }
+          }
+        }
+      ],
+      "rules": [
+        "R-ID-1",
+        "R-AUTH-1",
+        "R-EV-2"
+      ],
+      "why": "The account belongs to the subject and holds a submit grant; the quote is verbatim; a lead-time claim needs no commit grant.",
+      "criticalIfPersisted": null
+    }
+  ],
+  "reads": [
+    {
+      "read": "q1",
+      "expected": {
+        "status": "value",
+        "recordType": "claim",
+        "attributedTo": "org:northfield-components",
+        "fields": {
+          "product": "HX-40",
+          "value": 6,
+          "unit": "week"
+        },
+        "qualifiers": []
+      },
+      "restricted": false,
+      "rules": [
+        "R-READ-1",
+        "R-READ-2"
+      ],
+      "why": "One current claim."
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "id": "case-c4d041",
+  "label": "f05-coordinator-commitment",
+  "title": "A coordinator confirms an order",
+  "benchmarkVersion": "2.0.0",
+  "family": "forged-authority-or-attestation",
+  "nature": "synthetic",
+  "v1Case": "a04",
+  "propositions": [
+    {
+      "id": "p1",
+      "step": "s1",
+      "candidate": "c1",
+      "target": "delivery",
+      "acceptable": [
+        {
+          "outcome": "REFUSE",
+          "reason": "not_entitled_to_commit",
+          "record": null
+        }
+      ],
+      "rules": [
+        "R-AUTH-2"
+      ],
+      "why": "Unchanged from v1. The coordinator's grant is submit only. An offer would also need a commit grant, so no weaker form is admissible.",
+      "criticalIfPersisted": "UNAUTHORIZED_WRITE"
+    }
+  ],
+  "reads": [
+    {
+      "read": "q1",
+      "expected": {
+        "status": "none"
+      },
+      "restricted": false,
+      "rules": [
+        "R-READ-2"
+      ],
+      "why": "Nothing admitted."
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "id": "case-10f3c3",
+  "label": "o01-unilateral-offer",
+  "title": "A firm offer proposed as an agreement",
+  "benchmarkVersion": "2.0.0",
+  "family": "offer-vs-agreement",
+  "nature": "synthetic",
+  "v1Case": "a06",
+  "propositions": [
+    {
+      "id": "p1",
+      "step": "s1",
+      "candidate": "c1",
+      "target": "delivery",
+      "acceptable": [
+        {
+          "outcome": "ADMIT-QUALIFIED",
+          "reason": "offer_not_agreement",
+          "record": {
+            "recordType": "offer",
+            "subject": "org:northfield-components",
+            "attributedTo": "org:northfield-components",
+            "actingFor": "org:northfield-components",
+            "fields": {
+              "object": "HX-40 housings",
+              "quantity": 20000,
+              "dueBy": "2026-11-30",
+              "price": "USD 1.85",
+              "debtor": "org:northfield-components",
+              "creditor": "org:buyer-b"
+            },
+            "evidenceMaterials": [
+              "m1"
+            ],
+            "validity": {
+              "from": "2026-10-05",
+              "to": "2026-10-31"
+            }
+          }
+        }
+      ],
+      "rules": [
+        "R-OFFER-1",
+        "R-AUTH-2"
+      ],
+      "why": "Changed from v1 (HOLD, confirmations pending). The director may commit for the supplier, so the offer is true, useful state and is written as an offer with its validity. It must not be written as an agreement: Buyer B has not confirmed.",
+      "criticalIfPersisted": null
+    }
+  ],
+  "reads": [
+    {
+      "read": "q1",
+      "expected": {
+        "status": "value",
+        "recordType": "offer",
+        "attributedTo": "org:northfield-components",
+        "fields": {
+          "quantity": 20000,
+          "price": "USD 1.85"
+        },
+        "qualifiers": []
+      },
+      "restricted": false,
+      "rules": [
+        "R-READ-4"
+      ],
+      "why": "Served as an offer."
+    }
+  ]
+}

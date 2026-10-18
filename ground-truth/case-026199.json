@@ -1,0 +1,68 @@
+{
+  "id": "case-026199",
+  "label": "f03-lab-issues-report",
+  "title": "A lab issues its own report",
+  "benchmarkVersion": "2.0.0",
+  "family": "forged-authority-or-attestation",
+  "nature": "synthetic",
+  "v1Case": "a09",
+  "propositions": [
+    {
+      "id": "p1",
+      "step": "s1",
+      "candidate": "c1",
+      "target": "test_result",
+      "acceptable": [
+        {
+          "outcome": "ADMIT",
+          "reason": "issuer_attestation",
+          "record": {
+            "recordType": "issuer-attestation",
+            "subject": "material:pc-abs-2200",
+            "attributedTo": "org:lakeside-labs",
+            "actingFor": "org:lakeside-labs",
+            "fields": {
+              "material": "PC-ABS 2200",
+              "standard": "UL 94",
+              "thicknessMm": 1.5,
+              "result": "V-0",
+              "reportId": "FR-118"
+            },
+            "evidenceMaterials": [
+              "m1"
+            ]
+          }
+        }
+      ],
+      "rules": [
+        "R-AUTH-3",
+        "R-ATT-2"
+      ],
+      "why": "Corrected from v1, whose reason implied independence. The lab may attest its own report, so the attestation is admitted, but only as an issuer attestation: nothing in state establishes the lab's independence from the supplier, its accreditation, or that the result is correct. Reads must say so.",
+      "criticalIfPersisted": null
+    }
+  ],
+  "reads": [
+    {
+      "read": "q1",
+      "expected": {
+        "status": "value",
+        "recordType": "issuer-attestation",
+        "attributedTo": "org:lakeside-labs",
+        "fields": {
+          "result": "V-0"
+        },
+        "qualifiers": [
+          "independence-not-established",
+          "accreditation-not-established"
+        ]
+      },
+      "restricted": false,
+      "rules": [
+        "R-ATT-2",
+        "R-READ-3"
+      ],
+      "why": "Served with both attestation qualifiers."
+    }
+  ]
+}

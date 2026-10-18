@@ -1,0 +1,101 @@
+{
+  "id": "case-db1e22",
+  "label": "n03-genuine-update",
+  "title": "A new value from the same party",
+  "benchmarkVersion": "2.0.0",
+  "family": "no-change-idempotency",
+  "nature": "synthetic",
+  "v1Case": null,
+  "propositions": [
+    {
+      "id": "p1",
+      "step": "s1",
+      "candidate": "c1",
+      "target": "lead_time",
+      "acceptable": [
+        {
+          "outcome": "ADMIT",
+          "reason": "as_stated_claim",
+          "record": {
+            "recordType": "claim",
+            "subject": "org:northfield-components",
+            "attributedTo": "org:northfield-components",
+            "actingFor": "org:northfield-components",
+            "fields": {
+              "product": "HX-40",
+              "value": 7,
+              "unit": "week"
+            },
+            "evidenceMaterials": [
+              "m2"
+            ],
+            "validity": {
+              "from": "2026-10-12",
+              "to": null
+            }
+          }
+        }
+      ],
+      "rules": [
+        "R-DUP-1"
+      ],
+      "why": "Different value: a genuine update, not a duplicate. Refusing it as a duplicate would freeze stale state.",
+      "criticalIfPersisted": null
+    }
+  ],
+  "reads": [
+    {
+      "read": "q1",
+      "expected": {
+        "status": "value",
+        "recordType": "claim",
+        "attributedTo": "org:northfield-components",
+        "fields": {
+          "value": 7
+        },
+        "qualifiers": []
+      },
+      "restricted": false,
+      "rules": [
+        "R-READ-1"
+      ],
+      "why": "Latest validity.from wins."
+    },
+    {
+      "read": "q2",
+      "expected": {
+        "status": "value",
+        "recordType": "claim",
+        "attributedTo": "org:northfield-components",
+        "fields": {
+          "value": 6
+        },
+        "qualifiers": []
+      },
+      "restricted": false,
+      "rules": [
+        "R-READ-1",
+        "R-TIME-1"
+      ],
+      "why": "Business time before the new value takes effect."
+    },
+    {
+      "read": "q3",
+      "expected": {
+        "status": "value",
+        "recordType": "claim",
+        "attributedTo": "org:northfield-components",
+        "fields": {
+          "value": 6
+        },
+        "qualifiers": []
+      },
+      "restricted": false,
+      "rules": [
+        "R-READ-1",
+        "R-TIME-1"
+      ],
+      "why": "Knowledge time before the update was recorded."
+    }
+  ]
+}

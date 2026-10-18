@@ -1,0 +1,83 @@
+{
+  "id": "case-fbc336",
+  "label": "h01-late-report",
+  "title": "A report tested in September arrives in October",
+  "benchmarkVersion": "2.0.0",
+  "family": "historical-replay-late-evidence",
+  "nature": "synthetic",
+  "v1Case": null,
+  "propositions": [
+    {
+      "id": "p1",
+      "step": "s1",
+      "candidate": "c1",
+      "target": "test_result",
+      "acceptable": [
+        {
+          "outcome": "ADMIT",
+          "reason": "issuer_attestation",
+          "record": {
+            "recordType": "issuer-attestation",
+            "subject": "material:pc-abs-2200",
+            "attributedTo": "org:lakeside-labs",
+            "actingFor": "org:lakeside-labs",
+            "fields": {
+              "material": "PC-ABS 2200",
+              "standard": "UL 94",
+              "thicknessMm": 3,
+              "result": "V-0",
+              "reportId": "FR-120"
+            },
+            "evidenceMaterials": [
+              "m1"
+            ],
+            "validity": {
+              "from": "2026-09-20",
+              "to": null
+            }
+          }
+        }
+      ],
+      "rules": [
+        "R-TIME-1",
+        "R-ATT-2"
+      ],
+      "why": "Business time 20 September, knowledge time 12 October.",
+      "criticalIfPersisted": null
+    }
+  ],
+  "reads": [
+    {
+      "read": "q1",
+      "expected": {
+        "status": "none"
+      },
+      "restricted": false,
+      "rules": [
+        "R-TIME-1",
+        "R-READ-1"
+      ],
+      "why": "On 1 October nobody knew the result."
+    },
+    {
+      "read": "q2",
+      "expected": {
+        "status": "value",
+        "recordType": "issuer-attestation",
+        "attributedTo": "org:lakeside-labs",
+        "fields": {
+          "result": "V-0"
+        },
+        "qualifiers": [
+          "independence-not-established",
+          "accreditation-not-established"
+        ]
+      },
+      "restricted": false,
+      "rules": [
+        "R-TIME-1"
+      ],
+      "why": "Known now, valid then."
+    }
+  ]
+}

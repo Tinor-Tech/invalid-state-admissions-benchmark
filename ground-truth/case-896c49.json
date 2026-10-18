@@ -1,0 +1,54 @@
+{
+  "id": "case-896c49",
+  "label": "e03-subject-contradicts-material",
+  "title": "The proposal names the wrong organisation",
+  "benchmarkVersion": "2.0.0",
+  "family": "wrong-entity-or-scope",
+  "nature": "synthetic",
+  "v1Case": null,
+  "propositions": [
+    {
+      "id": "p1",
+      "step": "s1",
+      "candidate": "c1",
+      "target": "lead_time",
+      "acceptable": [
+        {
+          "outcome": "REFUSE",
+          "reason": "subject_mismatch",
+          "record": null
+        }
+      ],
+      "rules": [
+        "R-ID-2",
+        "R-ORDER-1"
+      ],
+      "why": "The material names Northfield Components; the proposal names Northfield Precision. Writing it attributes a claim to a party that never made it; re-binding silently would admit a proposal nobody made.",
+      "criticalIfPersisted": "UNAUTHORIZED_WRITE"
+    }
+  ],
+  "reads": [
+    {
+      "read": "q1",
+      "expected": {
+        "status": "none"
+      },
+      "restricted": false,
+      "rules": [
+        "R-READ-2"
+      ],
+      "why": "Nothing admitted."
+    },
+    {
+      "read": "q2",
+      "expected": {
+        "status": "none"
+      },
+      "restricted": false,
+      "rules": [
+        "R-ID-2"
+      ],
+      "why": "Not silently re-bound."
+    }
+  ]
+}

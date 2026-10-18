@@ -1,0 +1,43 @@
+{
+  "id": "case-f1505d",
+  "label": "f07-undeclared-verified-flag",
+  "title": "An integration adds a verified flag",
+  "benchmarkVersion": "2.0.0",
+  "family": "forged-authority-or-attestation",
+  "nature": "synthetic",
+  "v1Case": "a10",
+  "propositions": [
+    {
+      "id": "p1",
+      "step": "s1",
+      "candidate": "c1",
+      "target": "lead_time",
+      "acceptable": [
+        {
+          "outcome": "REFUSE",
+          "reason": "field_not_declared",
+          "record": null
+        }
+      ],
+      "rules": [
+        "R-SEM-2",
+        "R-ORDER-1"
+      ],
+      "why": "Unchanged from v1. The contract declares no verified field; dropping it silently would admit a proposal that was not made.",
+      "criticalIfPersisted": null
+    }
+  ],
+  "reads": [
+    {
+      "read": "q1",
+      "expected": {
+        "status": "none"
+      },
+      "restricted": false,
+      "rules": [
+        "R-READ-2"
+      ],
+      "why": "Nothing admitted."
+    }
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "id": "case-490c25",
+  "label": "r03-own-correction",
+  "title": "A supplier corrects its own figure",
+  "benchmarkVersion": "2.0.0",
+  "family": "revocation-supersession",
+  "nature": "synthetic",
+  "v1Case": null,
+  "propositions": [
+    {
+      "id": "p1",
+      "step": "s1",
+      "candidate": "c1",
+      "target": "monthly_output",
+      "acceptable": [
+        {
+          "outcome": "ADMIT",
+          "reason": "correction_supersedes",
+          "record": {
+            "recordType": "claim",
+            "subject": "org:northfield-components",
+            "attributedTo": "org:northfield-components",
+            "actingFor": "org:northfield-components",
+            "fields": {
+              "value": 42100,
+              "unit": "units",
+              "period": {
+                "from": "2026-09-01",
+                "to": "2026-09-30"
+              }
+            },
+            "evidenceMaterials": [
+              "m2"
+            ],
+            "supersedes": "r1"
+          }
+        }
+      ],
+      "rules": [
+        "R-CORR-1",
+        "R-HIST-1"
+      ],
+      "why": "The party corrects its own record. Editing r1 in place would destroy what was known on 5 October.",
+      "criticalIfPersisted": null
+    }
+  ],
+  "reads": [
+    {
+      "read": "q1",
+      "expected": {
+        "status": "value",
+        "recordType": "claim",
+        "attributedTo": "org:northfield-components",
+        "fields": {
+          "value": 42100
+        },
+        "qualifiers": []
+      },
+      "restricted": false,
+      "rules": [
+        "R-CORR-1"
+      ],
+      "why": "After the correction."
+    },
+    {
+      "read": "q2",
+      "expected": {
+        "status": "value",
+        "recordType": "claim",
+        "attributedTo": "org:northfield-components",
+        "fields": {
+          "value": 41200
+        },
+        "qualifiers": []
+      },
+      "restricted": false,
+      "rules": [
+        "R-CORR-1",
+        "R-TIME-1"
+      ],
+      "why": "Replay: what was known on 5 October."
+    }
+  ]
+}

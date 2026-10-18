@@ -1,0 +1,141 @@
+{
+  "benchmarkVersion": "2.0.0",
+  "outputSchema": "isa-run-output/2",
+  "adapter": {
+    "name": "example",
+    "kind": "recorded",
+    "description": "Format illustration: two cases copied from the reference-rules output. Not a result."
+  },
+  "outputs": {
+    "case-10f3c3": {
+      "decisions": [
+        {
+          "candidate": "c1",
+          "target": "delivery",
+          "outcome": "ADMIT-QUALIFIED",
+          "reason": "offer_not_agreement"
+        }
+      ],
+      "records": [
+        {
+          "id": "w1",
+          "candidate": "c1",
+          "step": "s1",
+          "submittedBy": "acct:nc-director",
+          "recordedAt": "2026-10-05T10:00:00Z",
+          "audience": null,
+          "supersedes": null,
+          "withdraws": null,
+          "confirmedBy": null,
+          "target": "delivery",
+          "recordType": "offer",
+          "subject": "org:northfield-components",
+          "attributedTo": "org:northfield-components",
+          "actingFor": "org:northfield-components",
+          "fields": {
+            "object": "HX-40 housings",
+            "quantity": 20000,
+            "dueBy": "2026-11-30",
+            "price": "USD 1.85",
+            "debtor": "org:northfield-components",
+            "creditor": "org:buyer-b"
+          },
+          "evidence": [
+            {
+              "material": "m1",
+              "quote": "We offer 20,000 HX-40 housings, delivery by 30 November 2026, USD 1.85 per unit"
+            }
+          ],
+          "validity": {
+            "from": "2026-10-05",
+            "to": "2026-10-31"
+          }
+        }
+      ],
+      "answers": [
+        {
+          "read": "q1",
+          "status": "value",
+          "recordType": "offer",
+          "attributedTo": "org:northfield-components",
+          "fields": {
+            "object": "HX-40 housings",
+            "quantity": 20000,
+            "dueBy": "2026-11-30",
+            "price": "USD 1.85",
+            "debtor": "org:northfield-components",
+            "creditor": "org:buyer-b"
+          },
+          "qualifiers": []
+        }
+      ],
+      "error": null
+    },
+    "case-810f55": {
+      "decisions": [
+        {
+          "candidate": "c1",
+          "target": "target_price",
+          "outcome": "ADMIT",
+          "reason": "as_stated_claim"
+        }
+      ],
+      "records": [
+        {
+          "id": "w1",
+          "candidate": "c1",
+          "step": "s1",
+          "submittedBy": "acct:bb-buyer",
+          "recordedAt": "2026-10-05T10:00:00Z",
+          "audience": [
+            "org:buyer-b"
+          ],
+          "supersedes": null,
+          "withdraws": null,
+          "confirmedBy": null,
+          "target": "target_price",
+          "recordType": "claim",
+          "subject": "org:buyer-b",
+          "attributedTo": "org:buyer-b",
+          "actingFor": "org:buyer-b",
+          "fields": {
+            "object": "HX-40 housings",
+            "price": "USD 1.80"
+          },
+          "evidence": [
+            {
+              "material": "m1",
+              "quote": "target price for HX-40 housings is USD 1.80 per unit"
+            }
+          ],
+          "validity": {
+            "from": "2026-10-05",
+            "to": null
+          }
+        }
+      ],
+      "answers": [
+        {
+          "read": "q1",
+          "status": "value",
+          "recordType": "claim",
+          "attributedTo": "org:buyer-b",
+          "fields": {
+            "object": "HX-40 housings",
+            "price": "USD 1.80"
+          },
+          "qualifiers": []
+        },
+        {
+          "read": "q2",
+          "status": "none"
+        },
+        {
+          "read": "q3",
+          "status": "none"
+        }
+      ],
+      "error": null
+    }
+  }
+}

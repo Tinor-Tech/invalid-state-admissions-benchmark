@@ -1,0 +1,43 @@
+{
+  "id": "case-26ea5b",
+  "label": "m02-cited-material-absent",
+  "title": "Evidence cites a material that was not supplied",
+  "benchmarkVersion": "2.0.0",
+  "family": "misquoted-or-missing-evidence",
+  "nature": "synthetic",
+  "v1Case": null,
+  "propositions": [
+    {
+      "id": "p1",
+      "step": "s1",
+      "candidate": "c1",
+      "target": "test_result",
+      "acceptable": [
+        {
+          "outcome": "REFUSE",
+          "reason": "evidence_missing",
+          "record": null
+        }
+      ],
+      "rules": [
+        "R-EV-1",
+        "R-ORDER-1"
+      ],
+      "why": "m9 is not part of the input.",
+      "criticalIfPersisted": null
+    }
+  ],
+  "reads": [
+    {
+      "read": "q1",
+      "expected": {
+        "status": "none"
+      },
+      "restricted": false,
+      "rules": [
+        "R-READ-2"
+      ],
+      "why": "Nothing admitted."
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "id": "case-3b6628",
+  "label": "h02-replay-two-axes",
+  "title": "Replaying a scheduled change on two time axes",
+  "benchmarkVersion": "2.0.0",
+  "family": "historical-replay-late-evidence",
+  "nature": "synthetic",
+  "v1Case": null,
+  "propositions": [],
+  "reads": [
+    {
+      "read": "q1",
+      "expected": {
+        "status": "value",
+        "recordType": "claim",
+        "attributedTo": "org:northfield-components",
+        "fields": {
+          "value": 6
+        },
+        "qualifiers": []
+      },
+      "restricted": false,
+      "rules": [
+        "R-READ-1"
+      ],
+      "why": "Announced but not yet in effect."
+    },
+    {
+      "read": "q2",
+      "expected": {
+        "status": "value",
+        "recordType": "claim",
+        "attributedTo": "org:northfield-components",
+        "fields": {
+          "value": 7
+        },
+        "qualifiers": []
+      },
+      "restricted": false,
+      "rules": [
+        "R-READ-1"
+      ],
+      "why": "In effect."
+    },
+    {
+      "read": "q3",
+      "expected": {
+        "status": "value",
+        "recordType": "claim",
+        "attributedTo": "org:northfield-components",
+        "fields": {
+          "value": 6
+        },
+        "qualifiers": []
+      },
+      "restricted": false,
+      "rules": [
+        "R-READ-1",
+        "R-TIME-1"
+      ],
+      "why": "In effect, but not yet known on 9 October."
+    }
+  ]
+}

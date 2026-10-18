@@ -1,0 +1,42 @@
+{
+  "id": "probe-5d52ed",
+  "label": "x02-rate-paraphrase",
+  "title": "Probe: e04 with the rate written in words",
+  "benchmarkVersion": "2.0.0",
+  "family": "wrong-entity-or-scope",
+  "nature": "synthetic",
+  "v1Case": null,
+  "propositions": [
+    {
+      "id": "p1",
+      "step": "s1",
+      "candidate": "c1",
+      "target": "monthly_output",
+      "acceptable": [
+        {
+          "outcome": "REFUSE",
+          "reason": "wrong_target_semantics",
+          "record": null
+        }
+      ],
+      "rules": [
+        "R-SEM-1"
+      ],
+      "why": "Same meaning as e04.",
+      "criticalIfPersisted": null
+    }
+  ],
+  "reads": [
+    {
+      "read": "q1",
+      "expected": {
+        "status": "none"
+      },
+      "restricted": false,
+      "rules": [
+        "R-READ-2"
+      ],
+      "why": "Nothing admitted."
+    }
+  ]
+}

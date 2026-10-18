@@ -1,0 +1,90 @@
+{
+  "id": "case-951263",
+  "label": "r01-issuer-withdraws",
+  "title": "The issuing lab withdraws a certificate",
+  "benchmarkVersion": "2.0.0",
+  "family": "revocation-supersession",
+  "nature": "synthetic",
+  "v1Case": null,
+  "propositions": [
+    {
+      "id": "p1",
+      "step": "s1",
+      "candidate": "c1",
+      "target": "certificate_status",
+      "acceptable": [
+        {
+          "outcome": "ADMIT",
+          "reason": "withdrawal_by_issuer",
+          "record": {
+            "recordType": "withdrawal",
+            "subject": "org:northfield-components",
+            "attributedTo": "org:lakeside-labs",
+            "actingFor": "org:lakeside-labs",
+            "fields": {
+              "certificateId": "C-77"
+            },
+            "evidenceMaterials": [
+              "m2"
+            ],
+            "validity": {
+              "from": "2026-10-10",
+              "to": null
+            },
+            "withdraws": "r1"
+          }
+        }
+      ],
+      "rules": [
+        "R-AUTH-4",
+        "R-HIST-1"
+      ],
+      "why": "The issuer withdraws its own attestation; r1 stays in history.",
+      "criticalIfPersisted": null
+    }
+  ],
+  "reads": [
+    {
+      "read": "q1",
+      "expected": {
+        "status": "value",
+        "recordType": "issuer-attestation",
+        "attributedTo": "org:lakeside-labs",
+        "fields": {
+          "certificateId": "C-77"
+        },
+        "qualifiers": [
+          "independence-not-established",
+          "accreditation-not-established"
+        ]
+      },
+      "restricted": false,
+      "rules": [
+        "R-READ-3",
+        "R-TIME-1"
+      ],
+      "why": "Before the withdrawal took effect."
+    },
+    {
+      "read": "q2",
+      "expected": {
+        "status": "value",
+        "recordType": "issuer-attestation",
+        "attributedTo": "org:lakeside-labs",
+        "fields": {
+          "certificateId": "C-77"
+        },
+        "qualifiers": [
+          "withdrawn",
+          "independence-not-established",
+          "accreditation-not-established"
+        ]
+      },
+      "restricted": false,
+      "rules": [
+        "R-READ-3"
+      ],
+      "why": "After it took effect, served as withdrawn."
+    }
+  ]
+}

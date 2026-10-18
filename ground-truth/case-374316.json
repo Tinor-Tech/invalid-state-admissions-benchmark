@@ -1,0 +1,82 @@
+{
+  "id": "case-374316",
+  "label": "k02-different-question",
+  "title": "A lead time for a different product",
+  "benchmarkVersion": "2.0.0",
+  "family": "conflict-vs-different-question",
+  "nature": "synthetic",
+  "v1Case": null,
+  "propositions": [
+    {
+      "id": "p1",
+      "step": "s1",
+      "candidate": "c1",
+      "target": "lead_time",
+      "acceptable": [
+        {
+          "outcome": "ADMIT",
+          "reason": "as_stated_claim",
+          "record": {
+            "recordType": "claim",
+            "subject": "org:northfield-components",
+            "attributedTo": "org:northfield-components",
+            "actingFor": "org:northfield-components",
+            "fields": {
+              "product": "HX-60",
+              "value": 9,
+              "unit": "week"
+            },
+            "evidenceMaterials": [
+              "m2"
+            ],
+            "validity": {
+              "from": "2026-10-06",
+              "to": null
+            }
+          }
+        }
+      ],
+      "rules": [
+        "R-CONF-1"
+      ],
+      "why": "A different product: not a conflict and not an update to HX-40.",
+      "criticalIfPersisted": null
+    }
+  ],
+  "reads": [
+    {
+      "read": "q1",
+      "expected": {
+        "status": "value",
+        "recordType": "claim",
+        "attributedTo": "org:northfield-components",
+        "fields": {
+          "value": 6
+        },
+        "qualifiers": []
+      },
+      "restricted": false,
+      "rules": [
+        "R-CONF-1"
+      ],
+      "why": "HX-40 unchanged."
+    },
+    {
+      "read": "q2",
+      "expected": {
+        "status": "value",
+        "recordType": "claim",
+        "attributedTo": "org:northfield-components",
+        "fields": {
+          "value": 9
+        },
+        "qualifiers": []
+      },
+      "restricted": false,
+      "rules": [
+        "R-CONF-1"
+      ],
+      "why": "HX-60 answered."
+    }
+  ]
+}

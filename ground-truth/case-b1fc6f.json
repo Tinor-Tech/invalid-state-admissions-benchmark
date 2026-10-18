@@ -1,0 +1,53 @@
+{
+  "id": "case-b1fc6f",
+  "label": "e01-ambiguous-name",
+  "title": "A shared first name and an unknown domain",
+  "benchmarkVersion": "2.0.0",
+  "family": "wrong-entity-or-scope",
+  "nature": "synthetic",
+  "v1Case": "a01",
+  "propositions": [
+    {
+      "id": "p1",
+      "step": "s1",
+      "candidate": "c1",
+      "target": "lead_time",
+      "acceptable": [
+        {
+          "outcome": "HOLD",
+          "reason": "subject_ambiguous",
+          "record": null
+        }
+      ],
+      "rules": [
+        "R-ID-1"
+      ],
+      "why": "Unchanged from v1. Two directory parties share the name Northfield and the sending domain matches neither. The sender's organisation is an obtainable input.",
+      "criticalIfPersisted": null
+    }
+  ],
+  "reads": [
+    {
+      "read": "q1",
+      "expected": {
+        "status": "none"
+      },
+      "restricted": false,
+      "rules": [
+        "R-READ-2"
+      ],
+      "why": "Nothing admitted."
+    },
+    {
+      "read": "q2",
+      "expected": {
+        "status": "none"
+      },
+      "restricted": false,
+      "rules": [
+        "R-READ-2"
+      ],
+      "why": "Nothing admitted."
+    }
+  ]
+}

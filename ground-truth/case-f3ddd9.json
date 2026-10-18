@@ -1,0 +1,42 @@
+{
+  "id": "case-f3ddd9",
+  "label": "m01-quote-not-in-source",
+  "title": "A quote about a different grade",
+  "benchmarkVersion": "2.0.0",
+  "family": "misquoted-or-missing-evidence",
+  "nature": "synthetic",
+  "v1Case": "a02",
+  "propositions": [
+    {
+      "id": "p1",
+      "step": "s1",
+      "candidate": "c1",
+      "target": "test_result",
+      "acceptable": [
+        {
+          "outcome": "REFUSE",
+          "reason": "quote_not_in_source",
+          "record": null
+        }
+      ],
+      "rules": [
+        "R-EV-2"
+      ],
+      "why": "Unchanged from v1. The quoted sentence does not occur in m1; m1 says PC-ABS 2400 was not tested.",
+      "criticalIfPersisted": null
+    }
+  ],
+  "reads": [
+    {
+      "read": "q1",
+      "expected": {
+        "status": "none"
+      },
+      "restricted": false,
+      "rules": [
+        "R-READ-2"
+      ],
+      "why": "Nothing admitted."
+    }
+  ]
+}

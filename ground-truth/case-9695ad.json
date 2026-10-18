@@ -1,0 +1,64 @@
+{
+  "id": "case-9695ad",
+  "label": "o03-counter-offer",
+  "title": "An acceptance that changes the quantity",
+  "benchmarkVersion": "2.0.0",
+  "family": "offer-vs-agreement",
+  "nature": "synthetic",
+  "v1Case": null,
+  "propositions": [
+    {
+      "id": "p1",
+      "step": "s1",
+      "candidate": "c1",
+      "target": "delivery",
+      "acceptable": [
+        {
+          "outcome": "ADMIT-QUALIFIED",
+          "reason": "offer_not_agreement",
+          "record": {
+            "recordType": "offer",
+            "subject": "org:northfield-components",
+            "attributedTo": "org:buyer-b",
+            "actingFor": "org:buyer-b",
+            "fields": {
+              "object": "HX-40 housings",
+              "quantity": 18000,
+              "dueBy": "2026-11-30",
+              "price": "USD 1.85",
+              "debtor": "org:northfield-components",
+              "creditor": "org:buyer-b"
+            },
+            "evidenceMaterials": [
+              "m2"
+            ]
+          }
+        }
+      ],
+      "rules": [
+        "R-OFFER-1"
+      ],
+      "why": "The terms differ (18,000 vs 20,000), so Northfield has not confirmed them. Buyer B's message is a counter-offer by Buyer B. Citing m1 for an offer of 18,000 would misattribute evidence.",
+      "criticalIfPersisted": null
+    }
+  ],
+  "reads": [
+    {
+      "read": "q1",
+      "expected": {
+        "status": "value",
+        "recordType": "offer",
+        "attributedTo": "org:buyer-b",
+        "fields": {
+          "quantity": 18000
+        },
+        "qualifiers": []
+      },
+      "restricted": false,
+      "rules": [
+        "R-READ-4"
+      ],
+      "why": "Most recent offer; not an agreement and not a conflict."
+    }
+  ]
+}

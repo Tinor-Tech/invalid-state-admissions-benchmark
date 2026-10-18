@@ -1,0 +1,59 @@
+{
+  "id": "probe-628729",
+  "label": "x05-lab-report-reworded",
+  "title": "Probe: f03 reworded",
+  "benchmarkVersion": "2.0.0",
+  "family": "forged-authority-or-attestation",
+  "nature": "synthetic",
+  "v1Case": null,
+  "propositions": [
+    {
+      "id": "p1",
+      "step": "s1",
+      "candidate": "c1",
+      "target": "test_result",
+      "acceptable": [
+        {
+          "outcome": "ADMIT",
+          "reason": "issuer_attestation",
+          "record": {
+            "recordType": "issuer-attestation",
+            "subject": "material:pc-abs-2200",
+            "attributedTo": "org:lakeside-labs",
+            "actingFor": "org:lakeside-labs",
+            "evidenceMaterials": [
+              "m1"
+            ]
+          }
+        }
+      ],
+      "rules": [
+        "R-ATT-2"
+      ],
+      "why": "Same meaning as f03.",
+      "criticalIfPersisted": null
+    }
+  ],
+  "reads": [
+    {
+      "read": "q1",
+      "expected": {
+        "status": "value",
+        "recordType": "issuer-attestation",
+        "attributedTo": "org:lakeside-labs",
+        "fields": {
+          "result": "V-0"
+        },
+        "qualifiers": [
+          "independence-not-established",
+          "accreditation-not-established"
+        ]
+      },
+      "restricted": false,
+      "rules": [
+        "R-ATT-2"
+      ],
+      "why": "Attestation qualifiers."
+    }
+  ]
+}

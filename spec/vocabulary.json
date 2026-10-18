@@ -1,0 +1,232 @@
+{
+  "benchmarkVersion": "2.0.0",
+  "outcomes": {
+    "ADMIT": {
+      "strength": 2,
+      "meaning": "Write the proposition as proposed."
+    },
+    "ADMIT-QUALIFIED": {
+      "strength": 1,
+      "meaning": "Write a weaker proposition that the source supports, not the one proposed."
+    },
+    "HOLD": {
+      "strength": 0,
+      "meaning": "Write nothing yet; a named, obtainable input is missing."
+    },
+    "REFUSE": {
+      "strength": 0,
+      "meaning": "Write nothing; the proposition as proposed is not admissible."
+    },
+    "NO-CHANGE": {
+      "strength": 0,
+      "meaning": "Write nothing; the state already holds this proposition."
+    }
+  },
+  "reasons": {
+    "as_stated_claim": {
+      "outcome": "ADMIT",
+      "rules": [
+        "R-ID-1",
+        "R-AUTH-1",
+        "R-EV-2"
+      ],
+      "text": "A party's attributed claim, written as stated."
+    },
+    "as_stated_offer": {
+      "outcome": "ADMIT",
+      "rules": [
+        "R-AUTH-2",
+        "R-OFFER-1"
+      ],
+      "text": "A unilateral offer proposed and written as an offer."
+    },
+    "as_subject_transcription": {
+      "outcome": "ADMIT",
+      "rules": [
+        "R-ATT-1"
+      ],
+      "text": "A party's transcription of another party's document, written as that party's transcription."
+    },
+    "issuer_attestation": {
+      "outcome": "ADMIT",
+      "rules": [
+        "R-AUTH-3",
+        "R-ATT-2"
+      ],
+      "text": "An issuer's own attestation, written as an issuer attestation (not as independent verification)."
+    },
+    "as_confirmed_agreement": {
+      "outcome": "ADMIT",
+      "rules": [
+        "R-OFFER-1"
+      ],
+      "text": "Every bound party has confirmed identical terms through an account entitled to commit for it."
+    },
+    "withdrawal_by_issuer": {
+      "outcome": "ADMIT",
+      "rules": [
+        "R-AUTH-4"
+      ],
+      "text": "The issuer of a record withdraws it."
+    },
+    "correction_supersedes": {
+      "outcome": "ADMIT",
+      "rules": [
+        "R-CORR-1"
+      ],
+      "text": "A party corrects its own earlier record; the correction supersedes it and the earlier record stays in history."
+    },
+    "stronger_than_source": {
+      "outcome": "ADMIT-QUALIFIED",
+      "rules": [
+        "R-QUAL-1"
+      ],
+      "text": "The proposal is stronger than its source (hedge, condition, basis or scope); the weaker supported form is written."
+    },
+    "validity_narrower_than_proposed": {
+      "outcome": "ADMIT-QUALIFIED",
+      "rules": [
+        "R-QUAL-1",
+        "R-TIME-1"
+      ],
+      "text": "The source states a shorter validity than proposed; the stated validity is written."
+    },
+    "offer_not_agreement": {
+      "outcome": "ADMIT-QUALIFIED",
+      "rules": [
+        "R-OFFER-1"
+      ],
+      "text": "An agreement was proposed but only one party has committed to these terms; the offer is written."
+    },
+    "subject_ambiguous": {
+      "outcome": "HOLD",
+      "rules": [
+        "R-ID-1"
+      ],
+      "text": "More than one party could be the subject and nothing in the input disambiguates."
+    },
+    "period_missing": {
+      "outcome": "HOLD",
+      "rules": [
+        "R-SEM-1"
+      ],
+      "text": "A count over a period was proposed and no period is determinable. Kept for v1 compatibility; no v2 case expects it."
+    },
+    "confirmations_pending": {
+      "outcome": "HOLD",
+      "rules": [
+        "R-OFFER-1"
+      ],
+      "text": "An agreement awaits a confirmation and the target has no offer form. Kept for v1 compatibility; no v2 case expects it."
+    },
+    "commitment_not_made": {
+      "outcome": "HOLD",
+      "rules": [
+        "R-QUAL-1"
+      ],
+      "text": "The target only accepts firm commitments and the source makes none; a firm statement must be obtained."
+    },
+    "quote_not_in_source": {
+      "outcome": "REFUSE",
+      "rules": [
+        "R-EV-2"
+      ],
+      "text": "A cited quote does not occur verbatim in the cited material."
+    },
+    "evidence_missing": {
+      "outcome": "REFUSE",
+      "rules": [
+        "R-EV-1"
+      ],
+      "text": "No evidence is cited, or a cited material is not part of the input."
+    },
+    "wrong_target_semantics": {
+      "outcome": "REFUSE",
+      "rules": [
+        "R-SEM-1"
+      ],
+      "text": "The value does not have the meaning of the target (for example a rate written as a count over a period)."
+    },
+    "subject_mismatch": {
+      "outcome": "REFUSE",
+      "rules": [
+        "R-ID-2"
+      ],
+      "text": "The proposed subject contradicts the party that the material identifies; it is not silently re-bound."
+    },
+    "not_entitled_to_submit": {
+      "outcome": "REFUSE",
+      "rules": [
+        "R-AUTH-1"
+      ],
+      "text": "The submitting account holds no submit grant for the party it acts for."
+    },
+    "not_entitled_to_commit": {
+      "outcome": "REFUSE",
+      "rules": [
+        "R-AUTH-2"
+      ],
+      "text": "An offer, acceptance or agreement on behalf of a party needs a commit grant the account does not hold."
+    },
+    "assurance_claimed_for_other_party": {
+      "outcome": "REFUSE",
+      "rules": [
+        "R-AUTH-3"
+      ],
+      "text": "An attestation is attributed to a party other than the submitting account's party."
+    },
+    "no_standing_to_withdraw": {
+      "outcome": "REFUSE",
+      "rules": [
+        "R-AUTH-4"
+      ],
+      "text": "Only the issuer of a record may withdraw it."
+    },
+    "field_not_declared": {
+      "outcome": "REFUSE",
+      "rules": [
+        "R-SEM-2"
+      ],
+      "text": "The proposal sets a field or value the target contract does not declare."
+    },
+    "duplicate_of_existing": {
+      "outcome": "NO-CHANGE",
+      "rules": [
+        "R-DUP-1"
+      ],
+      "text": "The state already holds an identical record."
+    }
+  },
+  "qualifiers": {
+    "conditional": "The record is an expectation that carries a condition or hedge.",
+    "expired": "The record's validity ended before the read's asOf date.",
+    "withdrawn": "The record was withdrawn by its issuer with effect on or before asOf.",
+    "independence-not-established": "An issuer attestation; nothing in state establishes the issuer's independence from the subject.",
+    "accreditation-not-established": "An issuer attestation; no valid accreditation record for the issuer covering the standard is in state.",
+    "issuer-accredited": "An issuer attestation; a valid accreditation record from an accreditation body covering the standard is in state."
+  },
+  "readStatuses": [
+    "value",
+    "none",
+    "conflicting"
+  ],
+  "families": {
+    "valid-admission": "Legitimate admissions, including legitimate qualified admissions.",
+    "no-change-idempotency": "Duplicates and retries must not create state; genuine updates must.",
+    "wrong-entity-or-scope": "Subject binding and the meaning of the target field.",
+    "misquoted-or-missing-evidence": "Evidence must exist and quotes must be verbatim.",
+    "forged-authority-or-attestation": "Who may submit, commit and attest for whom.",
+    "offer-vs-agreement": "A unilateral offer is not a bilateral agreement.",
+    "temporal-validity": "Stated validity and expiry.",
+    "revocation-supersession": "Withdrawals and corrections, and who may make them.",
+    "conflict-vs-different-question": "Disagreement about the same question versus statements about different questions.",
+    "restricted-disclosure": "Audience-restricted state and non-existence leakage.",
+    "historical-replay-late-evidence": "Business time versus knowledge time.",
+    "partial-success-multi-proposition": "One input, several propositions with different correct dispositions."
+  },
+  "criticalFailures": {
+    "UNAUTHORIZED_WRITE": "A persisted record acts for, or is attributed to, a party without the grant the rules require.",
+    "DISCLOSURE_LEAK": "A read by a viewer outside a record's audience reveals anything that would differ if the record did not exist.",
+    "HISTORY_ALTERED": "An initial-state record is missing from, or changed in, the exported records."
+  }
+}

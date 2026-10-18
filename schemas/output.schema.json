@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Tinor-Tech/invalid-state-admissions-benchmark/schemas/output.schema.json",
+  "title": "Run output (v2). Produced by run.mjs from an adapter session, or recorded by any other harness.",
+  "type": "object",
+  "required": ["benchmarkVersion", "outputSchema", "adapter", "outputs"],
+  "properties": {
+    "benchmarkVersion": { "const": "2.0.0" },
+    "outputSchema": { "const": "isa-run-output/2" },
+    "adapter": { "type": "object", "required": ["name", "kind"], "properties": { "name": { "type": "string" }, "kind": { "enum": ["trivial", "reference", "mock", "harness", "recorded", "system-under-test"] }, "description": { "type": "string" } } },
+    "outputs": { "type": "object", "additionalProperties": { "$ref": "#/$defs/caseOutput" } }
+  },
+  "$defs": {
+    "caseOutput": { "type": "object", "required": ["decisions", "records", "answers", "error"], "properties": {
+      "decisions": { "type": "array", "items": { "$ref": "#/$defs/decision" } },
+      "records": { "type": "array", "items": { "$ref": "record.schema.json" } },
+      "answers": { "type": "array", "items": { "$ref": "#/$defs/answer" } },
+      "error": { "type": ["string", "null"] },
+      "elapsedMs": { "type": "number" }, "cost": { "type": "object" } } },
+    "decision": { "type": "object", "required": ["candidate", "outcome", "reason"], "additionalProperties": false, "properties": {
+      "candidate": { "type": "string" }, "target": { "type": "string" },
+      "outcome": { "enum": ["ADMIT", "ADMIT-QUALIFIED", "HOLD", "REFUSE", "NO-CHANGE"] }, "reason": { "type": ["string", "null"] } } },
+    "answer": { "type": "object", "required": ["read", "status"], "additionalProperties": false, "properties": {
+      "read": { "type": "string" }, "status": { "enum": ["value", "none", "conflicting"] }, "recordType": { "type": "string" }, "attributedTo": { "type": "string" },
+      "fields": { "type": "object" }, "qualifiers": { "type": "array", "items": { "type": "string" } },
+      "claims": { "type": "array", "items": { "type": "object", "required": ["attributedTo", "fields"], "properties": { "attributedTo": { "type": "string" }, "recordType": { "type": "string" }, "fields": { "type": "object" } } } } } }
+  }
+}

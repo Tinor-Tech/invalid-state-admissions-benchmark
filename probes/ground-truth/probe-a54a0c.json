@@ -1,0 +1,67 @@
+{
+  "id": "probe-a54a0c",
+  "label": "x03-expiry-paraphrase",
+  "title": "Probe: t01 with 'expires on'",
+  "benchmarkVersion": "2.0.0",
+  "family": "temporal-validity",
+  "nature": "synthetic",
+  "v1Case": null,
+  "propositions": [
+    {
+      "id": "p1",
+      "step": "s1",
+      "candidate": "c1",
+      "target": "certificate_status",
+      "acceptable": [
+        {
+          "outcome": "ADMIT-QUALIFIED",
+          "reason": "validity_narrower_than_proposed",
+          "record": {
+            "recordType": "claim",
+            "subject": "org:northfield-components",
+            "attributedTo": "org:northfield-components",
+            "actingFor": "org:northfield-components",
+            "fields": {
+              "certificateId": "Q-5521",
+              "scope": "ISO 9001",
+              "status": "valid"
+            },
+            "evidenceMaterials": [
+              "m1"
+            ],
+            "validity": {
+              "from": "2023-10-01",
+              "to": "2026-09-30"
+            }
+          }
+        }
+      ],
+      "rules": [
+        "R-QUAL-1"
+      ],
+      "why": "Same meaning as t01.",
+      "criticalIfPersisted": null
+    }
+  ],
+  "reads": [
+    {
+      "read": "q1",
+      "expected": {
+        "status": "value",
+        "recordType": "claim",
+        "attributedTo": "org:northfield-components",
+        "fields": {
+          "status": "valid"
+        },
+        "qualifiers": [
+          "expired"
+        ]
+      },
+      "restricted": false,
+      "rules": [
+        "R-READ-3"
+      ],
+      "why": "Expired."
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "id": "case-436519",
+  "label": "v02-hedged-delivery",
+  "title": "A hedged delivery statement proposed as an agreement",
+  "benchmarkVersion": "2.0.0",
+  "family": "valid-admission",
+  "nature": "synthetic",
+  "v1Case": "a05",
+  "propositions": [
+    {
+      "id": "p1",
+      "step": "s1",
+      "candidate": "c1",
+      "target": "delivery",
+      "acceptable": [
+        {
+          "outcome": "ADMIT-QUALIFIED",
+          "reason": "stronger_than_source",
+          "record": {
+            "recordType": "expectation",
+            "subject": "org:northfield-components",
+            "attributedTo": "org:northfield-components",
+            "actingFor": "org:northfield-components",
+            "fields": {
+              "object": "HX-40 housings",
+              "quantity": 20000,
+              "dueBy": "2026-11-30",
+              "debtor": "org:northfield-components",
+              "creditor": "org:buyer-b"
+            },
+            "fieldsIncludes": {
+              "condition": [
+                "resin"
+              ]
+            },
+            "evidenceMaterials": [
+              "m1"
+            ],
+            "validity": {
+              "from": "2026-10-05",
+              "to": null
+            }
+          }
+        }
+      ],
+      "rules": [
+        "R-QUAL-1",
+        "R-OFFER-1"
+      ],
+      "why": "v1 expected ADMIT-QUALIFIED; v2 keeps it and makes it unique: the target declares an expectation form, so the supported weaker proposition (an expectation carrying the resin condition) is written. Compare o04, where the target has no expectation form and the same text must be held.",
+      "criticalIfPersisted": null
+    }
+  ],
+  "reads": [
+    {
+      "read": "q1",
+      "expected": {
+        "status": "value",
+        "recordType": "expectation",
+        "attributedTo": "org:northfield-components",
+        "fields": {
+          "quantity": 20000,
+          "dueBy": "2026-11-30"
+        },
+        "qualifiers": [
+          "conditional"
+        ]
+      },
+      "restricted": false,
+      "rules": [
+        "R-READ-3",
+        "R-READ-4"
+      ],
+      "why": "An expectation is served with the conditional qualifier."
+    }
+  ]
+}

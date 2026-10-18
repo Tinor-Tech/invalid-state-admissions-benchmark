@@ -1,0 +1,54 @@
+{
+  "id": "case-b715dd",
+  "label": "d01-restricted-report",
+  "title": "A restricted report read by an outsider",
+  "benchmarkVersion": "2.0.0",
+  "family": "restricted-disclosure",
+  "nature": "synthetic",
+  "v1Case": null,
+  "propositions": [],
+  "reads": [
+    {
+      "read": "q1",
+      "expected": {
+        "status": "value",
+        "recordType": "issuer-attestation",
+        "attributedTo": "org:lakeside-labs",
+        "fields": {
+          "result": "V-2"
+        },
+        "qualifiers": [
+          "independence-not-established",
+          "accreditation-not-established"
+        ]
+      },
+      "restricted": false,
+      "rules": [
+        "R-DISC-1"
+      ],
+      "why": "In the audience."
+    },
+    {
+      "read": "q2",
+      "expected": {
+        "status": "none"
+      },
+      "restricted": true,
+      "rules": [
+        "R-DISC-1"
+      ],
+      "why": "Outside the audience: must be identical to q3, where nothing exists."
+    },
+    {
+      "read": "q3",
+      "expected": {
+        "status": "none"
+      },
+      "restricted": false,
+      "rules": [
+        "R-READ-2"
+      ],
+      "why": "Control: no such record exists."
+    }
+  ]
+}

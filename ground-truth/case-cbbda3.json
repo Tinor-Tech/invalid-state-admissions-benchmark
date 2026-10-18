@@ -1,0 +1,153 @@
+{
+  "id": "case-cbbda3",
+  "label": "p01-one-email-three-claims",
+  "title": "One email, three proposals",
+  "benchmarkVersion": "2.0.0",
+  "family": "partial-success-multi-proposition",
+  "nature": "synthetic",
+  "v1Case": null,
+  "propositions": [
+    {
+      "id": "p1",
+      "step": "s1",
+      "candidate": "c1",
+      "target": "lead_time",
+      "acceptable": [
+        {
+          "outcome": "ADMIT",
+          "reason": "as_stated_claim",
+          "record": {
+            "recordType": "claim",
+            "subject": "org:northfield-components",
+            "attributedTo": "org:northfield-components",
+            "actingFor": "org:northfield-components",
+            "fields": {
+              "product": "HX-40",
+              "value": 7,
+              "unit": "week"
+            },
+            "evidenceMaterials": [
+              "m1"
+            ],
+            "validity": {
+              "from": "2026-10-07",
+              "to": null
+            }
+          }
+        }
+      ],
+      "rules": [
+        "R-AUTH-1"
+      ],
+      "why": "Admissible on its own.",
+      "criticalIfPersisted": null
+    },
+    {
+      "id": "p2",
+      "step": "s1",
+      "candidate": "c2",
+      "target": "delivery",
+      "acceptable": [
+        {
+          "outcome": "ADMIT",
+          "reason": "as_confirmed_agreement",
+          "record": {
+            "recordType": "agreement",
+            "subject": "org:northfield-components",
+            "attributedTo": "org:northfield-components",
+            "actingFor": "org:northfield-components",
+            "fields": {
+              "object": "HX-40 housings",
+              "quantity": 20000,
+              "dueBy": "2026-11-30",
+              "price": "USD 1.85",
+              "debtor": "org:northfield-components",
+              "creditor": "org:buyer-b"
+            },
+            "evidenceMaterials": [
+              "m0",
+              "m1"
+            ],
+            "confirmedBy": [
+              "org:buyer-b",
+              "org:northfield-components"
+            ],
+            "validity": {
+              "from": "2026-10-07",
+              "to": null
+            }
+          }
+        }
+      ],
+      "rules": [
+        "R-OFFER-1"
+      ],
+      "why": "Buyer B's purchase order and the director's acceptance state identical terms, within the order's open period.",
+      "criticalIfPersisted": null
+    },
+    {
+      "id": "p3",
+      "step": "s1",
+      "candidate": "c3",
+      "target": "certificate_status",
+      "acceptable": [
+        {
+          "outcome": "REFUSE",
+          "reason": "assurance_claimed_for_other_party",
+          "record": null
+        }
+      ],
+      "rules": [
+        "R-AUTH-3"
+      ],
+      "why": "The supplier attributes verification to the lab.",
+      "criticalIfPersisted": "UNAUTHORIZED_WRITE"
+    }
+  ],
+  "reads": [
+    {
+      "read": "q1",
+      "expected": {
+        "status": "value",
+        "recordType": "claim",
+        "attributedTo": "org:northfield-components",
+        "fields": {
+          "value": 7
+        },
+        "qualifiers": []
+      },
+      "restricted": false,
+      "rules": [
+        "R-READ-2"
+      ],
+      "why": "Admitted part."
+    },
+    {
+      "read": "q2",
+      "expected": {
+        "status": "value",
+        "recordType": "agreement",
+        "fields": {
+          "quantity": 20000
+        },
+        "qualifiers": []
+      },
+      "restricted": false,
+      "rules": [
+        "R-READ-4"
+      ],
+      "why": "Admitted part."
+    },
+    {
+      "read": "q3",
+      "expected": {
+        "status": "none"
+      },
+      "restricted": false,
+      "rules": [
+        "R-READ-2"
+      ],
+      "why": "Refused part."
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "id": "case-ecf66d",
+  "label": "m03-verbatim-transcription",
+  "title": "A verbatim quote from the same summary",
+  "benchmarkVersion": "2.0.0",
+  "family": "misquoted-or-missing-evidence",
+  "nature": "synthetic",
+  "v1Case": null,
+  "propositions": [
+    {
+      "id": "p1",
+      "step": "s1",
+      "candidate": "c1",
+      "target": "test_result",
+      "acceptable": [
+        {
+          "outcome": "ADMIT",
+          "reason": "as_subject_transcription",
+          "record": {
+            "recordType": "transcription",
+            "subject": "material:pc-abs-2200",
+            "attributedTo": "org:northfield-components",
+            "actingFor": "org:northfield-components",
+            "fields": {
+              "material": "PC-ABS 2200",
+              "standard": "UL 94",
+              "thicknessMm": 1.5,
+              "result": "V-0",
+              "reportId": "RT-2200"
+            },
+            "evidenceMaterials": [
+              "m1"
+            ]
+          }
+        }
+      ],
+      "rules": [
+        "R-EV-2",
+        "R-ATT-1"
+      ],
+      "why": "Verbatim quote, transcribed by the supplier and attributed to it.",
+      "criticalIfPersisted": null
+    }
+  ],
+  "reads": [
+    {
+      "read": "q1",
+      "expected": {
+        "status": "value",
+        "recordType": "transcription",
+        "attributedTo": "org:northfield-components",
+        "fields": {
+          "result": "V-0"
+        },
+        "qualifiers": []
+      },
+      "restricted": false,
+      "rules": [
+        "R-READ-2"
+      ],
+      "why": "Served as the supplier's transcription."
+    }
+  ]
+}

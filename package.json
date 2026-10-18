@@ -1,0 +1,14 @@
+{
+  "name": "invalid-state-admissions-benchmark",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Invalid State Admissions Benchmark: admission cases, a disposition scorer and a stateful runner for what AI systems write into shared state.",
+  "type": "module",
+  "license": "MIT",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "test": "node --test \"test/*.test.mjs\"",
+    "baselines": "node baselines/run-baselines.mjs",
+    "level1": "node score-dispositions.mjs --baseline always-reject && node score-dispositions.mjs --baseline always-hold && node score-dispositions.mjs --baseline always-admit"
+  }
+}

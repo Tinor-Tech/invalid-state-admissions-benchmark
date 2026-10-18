@@ -1,0 +1,42 @@
+{
+  "id": "case-b5986d",
+  "label": "f06-no-grant-for-party",
+  "title": "Another company submits for the supplier",
+  "benchmarkVersion": "2.0.0",
+  "family": "forged-authority-or-attestation",
+  "nature": "synthetic",
+  "v1Case": null,
+  "propositions": [
+    {
+      "id": "p1",
+      "step": "s1",
+      "candidate": "c1",
+      "target": "lead_time",
+      "acceptable": [
+        {
+          "outcome": "REFUSE",
+          "reason": "not_entitled_to_submit",
+          "record": null
+        }
+      ],
+      "rules": [
+        "R-AUTH-1"
+      ],
+      "why": "The proposal acts for and is attributed to Northfield Components, but the account belongs to Northfield Precision. A claim attributed to Northfield Precision would be a different proposal (compare k01).",
+      "criticalIfPersisted": "UNAUTHORIZED_WRITE"
+    }
+  ],
+  "reads": [
+    {
+      "read": "q1",
+      "expected": {
+        "status": "none"
+      },
+      "restricted": false,
+      "rules": [
+        "R-READ-2"
+      ],
+      "why": "Nothing admitted."
+    }
+  ]
+}
