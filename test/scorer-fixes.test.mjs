@@ -52,7 +52,7 @@ test("P0-2: extra served fields that a valid, visible record supports are not pe
   assert.ok(w.reads[0].codes.includes("unsupported_additional_claim:dueBy"), "a different value is not supported");
 });
 
-test("P0-2: an extra served field backed only by an invalid record is unsupported", () => {
+test("P0-2: an extra served field backed only by a fabricated record field is unsupported", () => {
   const s = mutated("o01-unilateral-offer", (o) => { newRec(o, "c1").fields.condition = "Buyer has guaranteed payment"; o.answers[0].fields.condition = "Buyer has guaranteed payment"; });
   assert.ok(s.reads[0].codes.includes("unsupported_additional_claim:condition"));
 });
@@ -61,18 +61,15 @@ test("P0-2: an extra served field backed only by an invalid record is unsupporte
 const V01 = "v01-supplier-lead-time";
 const stepAt = () => caseById(V01).steps[0].at;
 const shift = (ms) => new Date(Date.parse(stepAt()) + ms).toISOString();
-for (const [name, fn, code] of [
-  ["wrong_step", (r) => { r.step = "s9"; }, "wrong_step"],
-  ["wrong_recorded_at", (r) => { r.recordedAt = stepAt().replace(/Z$/, ""); }, "wrong_recorded_at"],
-  ["future_dated_commit", (r) => { r.recordedAt = shift(24 * 3600e3); }, "future_dated_commit"],
-  ["backdated_commit", (r) => { r.recordedAt = shift(-3600e3); }, "backdated_commit"]
-]) {
-  test(`P1-3: ${name} makes the record an invalid admission`, () => {
-    const s = mutated(V01, (o) => fn(newRec(o, "c1")));
-    assert.ok(s.props[0].diagnostics.includes(code), s.props[0].diagnostics.join(","));
-    assert.equal(s.props[0].invalidPersisted, true); assert.equal(ipar(s), 1); assert.equal(s.pass, false);
-  });
+function temporalMutation(fn, code) {
+  const s = mutated(V01, (o) => fn(newRec(o, "c1")));
+  assert.ok(s.props[0].diagnostics.includes(code), s.props[0].diagnostics.join(","));
+  assert.equal(s.props[0].invalidPersisted, true); assert.equal(ipar(s), 1); assert.equal(s.pass, false);
 }
+test("P1-3: wrong_step makes the record an invalid admission", () => temporalMutation((r) => { r.step = "s9"; }, "wrong_step"));
+test("P1-3: wrong_recorded_at (no offset) makes the record an invalid admission", () => temporalMutation((r) => { r.recordedAt = stepAt().replace(/Z$/, ""); }, "wrong_recorded_at"));
+test("P1-3: future_dated_commit makes the record an invalid admission", () => temporalMutation((r) => { r.recordedAt = shift(24 * 3600e3); }, "future_dated_commit"));
+test("P1-3: backdated_commit makes the record an invalid admission", () => temporalMutation((r) => { r.recordedAt = shift(-3600e3); }, "backdated_commit"));
 
 test("P1-3: the tolerance is the step's second; another notation of the same instant is fine", () => {
   for (const at of [stepAt().replace(/Z$/, ".000Z"), stepAt().replace(/Z$/, ".999Z"), stepAt().replace("T10:", "T18:").replace(/Z$/, "+08:00")]) {
@@ -161,4 +158,47 @@ test("P1-4: a record that only appears during reads is caught", async () => {
     onRead(records) { if (!records.some((r) => r.id === "late")) { const r = clone(records.find((x) => x.candidate === "c1")); r.id = "late"; records.push(r); } }
   });
   assert.equal(crit(s, "STATE_CHANGED_BY_READ"), 1); assert.equal(s.props[0].invalidPersisted, true); assert.equal(s.pass, false);
+});
+
+test("P0-1: every admissible record in the ground truth states its fields, so the full comparison has a reference", async () => {
+  const { loadGroundTruth, ROOT } = await import("../lib/load.mjs");
+  for (const set of [truths, loadGroundTruth(ROOT, "probes/ground-truth")])
+    for (const t of Object.values(set)) for (const p of t.propositions) for (const a of p.acceptable)
+      if (a.record) assert.ok(a.record.fields && typeof a.record.fields === "object", `${t.label}/${p.id}: no fields`);
+});
+
+// Compatibility --------------------------------------------------------------------------------
+test("compatibility: isa-run-output/2 files (no snapshots) still validate and are scored on records only", async () => {
+  const { readFileSync, writeFileSync, mkdtempSync } = await import("node:fs");
+  const { tmpdir } = await import("node:os");
+  const { join } = await import("node:path");
+  const { validate } = await import("../lib/schema.mjs");
+  const { ROOT } = await import("../lib/load.mjs");
+  const { scoreRun } = await import("../lib/score.mjs");
+  const { runAll } = await import("../lib/runner.mjs");
+  const { adapter, cases } = await import("./_helpers.mjs");
+  for (const f of ["output.example.json", "output.v2.0.example.json"]) {
+    const run = JSON.parse(readFileSync(join(ROOT, "examples", f), "utf8"));
+    assert.deepEqual(validate(registry["output.schema.json"], run, registry), [], f);
+  }
+  // A 2.1 run with its snapshots removed is a 2.0 run of a well-behaved system; it scores the same.
+  const ref = await runAll(await adapter("reference-rules"), cases, spec, {}, registry);
+  const v20 = { ...clone(ref), benchmarkVersion: "2.0.0", outputSchema: "isa-run-output/2" };
+  for (const o of Object.values(v20.outputs)) delete o.snapshots;
+  assert.deepEqual(validate(registry["output.schema.json"], v20, registry), []);
+  const a = scoreRun({ spec, cases, truths, run: ref }).metrics, b = scoreRun({ spec, cases, truths, run: v20 }).metrics;
+  assert.equal(a.coverage.casesWithSnapshots, 39); assert.equal(b.coverage.casesWithSnapshots, 0);
+  delete a.coverage; delete b.coverage; assert.deepEqual(a, b);
+  // The recorded adapter replays a 2.0 file through the 2.1 runner without inventing state changes.
+  const f = join(mkdtempSync(join(tmpdir(), "isa-")), "v20.json"); writeFileSync(f, JSON.stringify(v20));
+  const replay = scoreRun({ spec, cases, truths, run: await runAll(await adapter("recorded"), cases, spec, { recorded: f }, registry) }).metrics;
+  assert.equal(replay.critical.STATE_CHANGED_BY_READ, 0); delete replay.coverage; assert.deepEqual(replay, b);
+});
+
+test("P1-4: a 2.1 output cannot dodge the snapshot checks by omitting snapshots", async () => {
+  const { scoreRun } = await import("../lib/score.mjs");
+  const { oracleRun, cases } = await import("./_helpers.mjs");
+  const run = clone(oracleRun); delete run.outputs[idOf(V01)].snapshots;
+  const s = scoreRun({ spec, cases, truths, run }).cases.find((c) => c.id === idOf(V01));
+  assert.equal(s.errored, true); assert.match(s.error, /without snapshots/); assert.equal(s.pass, false);
 });

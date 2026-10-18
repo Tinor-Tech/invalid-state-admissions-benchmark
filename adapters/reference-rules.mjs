@@ -170,7 +170,7 @@ export function createReferenceSession() {
 }
 
 export default {
-  name: "reference-rules", kind: "reference",
+  name: "reference-rules", kind: "reference", contract: "isa-adapter/2.1",
   description: "Schema, evidence, identity, authority and temporal rules with a deterministic resolver. Written with knowledge of the public cases; see the header.",
   createSession: createReferenceSession
 };

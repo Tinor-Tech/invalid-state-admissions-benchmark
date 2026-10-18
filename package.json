@@ -1,6 +1,6 @@
 {
   "name": "invalid-state-admissions-benchmark",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "private": true,
   "description": "Invalid State Admissions Benchmark: admission cases, a disposition scorer and a stateful runner for what AI systems write into shared state.",
   "type": "module",

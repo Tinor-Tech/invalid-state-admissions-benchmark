@@ -14,9 +14,14 @@ export async function adapter(name) { return (await import(`../adapters/${name}.
 export async function runAdapter(name, options = {}) { return runAll(await adapter(name), cases, spec, options, registry); }
 export const score = (run) => scoreRun({ spec, cases, truths, run });
 export const oracleRun = await runAdapter("oracle-mock");
-/** Score one case of the oracle output after applying a mutation to a copy of it. */
+/**
+ * Score one case of the oracle output after applying a mutation to a copy of it. The mutation edits the
+ * final state, so the copy drops its snapshots and is scored like an isa-run-output/2 output (final state
+ * only); intermediate and read-time states are tested end to end through the runner (scorer-fixes.test.mjs).
+ */
 export function mutated(label, fn, truth = truths[idOf(label)]) {
   const out = clone(oracleRun.outputs[idOf(label)]);
+  delete out.snapshots;
   fn(out);
   return scoreCase(caseById(label), truth, out, spec);
 }

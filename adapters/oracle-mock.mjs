@@ -15,7 +15,7 @@ export function oracleRecord(p, a, cand, step, id) {
     supersedes: e.supersedes ?? null, withdraws: e.withdraws ?? null, confirmedBy: e.confirmedBy ?? null };
 }
 export default {
-  name: "oracle-mock", kind: "mock",
+  name: "oracle-mock", kind: "mock", contract: "isa-adapter/2.1",
   description: "Replays ground truth. Scorer self-test only; not a baseline, not a result.",
   createSession(options = {}) {
     const truths = loadGroundTruth(ROOT, options.truthDir ?? "ground-truth");

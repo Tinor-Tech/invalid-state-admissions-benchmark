@@ -51,7 +51,7 @@ export function createLLMAdapter({ model, mode = "structured", approve = null, n
   if (typeof model !== "function") throw new Error("llm-harness: a model function is required");
   if (mode === "human-approval" && typeof approve !== "function") throw new Error("llm-harness: human-approval mode needs an approve function or --approvals file");
   return {
-    name, kind: "harness", description: `LLM baseline harness (${mode}). Not run by the benchmark authors.`,
+    name, kind: "harness", contract: "isa-adapter/2.1", description: `LLM baseline harness (${mode}). Not run by the benchmark authors.`,
     createSession() {
       let ctx, records = [], seq = 0;
       const usage = { modelCalls: 0, inputTokens: 0, outputTokens: 0, costUsd: 0, approvals: 0, rejections: 0 };
@@ -96,7 +96,7 @@ export function createLLMAdapter({ model, mode = "structured", approve = null, n
 }
 
 export default {
-  name: "llm-harness", kind: "harness",
+  name: "llm-harness", kind: "harness", contract: "isa-adapter/2.1",
   description: "LLM baseline harness. Requires --model; not run by the benchmark authors.",
   async createSession(options = {}) {
     if (!options.model) throw new Error("llm-harness not configured: pass --model <module> (no model is bundled; no LLM baseline has been run)");

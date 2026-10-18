@@ -21,6 +21,13 @@
             "subject": "material:pc-abs-2200",
             "attributedTo": "org:lakeside-labs",
             "actingFor": "org:lakeside-labs",
+            "fields": {
+              "material": "PC-ABS 2200",
+              "standard": "UL 94",
+              "thicknessMm": 1.5,
+              "result": "V-0",
+              "reportId": "FR-118"
+            },
             "evidenceMaterials": [
               "m1"
             ]

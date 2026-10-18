@@ -2,7 +2,7 @@
 // proposed. Reads use the no-policy reader in _naive.mjs.
 import { naiveSession } from "./_naive.mjs";
 export default {
-  name: "always-admit", kind: "trivial",
+  name: "always-admit", kind: "trivial", contract: "isa-adapter/2.1",
   description: "Declares ADMIT and writes every proposal as proposed; reads with no policy.",
   createSession: () => naiveSession({ decide: () => ({ outcome: "ADMIT", reason: null }), write: true })
 };
