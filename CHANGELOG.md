@@ -24,7 +24,7 @@ Not yet tagged or released. When released, it will be a new Zenodo version under
   several acceptable answers.
 - Baselines: three trivial, one non-LLM reference baseline (measured), LLM harness for three proposed
   baselines (not run), recorded-output adapter, oracle mock for scorer tests.
-- Seven brittleness probes; 47 node:test tests; JSON Schemas; generated RULES.md and CASES.md; REVIEW.md,
+- Seven brittleness probes; 48 node:test tests; JSON Schemas; generated RULES.md and CASES.md; REVIEW.md,
   CONSISTENCY.md, REPRODUCE.md.
 
 ### Ground-truth corrections to v1 cases

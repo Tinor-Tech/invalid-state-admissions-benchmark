@@ -29,8 +29,8 @@ Wall time of the whole set on the machine that generated this file (darwin arm64
 
 | Set | Adapter | Total ms |
 |---|---|---|
-| public | always-reject | 4.9 |
-| public | always-hold | 3.1 |
+| public | always-reject | 5.4 |
+| public | always-hold | 3.0 |
 | public | always-admit | 3.4 |
-| public | reference-rules | 15.6 |
-| probes | reference-rules | 0.7 |
+| public | reference-rules | 15.2 |
+| probes | reference-rules | 0.6 |

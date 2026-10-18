@@ -27,9 +27,8 @@ when the target has no expectation form); requires matching terms from both part
 otherwise writes the offer of the party that made it; resets unstated bases to `unstated`; and caps
 validity at a stated "valid until" date. Reads follow R-READ-1 to R-READ-4 and R-DISC-1.
 
-**Results.** Public set: OAR 0/18, IPAR 0/41, UFR 0/39, DLR 0/3, VSAR 26/26, CDR 41/41, SRA 58/58, CPR 39/39,
-no critical failures. Probes (7 paraphrases written afterwards): IPAR 1/7, UFR 2/3, VSAR 1/4, CDR 3/7,
-SRA 4/7, CPR 3/7.
+**Results.** Public set: OAR 0/18, IPAR 0/41, UFR 0/39, DLR 0/3, VSAR 26/26, CDR 41/41, SRA 58/58, CPR 39/39, no critical failures.
+Probes (7 paraphrases written afterwards): OAR 0/5, IPAR 1/7, UFR 2/3, DLR n/a, VSAR 1/4, CDR 3/7, SRA 4/7, CPR 3/7.
 
 **Why the public-set score means little.** The same authors wrote the cases, the rules, the ground truth
 and this baseline, in that order and with all of them in view. Its heuristics key on the phrasing of

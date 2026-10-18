@@ -36,7 +36,7 @@ Companion repository for the Tinor Journal research note
 Node.js 22 or later. No dependencies, no install step.
 
 ```sh
-npm test                                              # 47 tests (node:test)
+npm test                                              # 48 tests (node:test)
 node run.mjs --adapter reference-rules                # Level 2: run, score, print
 node run.mjs --adapter always-admit                   # a trivial baseline
 node score-dispositions.mjs --baseline always-reject  # Level 1
@@ -64,7 +64,7 @@ harness can be scored with `node score.mjs run.json`. [REPRODUCE.md](REPRODUCE.m
 | `test/` | node:test suite. |
 | `v1/fact-admission/` | v1.0.0 cases, scorer and README, unchanged. |
 | [METRICS.md](METRICS.md), [RULES.md](RULES.md), [CASES.md](CASES.md), [ADAPTERS.md](ADAPTERS.md), [BASELINES.md](BASELINES.md) | Specification. RULES.md and CASES.md are generated. |
-| [REVIEW.md](REVIEW.md), [CONSISTENCY.md](CONSISTENCY.md), [REPRODUCE.md](REPRODUCE.md), [CHANGELOG.md](CHANGELOG.md) | Independent review, article-code consistency check, reproduction guide, change log. |
+| [REVIEW.md](REVIEW.md), [CONSISTENCY.md](CONSISTENCY.md), [REPRODUCE.md](REPRODUCE.md), [CHANGELOG.md](CHANGELOG.md) | Strict self-review (not independent), article-code consistency check, reproduction guide, change log. |
 
 ## What this benchmark is and is not
 
