@@ -10,7 +10,7 @@ and whether the persisted record says exactly what the source supports.
 Companion repository for the Tinor Journal research note
 [Toward Zero Invalid State Admissions](https://tinor.io/journal/toward-zero-invalid-state-admissions).
 
-> **Status: v2.0.0 (released 2026-10-18).** A public, synthetic, open case set with a runnable
+> **Status: v2.1.0 (released 2026-10-18).** A public, synthetic, open case set with a runnable
 > evaluation protocol. **No result is reported for any AI system, including Tinor's.** The only numbers
 > here are for three trivial baselines and one non-LLM reference baseline written by the benchmark
 > authors with knowledge of the public cases (see [BASELINES.md](BASELINES.md)). No language-model

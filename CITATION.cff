@@ -2,9 +2,9 @@ cff-version: 1.2.0
 message: "If you use these cases, scorers or runner, please cite the exact version you used, as below."
 type: software
 title: "Invalid State Admissions Benchmark: admission cases and disposition scorer"
-version: "2.0.0"
+version: "2.1.0"
 date-released: 2026-10-18
-abstract: "A benchmark for what stateful AI systems write into shared state. Version 2.0.0: 39 synthetic cases in 12 families, with system-visible inputs separated from ground truth; declared rules and target contracts; a Level 1 disposition scorer and a Level 2 stateful runner that scores persisted records and served answers through an architecture-neutral adapter contract; metrics OAR, IPAR, VSAR, CDR, SRA, UFR, DLR and CPR, with critical failures and exact intervals. Baselines: three trivial and one non-LLM reference baseline (measured), and a harness for three proposed language-model baselines (not run). No result is reported for any AI system. v1.0.0 files are kept unchanged under v1/."
+abstract: "A benchmark for what stateful AI systems write into shared state. Version 2.1.0 is a scorer-correctness release of 2.0.0: whole-record comparison of persisted records, extra served fields checked against the resolved admissible state, temporal attribution of records, and scoring of every state observed after each step and each read (adapter contract and output schema 2.1). Baseline numbers are unchanged. Contents: 39 synthetic cases in 12 families, with system-visible inputs separated from ground truth; declared rules and target contracts; a Level 1 disposition scorer and a Level 2 stateful runner that scores persisted records and served answers through an architecture-neutral adapter contract; metrics OAR, IPAR, VSAR, CDR, SRA, UFR, DLR and CPR, with critical failures and exact intervals. Baselines: three trivial and one non-LLM reference baseline (measured), and a harness for three proposed language-model baselines (not run). No result is reported for any AI system. v1.0.0 files are kept unchanged under v1/."
 authors:
   - name: "Tinor"
 doi: 10.5281/zenodo.23447898

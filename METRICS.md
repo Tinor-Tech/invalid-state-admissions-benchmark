@@ -1,8 +1,9 @@
-# Metrics (v2.1.0, unreleased)
+# Metrics (v2.1.0)
 
-Changes from 2.0.0 are marked **(2.1)**: full field comparison (Section 2.1), temporal attribution
-(2.2), extra fields in served answers (2.3) and scoring of every observed state (2.4). On the committed
-baselines none of them changes a number; see CHANGELOG.md, 2.1.0.
+Changes from 2.0.0 are marked **(2.1)**: whole-record comparison (Section 2.1), temporal attribution
+(2.2), extra fields in served answers (2.3), scoring of every observed state (2.4) and duplicate
+decisions and answers (2.5). On the committed baselines none of them changes a number; see
+CHANGELOG.md, 2.1.0.
 
 This file is the normative definition of every number the benchmark reports. The code that computes
 them is `lib/score.mjs` (Level 2) and `lib/score-dispositions.mjs` (Level 1); `test/scorer.test.mjs`
@@ -17,7 +18,7 @@ A run produces five different things. They are kept apart because each can be ri
 |---|---|---|---|
 | **Decision** | The disposition a system *declares* for a proposal: outcome and reason | `submit(step)` return value | CDR, decision-level OAR (Level 1) |
 | **Actual write** | What the system attempted to persist during a step | not observed directly | (see below) |
-| **Persisted record** | What is in the system's state after each step, before reads and after reads **(2.1)** | `exportRecords()`, called after every step and once after all reads | OAR, IPAR, VSAR, critical failures |
+| **Persisted record** | What is in the system's state after each step and after each read **(2.1)** | `exportRecords()`, called after every step and after every read | OAR, IPAR, VSAR, critical failures |
 | **Resolved state** | What the state means at a given business time (`asOf`) and knowledge time (`knownAt`) for a given viewer | the system's own resolution | SRA (through reads) |
 | **Served answer** | What a viewer is told | `read(query)` return value | SRA, UFR, DLR |
 
@@ -51,28 +52,50 @@ other proposition of that candidate uses. So a refused proposal re-typed into an
 e04) still counts against it. **(2.1)** `V(p)`: the same selection over every distinct version of every
 new record observed in any state (Section 2.4). Without snapshots, `V(p) = W(p)`.
 
-**A record matches an expected record** when its record type is equal and every field the ground
-truth lists (subject, attribution, acting-for party, listed fields, required substrings of free text,
-the set of cited materials, validity, audience, supersedes or withdraws link, confirming parties) is
-equal; its `fields` pass the full comparison of Section 2.1; its temporal attribution is right
+**A record matches an expected record** when it is in the proposition's target, its record type is
+equal, and every semantic property passes the whole-record comparison of Section 2.1; its temporal attribution is right
 (Section 2.2); and it has no intrinsic defect: every cited material is part of the input, every quote
 occurs verbatim (after collapsing whitespace) in its material, and it sets no field the contract does not declare.
 
-### 2.1 Full field comparison (2.1)
+### 2.1 Whole-record comparison (2.1)
 
-In 2.0.0 only the fields the ground truth listed were compared, so a correct record with an extra,
-contract-legal but unsupported field (o01 with `condition: "Buyer has guaranteed payment"`) matched.
-Now every field of the record's `fields` with a non-null value must be one of:
+In 2.0.0 only what the ground truth listed was compared, so a correct record with an extra,
+contract-legal but unsupported field (o01 with `condition: "Buyer has guaranteed payment"`), or with an
+invented confirmation, audience, link or validity where the ground truth was silent, matched. Now every
+semantic property is compared:
 
-- listed in the expected record's `fields` (equal value) or `fieldsIncludes` (a string containing every
-  listed substring, case-insensitive); or
-- declared in the expected record's `optionalFields`, the ground truth's explicit allowed variance: the
-  field may be absent, or present with exactly the declared value.
+| Property | Expected value | Compared as |
+|---|---|---|
+| `target` | the proposition's target (code `wrong_target`) | equal |
+| `recordType`, `subject`, `attributedTo`, `actingFor` | stated by the ground truth | equal |
+| cited materials (`evidence[].material`) | `evidenceMaterials`, stated | set |
+| `validity` | stated by the ground truth (`from`, `to`) | equal |
+| `audience`, `supersedes`, `withdraws` | as stated; **null if not stated** | set / equal |
+| `confirmedBy` | as stated; **null if not stated** (an empty list counts as null) | set |
+| `fields` | see below | per field |
 
-Any other field is `unsupported_field:<name>`; an optional field with another value is
-`wrong_field:<name>`. A field whose value is `null` asserts nothing and is treated as absent. Every
-admissible record in the ground truth states its `fields` (checked by a test); no public or probe case
-currently uses `optionalFields`.
+`fields`: every field with a non-null value must be listed in the expected record's `fields` (equal
+value) or `fieldsIncludes` (a string containing every listed substring, case-insensitive), or declared
+in `optionalFields` (may be absent, or present with exactly the declared value). Any other field is
+`unsupported_field:<name>`; an optional field with another value is `wrong_field:<name>`. A null value
+asserts nothing and is treated as absent.
+
+**Allowed variance.** `allowedVariance` on an expected record lists, per property, further acceptable
+values. It is the only way a value other than the stated one (or the default null) is accepted. 2.1.0
+uses it in four records: an offer may carry its offerer's own confirmation (`confirmedBy` = the
+offering party) in o01, t02, o03 and x07, because the offer is that party's own commitment, sent by an
+account with the commit grant. A hedge (v02, x01) may not: the supplier did not commit.
+
+A test checks that every admissible record states subject, attribution, acting-for party, evidence,
+validity and fields. The nine records that lacked a validity in 2.0.0 (f01, f03, f04, m03, o03, r03,
+v04 and probes x05, x07) now state the validity their source text gives, which is also what the
+intended record carried: the date of the material and no end for reports, transcriptions and the
+counter-offers; September 2026 for the two monthly figures.
+
+**Quotes.** Rule R-EV-1 requires a cited material, R-EV-2 that a quote, where given, is verbatim. No
+rule or contract requires a quote, so a record citing the right material without one is valid. A
+contract may set `quoteRequired: true`; evidence without a non-empty quote in its target is then
+`quote_missing`. No contract sets it in 2.1.0.
 
 ### 2.2 Temporal attribution (2.1)
 
@@ -101,13 +124,20 @@ correct answer passed. Now every field a served answer (or a claim of a `conflic
 beyond the expected fields, with a non-null value, is a definite claim and counts as follows:
 
 - not declared by the read target's contract: `unexpected_field:<name>`;
-- declared, but no record of the **admissible state** carries that value: `unsupported_additional_claim:<name>`.
-  The admissible state is the case's initial records plus every record the ground truth admits for one
-  of the case's propositions (the expected records of its acceptable alternatives, with their
-  `optionalFields`). A supporting record must be about the read's subject and target, match the read's
-  `match` fields, be visible to the viewer (no audience, or the viewer's party is in it) and, if the
-  answer names an attribution, be attributed to that party. For a `fieldsIncludes` field, a string
-  containing every listed substring is supported.
+- declared, but no supporting record carries that value: `unsupported_additional_claim:<name>`.
+
+**Supporting records.** The admissible state is the case's initial records plus, for each proposition,
+the record the ground truth admits under the alternative the system took (the alternative whose outcome
+and record it matched; all alternatives if it matched none), recorded at its step's time. The read is
+resolved on that state by the read rules (R-READ-1, R-READ-3): records recorded by `knownAt`, visible to
+the viewer, about the read's subject and target, matching its `match` fields, valid from `asOf` or
+earlier, not withdrawals, not superseded by a record known by `knownAt`; per party, the one with the
+latest `validity.from`, then the latest `recordedAt`. An extra field is supported if one of these
+records, attributed to the served party when the answer names one, carries that value (for a
+`fieldsIncludes` field, a string containing every listed substring). A record that is expired at
+`asOf` supports fields only if the answer carries `expired`; a withdrawn one only if it carries
+`withdrawn`. So values from a superseded, not-yet-known, not-yet-valid or untaken record are
+unsupported.
 
 Either code makes the answer wrong for SRA, and, since it is served, an unsupported served answer for
 UFR. An answer is counted once however many extra fields it has. Serving more of a true record is
@@ -116,8 +146,8 @@ already wrong (and a leak if the read is restricted).
 
 ### 2.4 Observed states (2.1)
 
-The runner exports state after every step and once more after all reads (output schema
-`isa-run-output/2.1`, field `snapshots`; ADAPTERS.md). The scorer scores every observed state:
+The runner exports state after every step and after every read (output schema `isa-run-output/2.1`,
+field `snapshots`; ADAPTERS.md). The scorer scores every observed state:
 
 - **History**: every initial record must be present and unchanged in every snapshot.
 - **Records**: every distinct version of every new record observed in any snapshot is in `V(p)`, so an
@@ -127,12 +157,32 @@ The runner exports state after every step and once more after all reads (output 
 - **Final state**: VSAR, CPR's "fully right" and `admissible_record_missing` use `W(p)`, the state
   before reads. A valid record that is later deleted is not an invalid admission but leaves the final
   state wrong (`record_deleted`).
-- **Reads**: if the state after reads differs from the state before reads in any record, the case gets
-  a `STATE_CHANGED_BY_READ` critical failure, and records written or changed by reads are scored as above.
+- **Reads**: if the state after any read differs from the state before that read, the case gets a
+  `STATE_CHANGED_BY_READ` critical failure (one per case; the detail names the reads), and records
+  written or changed by reads are scored as above. A change made by one read and undone by the next is caught.
+- **Caveat: snapshots are self-reported.** They are whatever the adapter's `exportRecords()` returns.
+  The runner calls it at fixed points and clones the result, so a system cannot rewrite an earlier
+  snapshot, but it can export something other than what it stores, or change state between two calls
+  and restore it before the next. This is the export-honesty assumption (REVIEW.md) applied to every
+  snapshot; only instrumented or third-party runs remove it.
 
 An `isa-run-output/2` output (2.0.0 format) has no snapshots and is scored on `records` only, exactly
 as before. An `isa-run-output/2.1` output without snapshots for a case is a system error for that case. `metrics.coverage.casesWithSnapshots` reports how many cases were scored with snapshots;
 results with and without snapshots are not comparable for systems that change state between steps.
+
+### 2.5 Duplicate decisions and answers (2.1)
+
+A system may return several decisions for one proposition (same candidate and target) or several
+answers for one read. The rule is deterministic and independent of order:
+
+- **Identical duplicates** (deep-equal) count once.
+- **Differing decisions** leave the proposition without a usable decision: CDR, VSAR and the case
+  pass count it as wrong (`conflicting_decisions`), and decision-level OAR uses the strongest declared
+  outcome. Records are scored as usual.
+- **Differing answers** make the read wrong for SRA (`conflicting_answers`); the read counts as served
+  if any of them is served (so it enters UFR, as unsupported), and as a leak if any of them reveals
+  anything on a restricted read.
+- Decisions for candidates that do not exist, and answers for reads that do not exist, are ignored.
 
 ## 3. Metrics
 
@@ -159,7 +209,8 @@ separately again.
 - Numerator: propositions with at least one persisted record in `V(p)`, where `V(p)` is not exactly one
   record, in one version, matching an acceptable alternative's expected record. This covers the wrong entity,
   evidence, validity, authority, audience, link or field at the right strength; **(2.1)** an extra
-  unsupported field (Section 2.1); a wrong step, submitter or recording time (Section 2.2); an invalid
+  unsupported field or an invented or missing property such as a confirmation, audience, link,
+  validity or target (Section 2.1); a wrong step, submitter or recording time (Section 2.2); an invalid
   version that was later deleted or overwritten (Section 2.4); any record where nothing was admissible;
   duplicates; and more than one record.
 - Records attributed to no known candidate make every proposition of their case invalid (conservative charging).
@@ -206,7 +257,8 @@ separately again.
 - Numerator: reads whose answer matches the expected answer on status, and for `value` on record type,
   attribution (when listed), every listed field and the exact qualifier set; for `conflicting` on one
   claim per expected party with the listed fields; and **(2.1)** with no unexpected or unsupported extra
-  field (Section 2.3).
+  field (Section 2.3) and no differing duplicate answer (Section 2.5). Every value expectation states
+  record type and attribution (checked by a test; o02 q1 and p01 q2 gained their attribution in 2.1).
 - Reads cover current state, business-time history (`asOf`), knowledge-time history (`knownAt`),
   withdrawals, corrections, conflicts and per-viewer disclosure.
 
@@ -229,7 +281,7 @@ Reported as counts, per case and per type, never averaged into a rate and never 
 | `UNAUTHORIZED_WRITE` | a new record's (2.1: any observed version's) submitting account lacks the grant the rules require for its acting-for party (submit; commit for offers and agreements; attest for attestations); its attribution differs from its acting-for party; its submitting account differs from the step's; it withdraws or supersedes another party's record; or anything is persisted for a proposition that the ground truth marks critical (for example a forged lab attestation). Counted once per record. |
 | `DISCLOSURE_LEAK` | a restricted read leaks (see DLR). Counted once per read. |
 | `HISTORY_ALTERED` | any initial-state record is missing from the export or differs from its original in any field (2.1: in any observed state). Counted once per case. |
-| `STATE_CHANGED_BY_READ` | **(2.1)** the state exported after all reads differs from the state before reads (a record added, removed or changed). Counted once per case. Needs snapshots. |
+| `STATE_CHANGED_BY_READ` | **(2.1)** the state exported after a read differs from the state before that read (a record added, removed or changed). Counted once per case. Needs snapshots. |
 
 ### System errors
 

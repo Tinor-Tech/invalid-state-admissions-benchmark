@@ -1,9 +1,12 @@
 # Changelog
 
-## 2.1.0 (unreleased)
+## 2.1.0 (2026-10-18)
 
-Scorer-correctness release. Not tagged, not archived; 2.0.0 and its DOI are unchanged. Each fix was
-driven by a mutation test written first and failing against 2.0.0 (`test/scorer-fixes.test.mjs`).
+Scorer-correctness release, archived as a new Zenodo version under the concept DOI
+10.5281/zenodo.23447898. 2.0.0 (10.5281/zenodo.23449349) and 1.0.0 (10.5281/zenodo.23447899) and their
+files are unchanged. Each fix was driven by a mutation test written first and failing against the code
+before it (`test/scorer-fixes.test.mjs` against 2.0.0, `test/scorer-fixes-2.test.mjs` against the first
+round).
 
 ### Fixed
 
@@ -19,9 +22,25 @@ driven by a mutation test written first and failing against 2.0.0 (`test/scorer-
   (`wrong_step`, `wrong_submitter`, `wrong_recorded_at`, `backdated_commit`, `future_dated_commit`), and
   count in IPAR. Section 2.2.
 - **Only the final state was checked (P1-4).** The runner now exports state after every step and after
-  all reads; the scorer scores every observed version of every record, so an invalid admission that is
-  later deleted or overwritten counts, and a read that changes state is a new critical failure,
-  `STATE_CHANGED_BY_READ`. Section 2.4.
+  every read; the scorer scores every observed version of every record, so an invalid admission that is
+  later deleted or overwritten counts, and a read that changes state (even if a later read reverts it)
+  is a new critical failure, `STATE_CHANGED_BY_READ`. A 2.1 output without snapshots is a system error.
+  Section 2.4.
+- **Record properties the ground truth did not list were unchecked.** A fake `confirmedBy` on the o01
+  offer, an invented audience or supersedes/withdraws link, any validity where the ground truth was
+  silent, or the same record filed in a sibling target all passed. Every semantic property is now
+  compared; audience, links and confirmations default to null; further values only through the new
+  `allowedVariance`. Section 2.1.
+- **Extra-field support ignored time and the alternative taken.** Support is now the record the read
+  resolves to by R-READ-1/3 in the admissible state under the alternative the system took; an expired
+  or withdrawn record supports fields only with its qualifier. Section 2.3.
+- **Two value reads did not check attribution** (o02 q1, p01 q2); they now state it, and a test requires
+  every value expectation to.
+- **Duplicates were scored first-match.** Identical duplicate decisions or answers count once; differing
+  ones are `conflicting_decisions` / `conflicting_answers` and wrong, and a revealing duplicate on a
+  restricted read leaks. Section 2.5.
+- **Quotes.** No rule or contract requires an evidence quote (R-EV-1, R-EV-2), so a quote-less record
+  stays valid; contracts can now set `quoteRequired` (`quote_missing`). None does in 2.1.0.
 
 ### Compatibility
 
@@ -33,10 +52,15 @@ driven by a mutation test written first and failing against 2.0.0 (`test/scorer-
   keeps its 2.0.0 meaning. `isa-run-output/2` files still validate and are scored on `records` only, as
   in 2.0.0; `metrics.coverage.casesWithSnapshots` tells the two apart. The `recorded` adapter replays
   either. `examples/output.v2.0.example.json` keeps the old format.
+- **Snapshots** are `{ after, records }` per step (`after` = step id) and per read (`after` = `read:<id>`).
+  They are self-reported by the adapter (ADAPTERS.md).
 - **Metrics object:** new keys `critical.STATE_CHANGED_BY_READ` and `coverage.casesWithSnapshots`.
-- **Ground-truth schema:** new optional `optionalFields` on expected records. Probe x05's expected record
-  gained the `fields` it lacked (the same five values as f03, all stated in its material); without them
-  the full comparison would have had no reference.
+- **Ground-truth schema:** new optional `optionalFields` and `allowedVariance` on expected records.
+- **Ground-truth data** (intended answers unchanged; each value from the source text and equal to the
+  record the oracle already wrote): probe x05 gained the `fields` it lacked (as f03); validity stated for
+  f01, f03, f04, m03, o03, r03, v04 and probes x05, x07; `attributedTo` added to o02 q1 and p01 q2;
+  `allowedVariance` for the offerer's own confirmation on the offers o01, t02, o03 and x07. Case files and
+  the `benchmarkVersion` field of data files (format version 2.0.0) are unchanged.
 - **Numbers:** every baseline metric on the public set and the probes is unchanged (regenerated
   `baselines/results/`; only the wall-time table differs). Results of other systems can change, and
   2.0.0 and 2.1.0 results are not comparable for systems with extra fields, wrong timestamps, or state

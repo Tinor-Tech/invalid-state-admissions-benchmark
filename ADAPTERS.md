@@ -12,8 +12,9 @@ createSession(options)                 fresh, isolated instance per case
     submit(step)      -> { decisions }
     exportRecords()   -> records[]     snapshot: everything the system holds now
   (a case without steps: one exportRecords() after init)
-  read(query)         -> answer        once per read, after all steps
-  exportRecords()     -> records[]     snapshot after all reads
+  for each read, after all steps:
+    read(query)       -> answer
+    exportRecords()   -> records[]     snapshot after that read
   cost()?             -> { ... }       optional: model calls, tokens, money
   close()?
 ```
@@ -23,7 +24,15 @@ current persisted state, and have no side effects. A step's writes must be persi
 `exportRecords()`, before `submit(step)` resolves. `read(query)` must not change state. The scorer
 checks all three (METRICS.md, Section 2.4): an invalid record that exists in any snapshot counts even if
 it is later deleted or overwritten, a write that first appears after another step is
-`observed_after_other_step`, and a state change during reads is a `STATE_CHANGED_BY_READ` critical failure.
+`observed_after_other_step`, and a state change during any read is a `STATE_CHANGED_BY_READ` critical failure.
+
+**Snapshots are self-reported.** They are what `exportRecords()` returns, cloned at once. The runner
+cannot see state between calls or verify that an export is what the system stores; a system that
+changes state between two exports and restores it before the next, or exports something other than
+its store, is not detected. This is the export-honesty requirement below, applied to every snapshot.
+
+**Duplicates.** Return one decision per proposition and one answer per read. Identical duplicates count
+once; differing ones are scored as conflicting (METRICS.md, Section 2.5).
 
 An adapter may declare `contract: "isa-adapter/2.1"`; the runner records it in the output. The
 adapters in this repository all declare it.
@@ -51,10 +60,10 @@ the case. Ground truth is never passed and is loaded by the runner only after th
 The runner writes `isa-run-output/2.1` (`benchmarkVersion` 2.1.0): each case output carries, besides
 `decisions`, `records` (the state after the last step, before reads, as in 2.0.0) and `answers`, a
 `snapshots` array of `{ after, records }`, one per step (`after` = step id; `init` for a case without
-steps) and one after reads (`after` = `reads`).
+steps) and one per read (`after` = `read:<read id>`).
 
 - **2.0.0 adapters** run unchanged if their `exportRecords()` is side-effect free and reflects current
-  state; it is now called once per step plus once after reads instead of once. An adapter that only
+  state; it is now called once per step and once per read instead of once. An adapter that only
   materialises its state on the first call, or whose export changes state, is incompatible and must be
   fixed. Its 2.1 results are not comparable with 2.0.0 results.
 - **2.0.0 output files** (`isa-run-output/2`, no snapshots) still validate and score, on `records`
