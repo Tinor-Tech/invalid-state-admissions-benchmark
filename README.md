@@ -1,5 +1,7 @@
 # Invalid State Admissions Benchmark — admission cases and disposition scorer
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23447898.svg)](https://doi.org/10.5281/zenodo.23447898)
+
 Companion repository for the Tinor Journal research note
 [Toward Zero Invalid State Admissions: A Benchmark Proposal](https://tinor.io/journal/toward-zero-invalid-state-admissions).
 
@@ -54,10 +56,31 @@ Ten cases with three valid ones is a worked example, not a benchmark. See the
 [note](https://tinor.io/journal/toward-zero-invalid-state-admissions) for the case families a full set should cover and for how results should be reported
 (ISAR is never reported alone).
 
+## How to cite
+
+Archived on Zenodo. The DOI below refers to all versions and always resolves to the latest one:
+[10.5281/zenodo.23447898](https://doi.org/10.5281/zenodo.23447898).
+
+> Tinor (2026). Invalid State Admissions Benchmark: admission cases and disposition scorer. Zenodo.
+> https://doi.org/10.5281/zenodo.23447898
+
+```bibtex
+@software{tinor_invalid_state_admissions_benchmark,
+  author    = {{Tinor}},
+  title     = {Invalid State Admissions Benchmark: admission cases and disposition scorer},
+  year      = {2026},
+  publisher = {Zenodo},
+  doi       = {10.5281/zenodo.23447898},
+  url       = {https://doi.org/10.5281/zenodo.23447898}
+}
+```
+
+Citation metadata is also in [`CITATION.cff`](CITATION.cff).
+
 ## License
 
 - Code (`fact-admission/score.mjs`): [MIT](LICENSE).
 - Data and documentation (`fact-admission/cases.json`, the README files): [CC BY 4.0](LICENSE-DATA).
 
-Copyright © 2026 Tinor. If you use these files, please cite them using [`CITATION.cff`](CITATION.cff)
+Copyright © 2026 Tinor. If you use these files, please cite them as above
 and link to the [canonical article](https://tinor.io/journal/toward-zero-invalid-state-admissions).

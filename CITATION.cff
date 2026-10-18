@@ -5,6 +5,7 @@ title: "Invalid State Admissions Benchmark: admission cases and disposition scor
 abstract: "Ten synthetic admission cases and a disposition-only scorer published with the Tinor Journal research note 'Toward Zero Invalid State Admissions: A Benchmark Proposal'. A proposal: no results are reported for any system."
 authors:
   - name: "Tinor"
+doi: 10.5281/zenodo.23447898
 url: "https://tinor.io/journal/toward-zero-invalid-state-admissions"
 repository-code: "https://github.com/Tinor-Tech/invalid-state-admissions-benchmark"
 license: MIT
